@@ -1,0 +1,12 @@
+
+ <div class="test-name-Component">PagePimalionCategoriesComponent-p</div>
+
+
+<ng-container *ngIf="pimalionCategories$ | async as categories">
+
+
+   <app-block-pimalion-categories-grid header="Categories" layout="classic" [categories]="categories">
+   </app-block-pimalion-categories-grid>
+
+</ng-container>
+

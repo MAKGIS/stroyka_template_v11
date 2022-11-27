@@ -1,0 +1,19 @@
+
+> npm i --force
+
+> ng run stroyka:serve-ssr
+
+> node dist/stroyka/server/main.js
+
+
+------------------------------
+
+
+https://docs.google.com/document/d/1Pd0yIxQWWIEsBI04FhVHZnmNYRJeGqsacFW2aGwHt8k/edit#
+
+https://demo.sourcing.pm/backend/swagger/ui/index#/Shop
+
+https://makgis.github.io/demo_sourcing_pm/pimalion/catalog
+
+
+--------------------------

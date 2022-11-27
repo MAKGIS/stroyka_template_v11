@@ -1,0 +1,10 @@
+<div class="test-name-Component">PagePimalionBrandsComponent-p</div>
+
+<ng-container *ngIf="pimalionBrands$|async as brands">
+
+    <app-block-pimalion-brands-grid header="Brands" layout="classic" [brands]="brands">
+
+    </app-block-pimalion-brands-grid>
+
+</ng-container>
+

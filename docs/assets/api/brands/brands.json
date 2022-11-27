@@ -1,0 +1,9 @@
+[
+  {"id": 1, "name": "Brandix222", "slug": "brandix", "image": "assets/images/logos/logo-1.png"},
+  {"id": 2, "name": "Wakita111", "slug": "wakita", "image": "assets/images/logos/logo-2.png"},
+  {"id": 3, "name": "Zosch", "slug": "zosch", "image": "assets/images/logos/logo-3.png"},
+  {"id": 4, "name": "WeVALT", "slug": "wevalt", "image": "assets/images/logos/logo-4.png"},
+  {"id": 5, "name": "Hammer", "slug": "hammer", "image": "assets/images/logos/logo-5.png"},
+  {"id": 6, "name": "Mitasia", "slug": "mitasia", "image": "assets/images/logos/logo-6.png"},
+  {"id": 7, "name": "Metaggo", "slug": "metaggo", "image": "assets/images/logos/logo-7.png"}
+]
