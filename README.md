@@ -1,0 +1,1 @@
+# stroyka_template_v11
