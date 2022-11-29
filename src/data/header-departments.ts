@@ -1,14 +1,33 @@
-import { getModeSource } from 'src/fake-server/database/brands';
+import { getCategoriesName, getCategoriesSlug, getModeSource } from 'src/fake-server/database/brands';
 import { NavigationLink } from '../app/shared/interfaces/navigation-link';
 
 export var departments: NavigationLink[];
 
+/*
 const departmentsPimalion: NavigationLink[] = [
     {label: 'Sanitaire',        url: '/shop/catalog/Sanitaire'},
     {label: 'Electricité',      url: '/shop/catalog/Electricité'},
     {label: 'Outillage',        url: '/shop/catalog/Outillage'},
     {label: 'Chauffage',        url: '/shop/catalog/Chauffage'}
 ];
+*/
+
+ function initDepartmentsPimalion(): NavigationLink[] {
+
+    var departments: NavigationLink[] = [];
+
+    for (let i = 0; i < getCategoriesSlug().length; i++) {
+        const menu: NavigationLink = {
+            label: getCategoriesName()[i],
+            url: '/shop/catalog/' + getCategoriesSlug()[i]
+         } ;
+        departments.push(menu);
+      }
+
+      return departments
+}
+
+var departmentsPimalion: NavigationLink[] = initDepartmentsPimalion();
 
 const departmentsFakeServer: NavigationLink[] = [
     {label: 'Power Tools', url: '/shop/catalog', menu: {

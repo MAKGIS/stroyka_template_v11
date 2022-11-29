@@ -72,17 +72,15 @@ export function getModeSource(): string {
     return mode;
 }
 
-
+var  categoriesName: string[] = [];
 
 export function getCategoriesName(): string[] {
-
-    let  categoriesName: string[] = [];
 
     switch(getModeSource()) {
 
         case 'demo.sourcing.pm':
 
-            categoriesName =  [ 'Sanitaire', 'Electricité', 'Outillage', 'Chauffage' ];
+            categoriesName =  [ 'Sanitaire*', 'Electricité*', 'Outillage*', 'Chauffage*', 'Test*' ];
            break;
 
         default: // 'fake-server'; 'json':
@@ -93,15 +91,15 @@ export function getCategoriesName(): string[] {
     return categoriesName;
 }
 
-export function getCategoriesSlug(): string[] {
+var  categoriesSlug: string[] = [];
 
-    let  categoriesSlug: string[] = [];
+export function getCategoriesSlug(): string[] {
 
     switch(getModeSource()) {
 
         case 'demo.sourcing.pm':
 
-            categoriesSlug =  [ 'Sanitaire', 'Electricité', 'Outillage', 'Chauffage' ];
+            categoriesSlug =  [ 'Sanitaire', 'Electricité', 'Outillage', 'Chauffage', "Test" ];
            break;
 
         default: // 'fake-server'; 'json':

@@ -114,7 +114,7 @@ const routes: Routes =  [
         data: {
             columns: 4,
             viewMode: 'grid',
-            categorySlug: 'Sanitaire' // rootCategorySlug   // ???  'Sanitaire' //
+            categorySlug: rootCategorySlug   // ???  'Sanitaire' //
         },
         resolve: {
             category: CategoryResolverService,
@@ -127,7 +127,7 @@ const routes: Routes =  [
         data: {
             columns: 5,
             viewMode: 'grid',
-            categorySlug: 'Sanitaire' //rootCategorySlug  // ???  'Sanitaire' //
+            categorySlug: rootCategorySlug  // ???  'Sanitaire' //
         },
         resolve: {
             category: CategoryResolverService,
@@ -141,7 +141,7 @@ const routes: Routes =  [
             columns: 3,
             viewMode: 'list',
             sidebarPosition: 'start',
-            categorySlug:  'Sanitaire' // rootCategorySlug // ???  'Sanitaire' //
+            categorySlug:  rootCategorySlug // ???  'Sanitaire' //
         },
         resolve: {
             category: CategoryResolverService,
@@ -155,7 +155,7 @@ const routes: Routes =  [
             columns: 3,
             viewMode: 'grid',
             sidebarPosition: 'end',
-            categorySlug: 'Sanitaire' // rootCategorySlug  // ???  'Sanitaire' //
+            categorySlug: rootCategorySlug  // ???  'Sanitaire' //
         },
         resolve: {
             category: CategoryResolverService,
