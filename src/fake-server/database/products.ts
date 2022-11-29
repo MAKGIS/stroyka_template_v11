@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { getModeSource } from 'src/fake-server/database/brands';
+import { PimalionCloudService } from 'src/app/shared/api/pimalion-cloud.service';
 
 const mode: string = getModeSource();
 
@@ -565,11 +566,14 @@ export function getSuggestions(query: string, limit: number, categorySlug: strin
 }
 
 export function getProduct(productSlug: string): Observable<Product> {
-    const product = products.find(x => x.slug === productSlug);
 
-    if (!product) {
-        return throwError(new HttpErrorResponse({status: 404, statusText: 'Page Not Found'}));
-    }
+
+        const product = products.find(x => x.slug === productSlug);
+
+        if (!product) {
+                    return throwError(new HttpErrorResponse({status: 404, statusText: 'Page Not Found'}));
+                }
 
     return of(JSON.parse(JSON.stringify(product)));
+
 }

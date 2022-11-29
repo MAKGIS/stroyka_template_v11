@@ -82,7 +82,7 @@ const routes: Routes = [
             sidebarPosition: 'start'
         },
         resolve: {
-            product: ProductResolverPimalionService
+            product: ProductResolverService  // ProductResolverPimalionService
         },
     }
     /*

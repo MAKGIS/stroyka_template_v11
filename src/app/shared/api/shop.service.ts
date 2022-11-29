@@ -563,6 +563,7 @@ export class ShopService {
 
                 return this.pimalionCloudService.getProductDetailPage(productId)
                 .pipe(
+                    /*
                     switchMap(pimalionItemHtml => {
 
                         if (isShopServiceLog)  {
@@ -573,6 +574,7 @@ export class ShopService {
 
                         return productCor;
                     })
+                    */
                 );
                 break;
              default:

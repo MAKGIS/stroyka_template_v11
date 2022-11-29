@@ -60,7 +60,7 @@ function setShopBrandDef(brandsDefNew: BrandDef[]  ) {
 }
 */
 // 'fake-server'; 'json'; 'demo.sourcing.pm';
-const modeSource: string =  'demo.sourcing.pm';
+const modeSource: string =   'demo.sourcing.pm';
 
 export function getModeSource(): string {
 
@@ -114,3 +114,21 @@ export function getRootCategorySlug(): string {
 
     return getCategoriesSlug()[0];
 }
+
+export function getProductStandard(): string {
+
+     let product = '';
+    switch(getModeSource()) {
+
+        case 'demo.sourcing.pm':
+
+            product =   'ReMSlWcBq_r5-pCSVC-G';
+           break;
+
+        default: // 'fake-server'; 'json':
+            product =  'brandix-screwdriver-screw1500acc';
+    }
+
+    return product;
+}
+

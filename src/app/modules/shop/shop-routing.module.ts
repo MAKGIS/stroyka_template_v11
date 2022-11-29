@@ -17,7 +17,7 @@ import { PageOrderSuccessComponent } from './pages/page-order-success/page-order
 import { PagePimalionCategoriesComponent } from 'src/app/pimalion/pages/page-categories/page-pimalion-categories.component';
 import { PagePimalionBrandsComponent } from 'src/app/pimalion/pages/page-brands/page-pimalion-brands.component';
 
-import { getModeSource, getRootCategorySlug } from 'src/fake-server/database/brands';
+import { getModeSource, getProductStandard, getRootCategorySlug } from 'src/fake-server/database/brands';
 
 const mode: string = 'demo.sourcing.pm'; // getModeSource();
 
@@ -168,7 +168,7 @@ const routes: Routes =  [
         data: {
             layout: 'standard',
             sidebarPosition: 'start',
-            productSlug: 'brandix-screwdriver-screw1500acc',
+            productSlug: getProductStandard(), //'brandix-screwdriver-screw1500acc',
         },
         resolve: {
             product: ProductResolverService
@@ -179,7 +179,7 @@ const routes: Routes =  [
         component: PageProductComponent,
         data: {
             layout: 'columnar',
-            productSlug: 'brandix-screwdriver-screw1500acc',
+            productSlug: getProductStandard(), // 'brandix-screwdriver-screw1500acc',
         },
         resolve: {
             product: ProductResolverService
@@ -191,7 +191,7 @@ const routes: Routes =  [
         data: {
             layout: 'sidebar',
             sidebarPosition: 'start',
-            productSlug: 'brandix-screwdriver-screw1500acc',
+            productSlug: getProductStandard(), //'brandix-screwdriver-screw1500acc',
         },
         resolve: {
             product: ProductResolverService
@@ -329,7 +329,7 @@ const routes: Routes =  [
         data: {
             layout: 'standard',
             sidebarPosition: 'start',
-            productSlug: 'brandix-screwdriver-screw1500acc',
+            productSlug: getProductStandard(), // 'brandix-screwdriver-screw1500acc',
         },
         resolve: {
             product: ProductResolverService
@@ -340,7 +340,7 @@ const routes: Routes =  [
         component: PageProductComponent,
         data: {
             layout: 'columnar',
-            productSlug: 'brandix-screwdriver-screw1500acc',
+            productSlug: getProductStandard(), // 'brandix-screwdriver-screw1500acc',
         },
         resolve: {
             product: ProductResolverService
@@ -352,7 +352,7 @@ const routes: Routes =  [
         data: {
             layout: 'sidebar',
             sidebarPosition: 'start',
-            productSlug: 'brandix-screwdriver-screw1500acc',
+            productSlug: getProductStandard(), // 'brandix-screwdriver-screw1500acc',
         },
         resolve: {
             product: ProductResolverService

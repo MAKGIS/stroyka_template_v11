@@ -9,6 +9,8 @@ import { environment } from '../../../environments/environment';
 import { Category, CategoryPimalion } from '../interfaces/category';
 import { Brand, BrandPimalion } from '../interfaces/brand';
 import { getCategoriesPimalion } from './products-list-pimalion';
+import { Product, ProductAttribute } from '../interfaces/product';
+import { CustomFields } from '../interfaces/custom-fields';
 
 
 
@@ -63,6 +65,126 @@ class BrandItem {
     }
 }
 
+/*
+
+{
+        id: ++lastProductId + '',  // ???
+        name: productDef.name,
+        sku: '83690/32',
+        slug: productDef.slug,
+        price: productDef.price,
+        compareAtPrice: productDef.compareAtPrice || null,
+        images: productDef.images.slice(),
+        badges: badges.slice(),
+        rating: productDef.rating,
+        reviews: productDef.reviews,
+        availability: productDef.availability,
+        brand: brands.find(x => x.slug === productDef.brand) || null,
+        categories,
+        attributes,
+        customFields: {},
+    };
+
+       const productCor: Product = {
+             id: item.id,
+             slug: getPimalionValue(item.values, 'Marque'),
+             name: item.label,
+             sku:  getPimalionValue(item.values, 'sku'),
+             price: getPimalionValue(item.attributes, 'commerce'), // item.attributes['commerce'].value,
+             compareAtPrice: 0,
+             images: [item.thumbnailUrl],
+             badges: ['hot'],                         // badges:  ['sale', 'hot', 'new']
+             rating: 1,
+             reviews: 888,
+             availability: 'availability',                          // item.attributes['fabdis'].value,              // доступность
+             brand: brandCor,                                       // item.values['Marque'].value,
+             categories: [categoryCor],
+             attributes: [],
+             customFields: {},
+
+             pimalionReviews: getPimalionValue(item.values, 'Images').label + ' images / ' + getPimalionValue(item.values, 'Documents') + ' documents'
+         };
+*/
+
+class ProductItem {
+
+    id: string;
+    slug: string;
+    name: string;
+
+    sku: string;   // '83690/32',
+    price: number;
+    compareAtPrice: number|null;
+
+    images: string[];
+    badges: string[];
+
+    rating: number;
+    reviews: number;
+    availability: string;
+
+    brand: Brand|null;
+    categories: Category[];
+
+    attributes: ProductAttribute[];
+    customFields: CustomFields;
+
+    overview: string;
+
+    brandName?: string;
+    supplierReference?: string;
+
+    description?: string;
+
+    documents?: any[];
+    /*
+    [
+        {
+            "url": "http://docdif.fr.grpleg.com/general/CESSION/AR/NP-FT-GT/50977_LE06809AA[1].pdf",
+            "priority": 1,
+            "label": "NOTICE (Lien http)  (Lien http)  (Lien http)  (Lien http)  (Lien http) "
+        }, .. ]
+    */
+    // pimalionReviews?: string;   // ???
+
+    // pimalionHtml?: string;   // ???
+
+    relatedProducts?: any[];
+    productVariants?: any[];
+
+    constructor( itemData: any ) {
+
+        this.id =  itemData.id;     // "ReMSlWcBq_r5-pCSVC-G",
+        this.slug = itemData.id;    // "ReMSlWcBq_r5-pCSVC-G",
+        this.name = itemData.title;  // "PRISE TV SIMPLE COMPLET BL",
+
+        this.sku = itemData.pimSku;  // "100501957"  '83690/32',
+
+        this.price = itemData.price;      // "price": "0.0",
+        this.compareAtPrice = itemData.price;   //  number|null;
+
+        this.images = itemData.images;  //
+        this.badges = []; // badges: string[];
+
+        this.rating = 2; // rating: number;
+        this.reviews = 3; // reviews: number;
+        this.availability = ''; // availability: string;
+
+        this.brand = { id: '1', name: itemData.brandName, slug: itemData.brandName, image: 'assets/images/logos/logo-1.png'};
+
+        this.categories = [{ id:'1', name: 'Sanitaire', slug: 'Sanitaire', items: 111 , path: '', image: '', type: 'shop', customFields:null }];
+
+        // ???
+        this.attributes = itemData.attributes; // attributes: ProductAttribute[];
+
+        this.customFields = null;// customFields: CustomFields;
+
+        this.overview = itemData.overview; // overview: string;   // "Arnould - PRISE TV SIMPLE COMPLET BL",
+
+        this.brandName = itemData.brandName; // "brandName": "ARNOULD",
+        this.supplierReference = itemData.supplierReference;   //   "supplierReference": "50977",
+    }
+};
 
 const isPimalionCloudServiceLog = true;
 
@@ -78,7 +200,7 @@ export class PimalionCloudService {
 
     const url = `${environment.pimalionCloudUrl}/api/shop/categories`;
 
-    if (isPimalionCloudServiceLog || true) {
+    if (isPimalionCloudServiceLog) {
         console.log('PimalionCloudService.getCloudCategoriesList() -> %o ', url);
     }
 
@@ -92,7 +214,7 @@ export class PimalionCloudService {
     .pipe(
 
                 tap((items: any) => {
-                    if (isPimalionCloudServiceLog || true) {
+                    if (isPimalionCloudServiceLog) {
                         console.log('*srv*** PimalionCloudService.getCloudCategoriesList() items -> %O', items);
                     }
                 }),
@@ -104,7 +226,7 @@ export class PimalionCloudService {
                     })
                 }),
                 tap((items: any) => {
-                    if (isPimalionCloudServiceLog || true) {
+                    if (isPimalionCloudServiceLog) {
                         console.log('*srv*** PimalionCloudService.getCloudCategoriesList() items(Categories) -> %O', items);
                     }
                 }),
@@ -140,7 +262,7 @@ export class PimalionCloudService {
                 })
             }),
             tap((items: any) => {
-                if (isPimalionCloudServiceLog || true) {
+                if (isPimalionCloudServiceLog) {
                     console.log('*srv*** PimalionCloudService.getCloudBrandsList() items(Brands) -> %O', items);
                 }
             }),
@@ -223,9 +345,13 @@ export class PimalionCloudService {
     }
 
   // 04 Get The product detail page
-  getProductDetailPage(productKey: string): Observable<any> {
+  getProductDetailPage(productKey: string): Observable<Product> {
 
-    const url = `${environment.pimalionCloudUrl}/pimalion_demo2_api/api/product/render/html/${productKey}?version=web`;
+    // const url = `${environment.pimalionCloudUrl}/pimalion_demo2_api/api/product/render/html/${productKey}?version=web`;
+
+    // https://demo.sourcing.pm/backend/api/shop/product?id=ReMSlWcBq_r5-pCSVC-G
+
+    const url = `${environment.pimalionCloudUrl}/api/shop/product?id=${productKey}`;
 
     if (isPimalionCloudServiceLog) {
         console.log('*srv*** PimalionCloudService.getProductDetailPage() url -> %o', url);
@@ -238,8 +364,16 @@ export class PimalionCloudService {
                 if (isPimalionCloudServiceLog) {
                     console.log('*srv*** PimalionCloudService.getProductDetailPage() items -> %O', item);
                 }
-             })
-             ,
+             }),
+            map(itemData => {
+                var i: number = 0;
+                return  new ProductItem(itemData);
+            }),
+            tap((item: any) => {
+                if (isPimalionCloudServiceLog) {
+                    console.log('*srv*** PimalionCloudService.getProductDetailPage() item(Product) -> %O', item);
+                }
+            }),
             catchError((err: any): any => {
                 console.log('*srv*** Error PimalionCloudService.getProductDetailPage() -> %O', err);
                 return of(`<html><head>Product Detail Page</head> <body>Page not found </body></html>`);
