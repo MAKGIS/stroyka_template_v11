@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment';
 import { Category, CategoryPimalion } from '../interfaces/category';
 import { Brand, BrandPimalion } from '../interfaces/brand';
 import { getCategoriesPimalion } from './products-list-pimalion';
-import { Product, ProductAttribute } from '../interfaces/product';
+import { Product, ProductAttribute, ProductDocument } from '../interfaces/product';
 import { CustomFields } from '../interfaces/custom-fields';
 
 
@@ -136,7 +136,7 @@ class ProductItem {
 
     description?: string;
 
-    documents?: any[];
+    documents?: ProductDocument[];
     /*
     [
         {
@@ -152,6 +152,7 @@ class ProductItem {
     relatedProducts?: any[];
     productVariants?: any[];
 
+
     constructor( itemData: any ) {
 
         this.id =  itemData.id;     // "ReMSlWcBq_r5-pCSVC-G",
@@ -160,10 +161,18 @@ class ProductItem {
 
         this.sku = itemData.pimSku;  // "100501957"  '83690/32',
 
-        this.price = itemData.price;      // "price": "0.0",
-        this.compareAtPrice = itemData.price;   //  number|null;
+        this.price = itemData.price; // + 1;      // "price": "0.0",
+        this.compareAtPrice = itemData.price; // + 2;   //  number|null;
 
-        this.images = itemData.images;  //
+        const imagesTest: string[] = itemData.images.length === 0 ? [
+            "assets/images/products/product-1.jpg",
+            "assets/images/products/product-1-1.jpg"
+        ] // test
+         : itemData.images;
+
+        this.images = imagesTest;
+
+
         this.badges = []; // badges: string[];
 
         this.rating = 2; // rating: number;
@@ -183,6 +192,13 @@ class ProductItem {
 
         this.brandName = itemData.brandName; // "brandName": "ARNOULD",
         this.supplierReference = itemData.supplierReference;   //   "supplierReference": "50977",
+
+        // product__features
+
+        this.documents = itemData.documents;
+        // ???
+        this.relatedProducts = itemData.relatedProducts;    // any[];
+        this.productVariants = itemData.productVariants;    // any[];
     }
 };
 

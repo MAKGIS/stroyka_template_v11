@@ -12,7 +12,11 @@ export interface ProductFeaturesSection {
     features: ProductFeature[];
 }
 
-
+export interface ProductDocument {
+    url: string;
+    priority: number;
+    label: string;
+}
 
 export interface ProductAttributeValue {
     name: string;
@@ -49,5 +53,10 @@ export interface Product {
     pimalionReviews?: string,   // ???
 
     pimalionHtml?: string,   // ???
+
+    documents?: ProductDocument[];
+
+    overview?: string;
+    brandName?: string; // "brandName": "ARNOULD",
 
 }
