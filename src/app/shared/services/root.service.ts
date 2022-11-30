@@ -54,7 +54,8 @@ export class RootService {
         const basePath = '/shop/products';
 
         if ('slug' in product) {
-            return `${basePath}/${product.slug}`;
+          // return `${basePath}/${product.slug}`;
+            return `${basePath}/${product.id}`;
         }
         if ('id' in product) {
             return `${basePath}/${product.id}`;
@@ -62,21 +63,21 @@ export class RootService {
 
         throw Error('Provide product with "slug" or "id".');
     }
+/*
+    product_P(product: Partial<Product>): string {
+        const basePath = '/shop/products'; // '/pimalion/products'; // '/shop/products';
 
-    productPimalion(productPimalion: Partial<Product>): string {
-        const basePath = '/pimalion/products'; // '/shop/products';
+        if ('slug' in product) {          // ???
+             return `${basePath}/${product.slug}`;
+        }
 
-        // if ('slug' in productPimalion) {          // ???
-        //     return `${basePath}/${productPimalion.slug}`;
-        // }
-
-        if ('id' in productPimalion) {
-            return `${basePath}/${productPimalion.id}`;
+        if ('id' in product) {
+            return `${basePath}/${product.id}`;
         }
 
         throw Error('Provide product with "slug" or "id".');
     }
-
+*/
     brand(brand: Partial<Brand>): string {
         return '/';
     }
