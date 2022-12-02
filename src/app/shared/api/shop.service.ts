@@ -46,6 +46,7 @@ import { getModeSource } from 'src/fake-server/database/brands';
 import { PimalionCloudService } from './pimalion-cloud.service';
 
 export interface ListOptions {
+    query?: string;
     page?: number;
     limit?: number;
     sort?: string;
@@ -61,8 +62,7 @@ const mode: string = getModeSource();
 // Set the http options
 const httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" })
-  };
-
+};
 @Injectable({
     providedIn: 'root'
 })
@@ -454,18 +454,27 @@ export class ShopService {
 
 
         const pagePimalion = options.page  || 1 ;
-        const limitPimalion = options.limit || 12;
-        const sort = options.sort || 'default';
+        const limitPimalion = options.limit || count;
+        const sort = options.sort || [];
+        const query = options.query || '';
 
-        const body = {
-            groupFields: [],
-            selection: [],
-            page: pagePimalion - 1,  // !!! ???
-            pageSize: limitPimalion,
-            isManaged: true,
-            sort: [],                  // options.sort
-            productStates: []
-        };
+        // categorySlug ???
+
+       const body = {
+                groupFields: [],
+                selection: [],
+                page: pagePimalion - 1,  // !!! ???
+                pageSize: limitPimalion,
+                isManaged: true,
+                sort: sort,                  // options.sort
+                productStates: []
+            };
+
+        if (query  != '') {
+                body["query"] = query;
+            };
+
+            console.log(`>>> ShopService.getTypeProducts().getTypeProducts() Input query -> %O`, query);
 
         return this.pimalionCloudService.getProductsList(body)
             .pipe(
@@ -956,13 +965,23 @@ export class ShopService {
             case 'demo.sourcing.pm':
 
                 if (isShopServiceLog)  {console.log('ShopService.getSuggestions()')}
+/*
+	"query": "INTER AUTO 2 FILS MG",
+	"groupFields": [],
+	"selection": [],
+	"page": 0,
+	"pageSize": 5,
+	"sort": []
+}
 
-                const options:ListOptions = {
+*/
+                const options: ListOptions = {
+                   query: query, // 'INTER AUTO 2 FILS MG',
                    page: 0,
-                   limit: 3,
-                   sort: 'default'
+                   limit: limit,
+                   // sort: []
                 };
-                return this.getTypeProducts(null, options, 12);
+                return this.getTypeProducts(null, options, 5);
                 break;
              default:
 

@@ -106,7 +106,7 @@ class BrandItem {
          };
 */
 
-class ProductItem {
+export class ProductItem {
 
     id: string;
     slug: string;
@@ -151,8 +151,54 @@ class ProductItem {
 
     relatedProducts?: any[];
     productVariants?: any[];
+/*
+{
+    "id": "ReMSlWcBq_r5-pCSVC-G",
+    "title": "PRISE TV SIMPLE COMPLET BL",
+    "overview": "Arnould - PRISE TV SIMPLE COMPLET BL",
+    "price": "0.0",
+    "brandName": "ARNOULD",
+    "supplierReference": "50977",
+    "pimSku": "100501957",
+    "images": [],
+    "documents": [
+        {
+            "url": "http://docdif.fr.grpleg.com/general/CESSION/AR/NP-FT-GT/50977_LE06809AA[1].pdf",
+            "priority": 1,
+            "label": "NOTICE (Lien http)  (Lien http)  (Lien http)  (Lien http)  (Lien http) "
+        },
+        {
+            "url": "http://docdif.fr.grpleg.com/general/cession/AR/NP-FT-GT/LE06809AC.pdf",
+            "priority": 2,
+            "label": "NOTICE (Lien http)  (Lien http)  (Lien http)  (Lien http)  (Lien http) "
+        }
+    ],
+    "description": "",
+    "attributes": [],
+    "relatedProducts": [],
+    "productVariants": []
+}
+*/
+/*
+            id: item.id,
+             slug: getPimalionValue(item.values, 'Marque'),
+             name: item.label,
+             sku:  getPimalionValue(item.values, 'sku'),
+             price: getPimalionValue(item.attributes, 'commerce'), // item.attributes['commerce'].value,
+             compareAtPrice: 0,
+             images: [item.thumbnailUrl],
+             badges: ['hot'],                         // badges:  ['sale', 'hot', 'new']
+             rating: 1,
+             reviews: 888,
+             availability: 'availability',                          // item.attributes['fabdis'].value,              // доступность
+             brand: brandCor,                                       // item.values['Marque'].value,
+             categories: [categoryCor],
+             attributes: [],
+             customFields: {},
 
+             pimalionReviews: getPimalionValue(item.values, 'Images').label + ' images / ' + getPimalionValue(item.values, 'Documents') + ' documents'
 
+*/
     constructor( itemData: any ) {
 
         this.id =  itemData.id;     // "ReMSlWcBq_r5-pCSVC-G",
@@ -173,20 +219,36 @@ class ProductItem {
         this.images = imagesTest;
 
 
-        this.badges = []; // badges: string[];
+        this.badges = ['hot']; // badges: string[];
 
         this.rating = 2; // rating: number;
         this.reviews = 3; // reviews: number;
-        this.availability = ''; // availability: string;
+        this.availability = 'availability'; // availability: string;
 
         this.brand = { id: '1', name: itemData.brandName, slug: itemData.brandName, image: 'assets/images/logos/logo-1.png'};
 
-        this.categories = [{ id:'1', name: 'Sanitaire', slug: 'Sanitaire', items: 111 , path: '', image: '', type: 'shop', customFields:null }];
-
+        this.categories = [{ id:'1', name: 'Sanitaire', slug: 'Sanitaire', items: 111 , path: 'category', image: null, type: 'shop', customFields: {},
+                parents: null,
+                children: null
+            }];
+/*
+const categoryCor: Category = {
+             id: 1 + '',
+             type: 'shop',
+             name: 'name category',
+             slug: 'category',
+             path: 'category',
+             image: null,
+             items: 11,
+             customFields: {},
+             parents: null,
+             children: null
+         };
+*/
         // ???
-        this.attributes = itemData.attributes; // attributes: ProductAttribute[];
+        this.attributes = []; //itemData.attributes; // attributes: ProductAttribute[];
 
-        this.customFields = null;// customFields: CustomFields;
+        this.customFields = {}; // null;// customFields: CustomFields;
 
         this.overview = itemData.overview; // overview: string;   // "Arnould - PRISE TV SIMPLE COMPLET BL",
 
@@ -196,9 +258,14 @@ class ProductItem {
         // product__features
 
         this.documents = itemData.documents;
+
+        this.description = itemData.description;
         // ???
         this.relatedProducts = itemData.relatedProducts;    // any[];
         this.productVariants = itemData.productVariants;    // any[];
+        //???
+        // this.pimalionReviews = getPimalionValue(item.values, 'Images').label + ' images / ' + getPimalionValue(item.values, 'Documents') + ' documents'
+
     }
 };
 
@@ -290,14 +357,11 @@ export class PimalionCloudService {
         );
   }
 
-  // 03 Post Product list. All products
+  // 03 Post /api/shop/search Product list. All products
   getProductsList(body: any): Observable<any> {
 
-    const url = `${environment.pimalionCloudUrl}/api/product/search`;
+    const url = `${environment.pimalionCloudUrl}/api/shop/search`;
 
-    if (isPimalionCloudServiceLog) {
-        console.log('*srv*** PimalionCloudService.getProductsList() url -> %o  body -> %o', url, body);
-    }
     if (!body) {
                     /*
                     body = {
@@ -313,22 +377,42 @@ export class PimalionCloudService {
                    console.log('*srv*** Error PimalionCloudService.getProductsList() body -> NULL');
                    return of([]);
                 }
+// ???
+             const   bodyQuery = {
+                        query : "vis",
+                        groupFields: [],
+                        selection: [],
+                        page: body.page,
+                        pageSize: body.pageSize,
+                        isManaged: true,
+                        sort: [],
+                        productStates: []
+                    };
+         body = bodyQuery;
+
+    if (isPimalionCloudServiceLog) {
+        console.log('*srv*** PimalionCloudService.getProductsList() url -> %o  body -> %o', url, body);
+    }
 
     const mainHeaders = [];
 
-    // return this.http.post<any>(`${environment.pimalionCloudUrl}/pimalion_demo2_api/api/product/search`, body, {
     return this.http.post<any>( url, body, {
             headers: new HttpHeaders()
               .set('Content-Type', 'application/json')
               .set('Accept', 'application/json')
-         , responseType: 'json'
-         , observe: 'response'
+        // , responseType: 'json'
+       //  , observe: 'response'
         })
     .pipe(
-             map((response: any) => {
+         tap(data => {
+            if (isPimalionCloudServiceLog) {
+                console.log('*srv*** PimalionCloudService.getProductsList() tap response -> %O', data);
+            }
+         }),
+         map((response: any) => {
 
                 if (isPimalionCloudServiceLog) {
-                    console.log('*srv*** PimalionCloudService.getProductsList() response -> %O', response);
+                    console.log('*srv*** PimalionCloudService.getProductsList() map response -> %O', response);
                 }
                  // const keys = response.headers.keys();
                  /*
@@ -341,12 +425,14 @@ export class PimalionCloudService {
                    );
                    */
                  // tslint:disable-next-line:no-shadowed-variable
-                 const body = {
-                    items: response.body.tableValues,
-                    sorts: response.body.sorts,
-                    total: response.headers.get('x-total-count'),
-                    pages: response.headers.get('x-total-pages'),
+
+                 const body: any = {
+                    items: response.products, // response.body.tableValues,
+                    sorts: response.sorts,
+                    total: 100,  // response.headers.get('x-total-count'),
+                    pages: 10, // response.headers.get('x-total-pages'),
                   };
+
 
                   if (isPimalionCloudServiceLog) {
                     console.log('*srv*** PimalionCloudService.getProductsList() body -> %O', body);
@@ -382,7 +468,7 @@ export class PimalionCloudService {
                 }
              }),
             map(itemData => {
-                var i: number = 0;
+                // var i: number = 0;
                 return  new ProductItem(itemData);
             }),
             tap((item: any) => {
@@ -399,7 +485,7 @@ export class PimalionCloudService {
 /*
   getProducts(body: any): Observable<any> {
 
-    const url = `${environment.pimalionCloudUrl}/api/product/search`;
+    const url = `${environment.pimalionCloudUrl}/api/shop/search`;
 
     if (isPimalionCloudServiceLog) {
         console.log('*srv*** PimalionCloudService.getProductsList() url -> %o', url);
@@ -441,4 +527,6 @@ export class PimalionCloudService {
         );
     }
   */
+
+
 }
