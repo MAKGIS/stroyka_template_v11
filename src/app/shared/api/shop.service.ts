@@ -422,8 +422,7 @@ export class ShopService {
                         selection: [],
                         page: pagePimalion - 1,  // !!! ???
                         pageSize: limitPimalion,
-                        isManaged: true,
-                        sort: [],                  // options.sort
+                        sort: [],
                         productStates: []
                     };
 
@@ -461,19 +460,19 @@ export class ShopService {
         // categorySlug ???
 
        const body = {
-                groupFields: [],
-                selection: [],
+                //groupFields: [],
+                //selection: [],
                 page: pagePimalion - 1,  // !!! ???
                 pageSize: limitPimalion,
-                isManaged: true,
-                sort: sort,                  // options.sort
-                productStates: []
+                //isManaged: true,
+                //sort: sort,                  // options.sort
+                //productStates: []
             };
-
+/*
         if (query  != '') {
                 body["query"] = query;
             };
-
+*/
             console.log(`>>> ShopService.getTypeProducts().getTypeProducts() Input query -> %O`, query);
 
         return this.pimalionCloudService.getProductsList(body)

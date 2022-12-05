@@ -262,7 +262,7 @@ export function getProductsListPimalion(categorySlug: string|null, options: List
 
     if (isPtoductListPimalionLog) {
         console.log(`<<< function getProductsListPimalion() (1) pimalionBody -> %O`, pimalionBody);
-        console.log(`getProductsListPimalion() (1) filtersDef -> %O`, filtersDef);
+       // console.log(`getProductsListPimalion() (1) filtersDef -> %O`, filtersDef);
     }
 
     const pimalionItemsCor: Product[] = [];
@@ -270,7 +270,7 @@ export function getProductsListPimalion(categorySlug: string|null, options: List
     pimalionBody.items.forEach(item => {
 
         if (isPtoductListPimalionLog) {
-             console.log(`getProductsListPimalion() (2) item -> %O`, item);
+           //  console.log(`getProductsListPimalion() (2) item -> %O`, item);
         }
 
         const categoryCor: Category = {
@@ -285,41 +285,9 @@ export function getProductsListPimalion(categorySlug: string|null, options: List
              parents: null,
              children: null
          };
-/*
-        const brandCor: Brand = {
-            id: 1 + '',
-            name: getPimalionValue(item.values, 'Marque'),
-            slug: getPimalionValue(item.values, 'Marque'),
-            image: null,
-        };
 
-
-        var bran_Marque = getPimalionValue(item.values, 'Marque') as string;
-
-*/
         const productCor: Product = new ProductItem(item);
-     /*
-        {
-             id: item.id,
-             slug: item.label, // getPimalionValue(item.values, 'Marque'),
-             name: item.label,
-             sku:  getPimalionValue(item.values, 'sku'),
-             price: getPimalionValue(item.attributes, 'commerce'), // item.attributes['commerce'].value,
-             compareAtPrice: 0,
-             images: [item.thumbnailUrl],
-             badges: ['hot'],                         // badges:  ['sale', 'hot', 'new']
-             rating: 1,
-             reviews: 888,
-             availability: 'availability',                          // item.attributes['fabdis'].value,              // доступность
-             brand: brands.find(x => x.slug === bran_Marque) || null, // brandCor
 
-             categories: [categoryCor],
-             attributes: [],
-             customFields: {},
-
-             pimalionReviews: getPimalionValue(item.values, 'Images').label + ' images / ' + getPimalionValue(item.values, 'Documents') + ' documents'
-         };
-*/
          if (isPtoductListPimalionLog) {
             console.log(`getProductsListPimalion() (3) productCor -> %O`, productCor);
          }

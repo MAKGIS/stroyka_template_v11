@@ -328,6 +328,7 @@ export class PimalionCloudService {
                    return of([]);
                 }
 // ???
+/*
              const   bodyQuery = {
                         query : "vis",
                         groupFields: [],
@@ -339,7 +340,7 @@ export class PimalionCloudService {
                         productStates: []
                     };
          body = bodyQuery;
-
+*/
     if (isPimalionCloudServiceLog) {
         console.log('*srv*** PimalionCloudService.getProductsList() url -> %o  body -> %o', url, body);
     }
