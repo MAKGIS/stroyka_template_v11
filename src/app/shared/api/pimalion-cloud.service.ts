@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment';
 import { Category, CategoryPimalion } from '../interfaces/category';
 import { Brand, BrandPimalion } from '../interfaces/brand';
 import { getCategoriesPimalion } from './products-list-pimalion';
-import { Product, ProductAttribute, ProductDocument } from '../interfaces/product';
+import { AttributePimalion, DocumentPimalion, ImagePimalion, Product, ProductAttribute } from '../interfaces/product';
 import { CustomFields } from '../interfaces/custom-fields';
 
 
@@ -106,106 +106,61 @@ class BrandItem {
          };
 */
 
-export class ProductItem {
+export class ProductItem implements Product {
 
-    id: string;
-    slug: string;
-    name: string;
+    id: string;  // "id"
+    slug: string;  // "id"
+    name: string;  // "title"
 
-    sku: string;   // '83690/32',
-    price: number;
-    compareAtPrice: number|null;
+    overview?: string;   // "overview"
+    description?: string; // "description"
+
+    sku: string;   // "pimSku"
+    supplierReference?: string | null; // supplierReference
+
+    price: number;   // "price"
+    compareAtPrice: number|null; // "price" | null ???
 
     images: string[];
+    imagesPimalion?: ImagePimalion[]; // "images"
+
     badges: string[];
 
     rating: number;
     reviews: number;
     availability: string;
 
+    brandName?: string; // "brandName": "ARNOULD",
     brand: Brand|null;
+
     categories: Category[];
 
     attributes: ProductAttribute[];
+    attributePimalion?: AttributePimalion[];
+
+    documents?: DocumentPimalion[];
+
     customFields: CustomFields;
 
-    overview: string;
+    pimalionReviews?: string;   // ???
 
-    brandName?: string;
-    supplierReference?: string;
-
-    description?: string;
-
-    documents?: ProductDocument[];
-    /*
-    [
-        {
-            "url": "http://docdif.fr.grpleg.com/general/CESSION/AR/NP-FT-GT/50977_LE06809AA[1].pdf",
-            "priority": 1,
-            "label": "NOTICE (Lien http)  (Lien http)  (Lien http)  (Lien http)  (Lien http) "
-        }, .. ]
-    */
-    // pimalionReviews?: string;   // ???
-
-    // pimalionHtml?: string;   // ???
+    pimalionHtml?: string;   // ???
 
     relatedProducts?: any[];
     productVariants?: any[];
-/*
-{
-    "id": "ReMSlWcBq_r5-pCSVC-G",
-    "title": "PRISE TV SIMPLE COMPLET BL",
-    "overview": "Arnould - PRISE TV SIMPLE COMPLET BL",
-    "price": "0.0",
-    "brandName": "ARNOULD",
-    "supplierReference": "50977",
-    "pimSku": "100501957",
-    "images": [],
-    "documents": [
-        {
-            "url": "http://docdif.fr.grpleg.com/general/CESSION/AR/NP-FT-GT/50977_LE06809AA[1].pdf",
-            "priority": 1,
-            "label": "NOTICE (Lien http)  (Lien http)  (Lien http)  (Lien http)  (Lien http) "
-        },
-        {
-            "url": "http://docdif.fr.grpleg.com/general/cession/AR/NP-FT-GT/LE06809AC.pdf",
-            "priority": 2,
-            "label": "NOTICE (Lien http)  (Lien http)  (Lien http)  (Lien http)  (Lien http) "
-        }
-    ],
-    "description": "",
-    "attributes": [],
-    "relatedProducts": [],
-    "productVariants": []
-}
-*/
-/*
-            id: item.id,
-             slug: getPimalionValue(item.values, 'Marque'),
-             name: item.label,
-             sku:  getPimalionValue(item.values, 'sku'),
-             price: getPimalionValue(item.attributes, 'commerce'), // item.attributes['commerce'].value,
-             compareAtPrice: 0,
-             images: [item.thumbnailUrl],
-             badges: ['hot'],                         // badges:  ['sale', 'hot', 'new']
-             rating: 1,
-             reviews: 888,
-             availability: 'availability',                          // item.attributes['fabdis'].value,              // доступность
-             brand: brandCor,                                       // item.values['Marque'].value,
-             categories: [categoryCor],
-             attributes: [],
-             customFields: {},
 
-             pimalionReviews: getPimalionValue(item.values, 'Images').label + ' images / ' + getPimalionValue(item.values, 'Documents') + ' documents'
 
-*/
     constructor( itemData: any ) {
 
         this.id =  itemData.id;     // "ReMSlWcBq_r5-pCSVC-G",
         this.slug = itemData.id;    // "ReMSlWcBq_r5-pCSVC-G",
         this.name = itemData.title;  // "PRISE TV SIMPLE COMPLET BL",
 
+        this.overview = itemData.overview; // overview: string;   // "Arnould - PRISE TV SIMPLE COMPLET BL",
+        this.description = itemData.description; // description: string;   // "Arnould - PRISE TV SIMPLE COMPLET BL",
+
         this.sku = itemData.pimSku;  // "100501957"  '83690/32',
+        this.supplierReference = itemData.supplierReference;  // "100501957"  '83690/32',
 
         this.price = itemData.price; // + 1;      // "price": "0.0",
         this.compareAtPrice = itemData.price; // + 2;   //  number|null;
@@ -217,7 +172,7 @@ export class ProductItem {
          : itemData.images;
 
         this.images = imagesTest;
-
+        this.imagesPimalion = itemData.images;
 
         this.badges = ['hot']; // badges: string[];
 
@@ -225,7 +180,9 @@ export class ProductItem {
         this.reviews = 3; // reviews: number;
         this.availability = 'availability'; // availability: string;
 
+        this.brandName = itemData.brandName; // "brandName": "ARNOULD",
         this.brand = { id: '1', name: itemData.brandName, slug: itemData.brandName, image: 'assets/images/logos/logo-1.png'};
+        // brand: brands.find(x => x.slug === bran_Marque) || null, // brandCor
 
         this.categories = [{ id:'1', name: 'Sanitaire', slug: 'Sanitaire', items: 111 , path: 'category', image: null, type: 'shop', customFields: {},
                 parents: null,
@@ -247,25 +204,18 @@ const categoryCor: Category = {
 */
         // ???
         this.attributes = []; //itemData.attributes; // attributes: ProductAttribute[];
+        this.attributePimalion = itemData.attributes;
 
         this.customFields = {}; // null;// customFields: CustomFields;
 
-        this.overview = itemData.overview; // overview: string;   // "Arnould - PRISE TV SIMPLE COMPLET BL",
-
-        this.brandName = itemData.brandName; // "brandName": "ARNOULD",
-        this.supplierReference = itemData.supplierReference;   //   "supplierReference": "50977",
-
-        // product__features
-
         this.documents = itemData.documents;
-
-        this.description = itemData.description;
         // ???
         this.relatedProducts = itemData.relatedProducts;    // any[];
         this.productVariants = itemData.productVariants;    // any[];
-        //???
-        // this.pimalionReviews = getPimalionValue(item.values, 'Images').label + ' images / ' + getPimalionValue(item.values, 'Documents') + ' documents'
 
+        this.pimalionReviews = 'pimalionReviews';  // ???
+
+        this.pimalionHtml =  'pimalionHtml'   // ???
     }
 };
 

@@ -332,48 +332,6 @@ export function getProductsListPimalion(categorySlug: string|null, options: List
         console.log('getProductsListPimalion() (4) pimalionItemsCor -> %O', pimalionItemsCor);
      }
         // get items Pimalion
-       /*
-
-            "id": "8IIKy24Bzb9Z4chNr0kp",
-            "thumbnailUrl": "assets/pim-img/placeholder.png",
-            "label": "Legrand - MOSAIC PRISE DE COURANT 2P+T BORNES A VIS SPECIALE RENOVATION COMPOSABLE BLANC •
-            MOSAIC PRISE DE COURANT 2P+T BORNES A VIS SPECIALE RENOVATION COMPOSABLE BLANC",
-            "groupCode": null,
-            "values":[
-            {"key": "Nom article", "value": "Legrand - MOSAIC PRISE DE COURANT 2P+T BORNES A VIS SPECIALE RENOVATION COMPOSABLE BLANC •
-            MOSAIC PRISE DE COURANT 2P+T BORNES A VIS SPECIALE RENOVATION COMPOSABLE BLANC"…},
-            {"key": "Référence", "value": "099420"},
-            {"key": "Sku", "value": 101206398},
-            {"key": "Marque", "value": "LEGRAND"},
-            {"key": "Nomenclature", "value": "ÉLECTRICITÉ/DISTRIBUTION ÉNERGIE - PROTECTION HABITAT ET TERTIAIRE/ACCESSOIRE DE
-            BÂTIMENT/FICHE - PRISE - SORTIE DE CÂBLE - ACCESSOIRE"…},
-            {"key": "Import", "value": "20/07/20"},
-            {"key": "Attributs", "value":{"label": 11, "color": "orange"…},
-            {"key": "Images", "value":{"label": "0", "color": "orange"…},
-            {"key": "Documents", "value": "0"},
-            {"key": "Variantes", "value": 0}
-            ],
-            "taxonomies":[
-            {"key": "Nomenclature pim", "value": "ÉLECTRICITÉ/DISTRIBUTION ÉNERGIE - PROTECTION HABITAT ET
-            TERTIAIRE/ACCESSOIRE DE BÂTIMENT/FICHE - PRISE - SORTIE DE CÂBLE - ACCESSOIRE"…},
-            {"key": "Nomenclature gamme", "value": "Programme Mosaic™"},
-            {"key": "Nom long", "value": "Legrand - MOSAIC PRISE DE COURANT 2P+T BORNES A VIS SPECIALE RENOVATION COMPOSABLE BLANC"},
-            {"key": "Nom moyen", "value": "MOSAIC PRISE DE COURANT 2P+T BORNES A VIS SPECIALE RENOVATION COMPOSABLE BLANC"},
-            {"key": "Nom court", "value": "2P+T BV SPEC RENO COMPO BLANC"},
-            {"key": "Nom article", "value": ""}
-            ],
-            "attributes":[
-            {"key": "fabdis", "value": 1},
-            {"key": "commerce", "value": 10}
-            ],
-            "googleQuery": "(\"099420\") AND LEGRAND",
-            "url": null,
-            "supplierSheet": "",
-            "isEditable": false,
-            "agentId": null
-            },
-
-       */
 
 
     let items = productsTable.slice();

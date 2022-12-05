@@ -12,12 +12,6 @@ export interface ProductFeaturesSection {
     features: ProductFeature[];
 }
 
-export interface ProductDocument {
-    url: string;
-    priority: number;
-    label: string;
-}
-
 export interface ProductAttributeValue {
     name: string;
     slug: string;
@@ -32,31 +26,83 @@ export interface ProductAttribute {
     customFields: CustomFields;
 }
 
+// --- Pimalion --------------------
+/*
+"images": [
+    {
+              "url": "https://www.nicoll.fr/sites/default/files/products/35666.jpg",
+              "priority": 1,
+              "label": null
+            }, ... ]
+    */
+export interface ImagePimalion {
+    url: string;
+    priority: number;
+    label: string;
+}
+/*
+"documents": [
+        {
+          "url": "https://medias.nicoll.fr/medias-fabdis/documents/35870.pdf",
+          "priority": 1,
+          "label": "FICHE"
+        }, ... ]
+        */
+export interface DocumentPimalion {
+    url: string;
+    priority: number;
+    label: string;
+}
+/*
+   "attributes": [
+ {
+          "groupName": "Toutes les caractéristiques",
+          "key": "Categorie produit",
+          "value": "caniveau "
+        }, ... ]
+*/
+export interface AttributePimalion {
+    groupName: string;
+    key: number;
+    value: string;
+}
 export interface Product {
-    id: string;    // number; // ???
-    slug: string;
-    name: string;
-    sku: string;
-    price: number;
-    compareAtPrice: number|null;
+    id: string;    // "id"
+    slug: string;  // "id"
+    name: string;  // "title"
+
+    overview?: string;  // "overview"
+    description?: string; // "description"
+
+    sku: string;    // "pimSku"
+    supplierReference?: string | null; // supplierReference
+    price: number;    // "price"
+    compareAtPrice: number|null;  // "price" ???
+
     images: string[];
+    imagesPimalion?: ImagePimalion[];  // "images"
+
     badges: string[];
     rating: number;
     reviews: number;
     availability: string;
+
+    brandName?: string | null; // "brandName": "ARNOULD",
     brand: Brand|null;
+
     categories: Category[];
+
     attributes: ProductAttribute[];
+    attributePimalion?: AttributePimalion[];  // "attributes"
+
+    documents?: DocumentPimalion[];
+
     customFields: CustomFields;
-    // brandName?: string,
 
     pimalionReviews?: string,   // ???
 
-    pimalionHtml?: string,   // ???
+    pimalionHtml?: string   // ???
 
-    documents?: ProductDocument[];
-
-    overview?: string;
-    brandName?: string; // "brandName": "ARNOULD",
-
+    relatedProducts?: any[];
+    productVariants?: any[];
 }
