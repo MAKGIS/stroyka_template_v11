@@ -697,7 +697,8 @@ export function getProductsPimalion( categorySlug: string|null, options: ListOpt
 
     const pimalionItemsCor: Product[] = [];
 
-    //if (pimalionBody.items) {
+    if (pimalionBody.items && ( pimalionBody.items.lenght > 0 )) {
+
         pimalionBody.items.forEach(item => {
 
             if (isPtoductListPimalionLog) {
@@ -754,6 +755,6 @@ export function getProductsPimalion( categorySlug: string|null, options: ListOpt
 
             pimalionItemsCor.push(productCor);
         });
-    //}
+    }
      return of(pimalionItemsCor);
 }

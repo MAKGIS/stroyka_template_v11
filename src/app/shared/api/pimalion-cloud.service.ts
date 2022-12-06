@@ -351,8 +351,8 @@ export class PimalionCloudService {
             headers: new HttpHeaders()
               .set('Content-Type', 'application/json')
               .set('Accept', 'application/json')
-        // , responseType: 'json'
-       //  , observe: 'response'
+              , responseType: 'json'
+              , observe: 'response'
         })
     .pipe(
          tap(data => {
@@ -378,10 +378,10 @@ export class PimalionCloudService {
                  // tslint:disable-next-line:no-shadowed-variable
 
                  const body: any = {
-                    items: response.products, // response.body.tableValues,
-                    sorts: response.sorts,
-                    total: 100,  // response.headers.get('x-total-count'),
-                    pages: 10, // response.headers.get('x-total-pages'),
+                    items: response.body.products, // response.body.tableValues,
+                    sorts: response.body.sorts,
+                    total:  response.headers.get('X-Total-Count'), // as number,  // 100, // 79581, //
+                    pages: response.headers.get('X-Total-Pages')//  as number,   // 10  // 6632  //
                   };
 
 

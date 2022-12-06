@@ -418,12 +418,12 @@ export class ShopService {
                     const sort = options.sort || 'default';
 
                     const body = {
-                        groupFields: [],
-                        selection: [],
+                       // groupFields: [],
+                       // selection: [],
                         page: pagePimalion - 1,  // !!! ???
-                        pageSize: limitPimalion,
-                        sort: [],
-                        productStates: []
+                        pageSize: limitPimalion
+                      //  sort: [],
+                      //  productStates: []
                     };
 
                     return this.pimalionCloudService.getProductsList(body)
