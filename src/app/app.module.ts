@@ -4,6 +4,8 @@ import { /*LOCALE_ID, */NgModule } from '@angular/core';
 //
 // registerLocaleData(localeIt, 'it');
 
+// import { CommonModule } from '@angular/common';
+
 // modules (angular)
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
@@ -54,6 +56,7 @@ import { PageOffcanvasCartComponent } from './pages/page-offcanvas-cart/page-off
         BrowserAnimationsModule,
         ReactiveFormsModule,
         FormsModule,
+        // CommonModule,
         // modules (third-party)
         CarouselModule,
         ToastrModule.forRoot(),

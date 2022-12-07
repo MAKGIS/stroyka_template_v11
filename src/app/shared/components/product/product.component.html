@@ -38,6 +38,12 @@
                 {{ product.overview }}
             </div>
 
+            <ul class="product__description" *ngFor="let item of product.urls">
+                <li >
+                   source: <a href="{{item.url}}" target="blank">{{item.label}}</a>
+                </li>
+            </ul>
+
             <ul class="product__features">
                 <li>Speed: 750 RPM</li>
                 <li>Power Source: Cordless-Electric</li>

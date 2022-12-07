@@ -35,7 +35,7 @@ export interface ProductAttribute {
               "label": null
             }, ... ]
     */
-export interface ImagePimalion {
+export interface IImagePimalion {
     url: string;
     priority: number;
     label: string;
@@ -48,7 +48,7 @@ export interface ImagePimalion {
           "label": "FICHE"
         }, ... ]
         */
-export interface DocumentPimalion {
+export interface IDocumentPimalion {
     url: string;
     priority: number;
     label: string;
@@ -61,7 +61,12 @@ export interface DocumentPimalion {
           "value": "caniveau "
         }, ... ]
 */
-export interface AttributePimalion {
+export interface ISiteUrl {
+    url: string;
+    label: string;
+    priority: number;
+}
+export interface IAttributePimalion {
     groupName: string;
     key: number;
     value: string;
@@ -80,7 +85,8 @@ export interface Product {
     compareAtPrice: number|null;  // "price" ???
 
     images: string[];
-    imagesPimalion?: ImagePimalion[];  // "images"
+    urls?: ISiteUrl[];
+    imagesPimalion?: IImagePimalion[];  // "images"
 
     badges: string[];
     rating: number;
@@ -93,9 +99,9 @@ export interface Product {
     categories: Category[];
 
     attributes: ProductAttribute[];
-    attributePimalion?: AttributePimalion[];  // "attributes"
+    attributePimalion?: IAttributePimalion[];  // "attributes"
 
-    documents?: DocumentPimalion[];
+    documents?: IDocumentPimalion[];
 
     customFields: CustomFields;
 

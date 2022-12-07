@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment';
 import { Category, CategoryPimalion } from '../interfaces/category';
 import { Brand, BrandPimalion } from '../interfaces/brand';
 import { getCategoriesPimalion } from './products-list-pimalion';
-import { AttributePimalion, DocumentPimalion, ImagePimalion, Product, ProductAttribute } from '../interfaces/product';
+import { IAttributePimalion, IDocumentPimalion, IImagePimalion, ISiteUrl, Product, ProductAttribute } from '../interfaces/product';
 import { CustomFields } from '../interfaces/custom-fields';
 
 
@@ -106,6 +106,37 @@ class BrandItem {
          };
 */
 
+function getImagesForProduct(imagesPimalion: IImagePimalion[]): string[] {
+
+    if (imagesPimalion.length === 0) {return [];}
+
+    const images: string[] = [];
+
+    imagesPimalion.forEach(image => {
+        if (image.priority === 1) {
+            images.push(image.url);
+        }
+    });
+
+    return images;
+}
+function getSiteUrlForProduct(imagesPimalion: IImagePimalion[]): ISiteUrl[] {
+
+    if (imagesPimalion.length === 0) {return [];}
+
+    const items: ISiteUrl[] = [];
+
+    imagesPimalion.forEach(item => {
+        if (item.priority != 1) {
+            if (!item.label) {
+                item.label = 'url site';
+            }
+            items.push(item);
+        }
+    });
+
+    return items;
+}
 export class ProductItem implements Product {
 
     id: string;  // "id"
@@ -122,7 +153,8 @@ export class ProductItem implements Product {
     compareAtPrice: number|null; // "price" | null ???
 
     images: string[];
-    imagesPimalion?: ImagePimalion[]; // "images"
+    urls: ISiteUrl[];
+    imagesPimalion?: IImagePimalion[]; // "images"
 
     badges: string[];
 
@@ -136,9 +168,9 @@ export class ProductItem implements Product {
     categories: Category[];
 
     attributes: ProductAttribute[];
-    attributePimalion?: AttributePimalion[];
+    attributePimalion?: IAttributePimalion[];
 
-    documents?: DocumentPimalion[];
+    documents?: IDocumentPimalion[];
 
     customFields: CustomFields;
 
@@ -165,13 +197,8 @@ export class ProductItem implements Product {
         this.price = itemData.price; // + 1;      // "price": "0.0",
         this.compareAtPrice = itemData.price; // + 2;   //  number|null;
 
-        const imagesTest: string[] = itemData.images.length === 0 ? [
-            "assets/images/products/product-1.jpg",
-            "assets/images/products/product-1-1.jpg"
-        ] // test
-         : itemData.images;
-
-        this.images = imagesTest;
+        this.images = getImagesForProduct(itemData.images);
+        this.urls = getSiteUrlForProduct(itemData.images);
         this.imagesPimalion = itemData.images;
 
         this.badges = ['hot']; // badges: string[];
@@ -380,8 +407,8 @@ export class PimalionCloudService {
                  const body: any = {
                     items: response.body.products, // response.body.tableValues,
                     sorts: response.body.sorts,
-                    total:  response.headers.get('X-Total-Count'), // as number,  // 100, // 79581, //
-                    pages: response.headers.get('X-Total-Pages')//  as number,   // 10  // 6632  //
+                    total:  Number(response.headers.get('X-Total-Count')), // as number,  // 100, // 79581, //
+                    pages: Number(response.headers.get('X-Total-Pages'))//  as number,   // 10  // 6632  //
                   };
 
 

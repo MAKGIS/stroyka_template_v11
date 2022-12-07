@@ -112,6 +112,7 @@ export class PageCategoryService {
 
     setList(list: ProductsList): void {
         this.listState = list;
+        // console.log("@@@VSRV @@@ PageCategoryService.setList()  listState -> %o", this.listState);
         this.listSource.next(this.listState);
     }
 

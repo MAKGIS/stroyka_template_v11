@@ -238,14 +238,7 @@ export function getProductHtmlPimalion(productId: string, pimalionItemHtml: stri
  * @param options Options list.
  */
 export function getProductsListPimalion(categorySlug: string|null, options: ListOptions, pimalionBody: any): Observable<ProductsList> {
-   /*
-        pimalionBody = {
-            items: response.body.tableValues,
-            sorts: response.body.sorts,
-            total: response.headers.get('x-total-count'),
-            pages: response.headers.get('x-total-pages')
-        }
-   */
+
     const page = options.page || 1;
     const limit = options.limit || 12;
     const sort = options.sort || 'default';

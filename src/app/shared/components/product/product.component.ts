@@ -1,4 +1,4 @@
-import { Component, Inject, Input, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
 import { Product } from '../../interfaces/product';
 import { FormControl } from '@angular/forms';
 import { CartService } from '../../services/cart.service';
@@ -13,7 +13,7 @@ export type ProductLayout = 'standard' | 'sidebar' | 'columnar' | 'quickview';
     templateUrl: './product.component.html',
     styleUrls: ['./product.component.scss']
 })
-export class ProductComponent {
+export class ProductComponent implements OnInit {
     @Input() layout: ProductLayout;
 
     @Input() product: Product;
@@ -31,6 +31,10 @@ export class ProductComponent {
         private compare: CompareService,
         public root: RootService,
     ) { }
+
+    ngOnInit(): void {
+        console.log("--cmp-- ProductComponent.ngOnInit() product -> %o ", this.product);
+    }
 
     addToCart(): void {
         if (!this.addingToCart && this.product && this.quantity.value > 0) {
