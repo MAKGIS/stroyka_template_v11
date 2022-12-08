@@ -99,7 +99,7 @@ export interface Product {
     categories: Category[];
 
     attributes: ProductAttribute[];
-    attributePimalion?: IAttributePimalion[];  // "attributes"
+    attributesPimalion?: IAttributePimalion[];  // "attributes"
 
     documents?: IDocumentPimalion[];
 

@@ -19,6 +19,7 @@
         <div class="product-tabs__pane" id="tab-description" [ngClass]="{'product-tabs__pane--active': tab === 'description'}">
             <div class="typography">
                 <h3>Product Full Description</h3>
+
                 <p>
                     Part 1. Product Full Description Product Full Description Product Full Description Product Full Description Product
                     Full Description
@@ -38,6 +39,21 @@
         <div class="product-tabs__pane" id="tab-specification" [ngClass]="{'product-tabs__pane--active': tab === 'specification'}">
             <div class="spec">
                 <h3 class="spec__header">Specification</h3>
+
+                <ng-container *ngIf="product.attributesPimalion.length > 0">
+                    <div class="product__attributes_pimalion">
+                        Attributes:
+                    </div>
+                    <ul class="product__attributes_pimalion" *ngFor="let item of product.attributesPimalion">
+                        <li >
+                            <div class="product__description">
+                                {{ item.groupName }} {{item.key}}: {{item.value}}
+                            </div>
+                        </li>
+                    </ul>
+                </ng-container>
+
+
                 <div *ngFor="let section of specification" class="spec__section">
                     <h4 class="spec__section-title">{{ section.name }}</h4>
                     <div *ngFor="let feature of section.features" class="spec__row">

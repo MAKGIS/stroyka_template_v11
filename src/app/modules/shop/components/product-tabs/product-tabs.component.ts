@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ProductFeaturesSection} from '../../../../shared/interfaces/product';
+import { Product, ProductFeaturesSection} from '../../../../shared/interfaces/product';
 import { specification } from '../../../../../data/shop-product-spec';
 import { reviews } from '../../../../../data/shop-product-reviews';
 import { Review } from '../../../../shared/interfaces/review';
@@ -12,6 +12,8 @@ import { Review } from '../../../../shared/interfaces/review';
 export class ProductTabsComponent {
     @Input() withSidebar = false;
     @Input() tab: 'description'|'specification'|'reviews' = 'description';
+
+    @Input() product: Product;
 
     specification: ProductFeaturesSection[] = specification;
     reviews: Review[] = reviews;

@@ -176,6 +176,41 @@ function getDocumentsForProduct(documents: IDocumentPimalion[]): ISiteUrl[] {
 
     return items;
 }
+
+function getAttributesForProduct(attributesPimalion: IAttributePimalion[]): ProductAttribute[] {
+
+    if (attributesPimalion.length === 0) {return [];}
+
+    const items: ProductAttribute[] = [];
+/*
+      {
+          "groupName": "Toutes les caracteristiques",
+          "key": "Garde d'eau",
+          "value": "6 cm "
+        }
+    name: string;
+    slug: string;
+    featured: boolean;
+    values: ProductAttributeValue[];
+    customFields: CustomFields;
+
+*/
+    attributesPimalion.forEach(item => {
+
+        const attribute: any =   {
+            name: item.key,
+            slug: item.key,
+            featured: true,
+            values: [item.value],
+            customFields: {}
+        };
+            items.push(attribute as ProductAttribute);
+
+    });
+
+    return items;
+}
+
 export class ProductItem implements Product {
 
     id: string;  // "id"
@@ -207,7 +242,7 @@ export class ProductItem implements Product {
     categories: Category[];
 
     attributes: ProductAttribute[];
-    attributePimalion?: IAttributePimalion[];
+    attributesPimalion?: IAttributePimalion[];
 
     documents?: IDocumentPimalion[];
 
@@ -269,8 +304,8 @@ const categoryCor: Category = {
          };
 */
         // ???
-        this.attributes = []; //itemData.attributes; // attributes: ProductAttribute[];
-        this.attributePimalion = itemData.attributes;
+        this.attributes = getAttributesForProduct(itemData.attributes); //itemData.attributes; // attributes: ProductAttribute[];
+        this.attributesPimalion = itemData.attributes;
 
         this.customFields = {}; // null;// customFields: CustomFields;
 
