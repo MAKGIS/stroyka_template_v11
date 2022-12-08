@@ -35,8 +35,13 @@
             <li *ngFor="let attribute of featuredAttributes">
                 {{ attribute.name }}:
                 <ng-container *ngFor="let value of attribute.values; let last = last">
+                    {{ value }}<ng-container *ngIf="!last">, </ng-container>
+                </ng-container>
+                <!--
+                <ng-container *ngFor="let value of attribute.values; let last = last">
                     {{ value.name }}<ng-container *ngIf="!last">, </ng-container>
                 </ng-container>
+                -->
             </li>
         </ul>
     </div>
