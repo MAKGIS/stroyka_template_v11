@@ -137,6 +137,45 @@ function getSiteUrlForProduct(imagesPimalion: IImagePimalion[]): ISiteUrl[] {
 
     return items;
 }
+function getDocumentsForProduct(documents: IDocumentPimalion[]): ISiteUrl[] {
+
+    if (documents.length === 0) {return [];}
+
+    const items_0: ISiteUrl[] = [];
+    const items_1: ISiteUrl[] = [];
+    const items_2: ISiteUrl[] = [];
+    const items_Other: ISiteUrl[] = [];
+
+    documents.forEach(item => {
+
+        if (!item.label) {
+            item.label = 'url document ';
+        }
+
+        if (item.priority === 0) {
+            items_0.push(item);
+        };
+
+        if (item.priority === 1) {
+            items_1.push(item);
+        };
+
+        if (item.priority === 2) {
+            items_2.push(item);
+        };
+
+        if (item.priority > 2) {
+            items_Other.push(item);
+        };
+
+    });
+
+    var items: ISiteUrl[] = items_0.concat(items_1);
+    items = items.concat(items_2);
+    items = items.concat(items_Other);
+
+    return items;
+}
 export class ProductItem implements Product {
 
     id: string;  // "id"
@@ -235,7 +274,7 @@ const categoryCor: Category = {
 
         this.customFields = {}; // null;// customFields: CustomFields;
 
-        this.documents = itemData.documents;
+        this.documents = getDocumentsForProduct(itemData.documents);
         // ???
         this.relatedProducts = itemData.relatedProducts;    // any[];
         this.productVariants = itemData.productVariants;    // any[];

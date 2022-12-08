@@ -38,12 +38,27 @@
                 {{ product.overview }}
             </div>
 
-            <ul class="product__description" *ngFor="let item of product.urls">
-                <li >
-                   source: <a href="{{item.url}}" target="blank">{{item.label}}</a>
-                </li>
-            </ul>
+            <ng-container *ngIf="product.urls.length > 0">
+                <div class="product__siteurls">
+                    Site source:
+                </div>
+                <ul class="product__description" *ngFor="let item of product.urls">
+                    <li >
+                    source: <a href="{{item.url}}" target="blank">{{item.label}}</a>
+                    </li>
+                </ul>
+            </ng-container>
 
+            <ng-container *ngIf="product.documents.length > 0">
+                <div class="product__documents">
+                    Documents source:
+                </div>
+                <ul class="product__description" *ngFor="let item of product.documents">
+                    <li >
+                    source: <a href="{{item.url}}" target="blank">{{item.label}} priority {{item.priority}}</a>
+                    </li>
+                </ul>
+            </ng-container>
             <ul class="product__features">
                 <li>Speed: 750 RPM</li>
                 <li>Power Source: Cordless-Electric</li>
