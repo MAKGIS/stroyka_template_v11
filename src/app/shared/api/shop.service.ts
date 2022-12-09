@@ -468,11 +468,11 @@ export class ShopService {
                 //sort: sort,                  // options.sort
                 //productStates: []
             };
-/*
+
         if (query  != '') {
                 body["query"] = query;
             };
-*/
+
             console.log(`>>> ShopService.getTypeProducts().getTypeProducts() Input query -> %O`, query);
 
         return this.pimalionCloudService.getProductsList(body)

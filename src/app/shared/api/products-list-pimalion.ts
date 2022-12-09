@@ -688,14 +688,19 @@ function sortFilterItems(filterType: string, filterSlug: string, items: FilterIt
 
 export function getProductsPimalion( categorySlug: string|null, options: ListOptions, pimalionBody: any): Observable<Product[]> {
 
+    if (isPtoductListPimalionLog) {
+        console.log(`>>> function getProductsPimalion pimalionBody -> %O`, pimalionBody);
+    }
+
     const pimalionItemsCor: Product[] = [];
 
-    if (pimalionBody.items && ( pimalionBody.items.lenght > 0 )) {
+    // !!! Error
+    // if (pimalionBody.items && ( pimalionBody.items.lenght > 0 )) {
 
         pimalionBody.items.forEach(item => {
 
             if (isPtoductListPimalionLog) {
-                console.log(`<<< function getProductsListPimalion item -> %O`, item);
+              //  console.log(`<<< function getProductsPimalion item -> %O`, item);
             }
     /*
             const categoryCor: Category = {
@@ -741,13 +746,13 @@ export function getProductsPimalion( categorySlug: string|null, options: ListOpt
                 pimalionReviews: getPimalionValue(item.values, 'Images').label + ' images / ' + getPimalionValue(item.values, 'Documents') + ' documents'
             };
     */
-
-            if (isPtoductListPimalionLog) {
-                console.log(`<<< function getProductsListPimalion productCor -> %O`, productCor);
-            }
-
-            pimalionItemsCor.push(productCor);
+           pimalionItemsCor.push(productCor);
         });
+    //}
+
+    if (isPtoductListPimalionLog) {
+        console.log(`<<< function getProductsPimalion productCor -> %O`, pimalionItemsCor);
     }
+
      return of(pimalionItemsCor);
 }

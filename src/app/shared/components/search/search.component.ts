@@ -110,6 +110,8 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
         ).subscribe(products => {
             this.hasSuggestions = products.length > 0;
 
+            console.log('-- cmp -- SearchComponent.ngOnInit() products -> %o', products);
+
             if (products.length > 0) {
                 this.suggestedProducts = products;
             }
