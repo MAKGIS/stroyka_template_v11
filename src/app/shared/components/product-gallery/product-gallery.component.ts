@@ -55,8 +55,14 @@ export class ProductGalleryComponent implements OnInit, OnDestroy {
     @Input() productLayout: ProductLayout;
 
     @Input() set images(images: string[]) {
-        this.items = images.map((image, index) => ({id: `image-${index}`, image}));
-        this.currentItem = this.items[0] || null;
+        if (images.length === 0)
+        {
+            this.items = [];
+            this.currentItem = null;
+        } else {
+            this.items = images.map((image, index) => ({id: `image-${index}`, image}));
+            this.currentItem = this.items[0] || null;
+        }
     }
 
     @HostBinding('class.product-gallery') classProductGallery = true;

@@ -33,7 +33,7 @@ export class ProductComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        console.log("--cmp-- ProductComponent.ngOnInit() product -> %o ", this.product);
+       // console.log("--cmp-- ProductComponent.ngOnInit() product -> %o ", this.product);
     }
 
     addToCart(): void {

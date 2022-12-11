@@ -480,13 +480,13 @@ export class ShopService {
                 switchMap(productsBody => {
 
                     if (isShopServiceLog)  {
-                        console.log(`>>> ShopService.getTypeProducts().getProducts() Input categorySlug -> %O options -> %O`, categorySlug, options);
-                        console.log(`>>> ShopService.getTypeProducts().getProducts() Input products -> %O`, productsBody);
+                      //  console.log(`>>> ShopService.getTypeProducts().getProducts() Input categorySlug -> %O options -> %O`, categorySlug, options);
+                      //  console.log(`>>> ShopService.getTypeProducts().getProducts() Input products -> %O`, productsBody);
                     }
                     const productsPimalion = getProductsPimalion(categorySlug, options, productsBody);
 
                     if (isShopServiceLog)  {
-                        console.log(`<<< ShopService.getTypeProducts().getProducts() Output productsPimalion -> %O`, productsPimalion);
+                       // console.log(`<<< ShopService.getTypeProducts().getProducts() Output productsPimalion -> %O`, productsPimalion);
                     }
 
                     return productsPimalion;

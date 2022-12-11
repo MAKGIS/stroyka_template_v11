@@ -282,7 +282,7 @@ export function getProductsListPimalion(categorySlug: string|null, options: List
         const productCor: Product = new ProductItem(item);
 
          if (isPtoductListPimalionLog) {
-            console.log(`getProductsListPimalion() (3) productCor -> %O`, productCor);
+           // console.log(`getProductsListPimalion() (3) productCor -> %O`, productCor);
          }
 
         pimalionItemsCor.push(productCor);

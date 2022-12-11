@@ -1,5 +1,6 @@
 <div class="test-name-Component">ProductGalleryComponent-p</div>
 
+<ng-container *ngIf="currentItem != null">
 <div
     class="product-gallery__featured"
     redZoomClass="product-red-zoom product-red-zoom--layout--{{ productLayout }}"
@@ -7,6 +8,7 @@
     [redZoomThumb]="currentItem.image"
     [redZoomLazy]="true"
 >
+
     <div class="product-gallery__featured-inset">
         <button *ngIf="productLayout !== 'quickview'" class="product-gallery__zoom" (click)="openPhotoSwipe(currentItem)">
             <app-icon name="zoom-in-24" size="24"></app-icon>
@@ -37,6 +39,7 @@
         </owl-carousel-o>
     </div>
 </div>
+</ng-container>
 <div class="product-gallery__carousel">
     <owl-carousel-o
         appOwlPreventClick

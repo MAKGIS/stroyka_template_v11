@@ -122,7 +122,7 @@ export function getProductStandard(): string {
 
         case 'demo.sourcing.pm':
 
-            product =   '2eFgJWgBenVimcVmXyoT';
+            product =   '0uFgJWgBenVimcVmXyoT'; // '2eFgJWgBenVimcVmXyoT';
            break;
 
         default: // 'fake-server'; 'json':
