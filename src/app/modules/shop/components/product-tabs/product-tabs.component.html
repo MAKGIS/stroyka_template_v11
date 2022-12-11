@@ -19,19 +19,12 @@
         <div class="product-tabs__pane" id="tab-description" [ngClass]="{'product-tabs__pane--active': tab === 'description'}">
             <div class="typography">
                 <h3>Product Full Description</h3>
-
+                <h3> {{this.product.name}}</h3>
                 <p>
-                    Part 1. Product Full Description Product Full Description Product Full Description Product Full Description Product
-                    Full Description
-                </p>
-                <h3>Etiam lacus lacus mollis in mattis</h3>
-                <p>
-                    Part 2. Product Full Description Product Full Description Product Full Description Product Full Description Product
-                    Full Description
+                    {{this.product.overview}}
                 </p>
                 <p>
-                    Part 3. Product Full Description Product Full Description Product Full Description Product Full Description Product
-                    Full Descriptio
+                    {{this.product.description}}
                 </p>
             </div>
         </div>
@@ -41,19 +34,25 @@
                 <h3 class="spec__header">Specification</h3>
 
                 <ng-container *ngIf="product.attributesPimalion.length > 0">
-                    <div class="product__attributes_pimalion">
-                        Attributes:
+
+                    <div *ngFor="let groupName of product.attributesGroupName" class="spec__section">
+                        <h4 class="spec__section-title"> {{ groupName }}</h4>
+
+                        <div *ngFor="let item of getAttributes(groupName)" class="spec__row">
+                            <ng-container >
+                                <div  class="spec__name">{{ item.key }}</div><div class="spec__value">{{ item.value }}</div>
+                            </ng-container>
+                        </div>
+
                     </div>
-                    <ul class="product__attributes_pimalion" *ngFor="let item of product.attributesPimalion">
-                        <li >
-                            <div class="product__description">
-                                {{ item.groupName }} {{item.key}}: {{item.value}}
-                            </div>
-                        </li>
-                    </ul>
+
                 </ng-container>
 
-
+                <div class="spec__disclaimer">
+                    Information on technical characteristics, the delivery set, the country of manufacture and the appearance
+                    of the goods is for reference only and is based on the latest information available at the time of publication.
+                </div>
+<!--
                 <div *ngFor="let section of specification" class="spec__section">
                     <h4 class="spec__section-title">{{ section.name }}</h4>
                     <div *ngFor="let feature of section.features" class="spec__row">
@@ -64,6 +63,8 @@
                     Information on technical characteristics, the delivery set, the country of manufacture and the appearance
                     of the goods is for reference only and is based on the latest information available at the time of publication.
                 </div>
+                -->
+
             </div>
         </div>
 

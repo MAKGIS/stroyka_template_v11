@@ -100,6 +100,7 @@ export interface Product {
 
     attributes: ProductAttribute[];
     attributesPimalion?: IAttributePimalion[];  // "attributes"
+    attributesGroupName?: string[];
 
     documents?: IDocumentPimalion[];
 

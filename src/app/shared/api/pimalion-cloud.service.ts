@@ -65,46 +65,6 @@ class BrandItem {
     }
 }
 
-/*
-
-{
-        id: ++lastProductId + '',  // ???
-        name: productDef.name,
-        sku: '83690/32',
-        slug: productDef.slug,
-        price: productDef.price,
-        compareAtPrice: productDef.compareAtPrice || null,
-        images: productDef.images.slice(),
-        badges: badges.slice(),
-        rating: productDef.rating,
-        reviews: productDef.reviews,
-        availability: productDef.availability,
-        brand: brands.find(x => x.slug === productDef.brand) || null,
-        categories,
-        attributes,
-        customFields: {},
-    };
-
-       const productCor: Product = {
-             id: item.id,
-             slug: getPimalionValue(item.values, 'Marque'),
-             name: item.label,
-             sku:  getPimalionValue(item.values, 'sku'),
-             price: getPimalionValue(item.attributes, 'commerce'), // item.attributes['commerce'].value,
-             compareAtPrice: 0,
-             images: [item.thumbnailUrl],
-             badges: ['hot'],                         // badges:  ['sale', 'hot', 'new']
-             rating: 1,
-             reviews: 888,
-             availability: 'availability',                          // item.attributes['fabdis'].value,              // доступность
-             brand: brandCor,                                       // item.values['Marque'].value,
-             categories: [categoryCor],
-             attributes: [],
-             customFields: {},
-
-             pimalionReviews: getPimalionValue(item.values, 'Images').label + ' images / ' + getPimalionValue(item.values, 'Documents') + ' documents'
-         };
-*/
 
 function getImagesForProduct(imagesPimalion: IImagePimalion[]): string[] {
 
@@ -177,6 +137,24 @@ function getDocumentsForProduct(documents: IDocumentPimalion[]): ISiteUrl[] {
     return items;
 }
 
+function getAttrGroupNameForProduct(attributesPimalion: IAttributePimalion[]): string[] {
+
+    if (attributesPimalion.length === 0) {return [];}
+
+    const items: string[] = [];
+
+    attributesPimalion.forEach(item => {
+
+       const groupName = item.groupName;
+       if ( items.indexOf(groupName) < 0) {
+            items.push(groupName);
+       }
+    });
+
+    return items; // .sort();
+}
+
+
 function getAttributesForProduct(attributesPimalion: IAttributePimalion[]): ProductAttribute[] {
 
     if (attributesPimalion.length === 0) {return [];}
@@ -243,6 +221,7 @@ export class ProductItem implements Product {
 
     attributes: ProductAttribute[];
     attributesPimalion?: IAttributePimalion[];
+    attributesGroupName?: string[];
 
     documents?: IDocumentPimalion[];
 
@@ -306,6 +285,7 @@ const categoryCor: Category = {
         // ???
         this.attributes = getAttributesForProduct(itemData.attributes); //itemData.attributes; // attributes: ProductAttribute[];
         this.attributesPimalion = itemData.attributes;
+        this.attributesGroupName = getAttrGroupNameForProduct(itemData.attributes);
 
         this.customFields = {}; // null;// customFields: CustomFields;
 

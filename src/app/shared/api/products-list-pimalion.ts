@@ -694,58 +694,14 @@ export function getProductsPimalion( categorySlug: string|null, options: ListOpt
 
     const pimalionItemsCor: Product[] = [];
 
-    // !!! Error
-    // if (pimalionBody.items && ( pimalionBody.items.lenght > 0 )) {
-
         pimalionBody.items.forEach(item => {
 
             if (isPtoductListPimalionLog) {
               //  console.log(`<<< function getProductsPimalion item -> %O`, item);
             }
-    /*
-            const categoryCor: Category = {
-                id: 1 + '',
-                type: 'shop',
-                name: 'name category',
-                slug: 'category',
-                path: 'category',
-                image: null,
-                items: 11,
-                customFields: {},
-                parents: null,
-                children: null
-            };
 
-            const brandCor: Brand = {
-                id: 1 + '',
-                name: getPimalionValue(item.values, 'Marque'),
-                slug: getPimalionValue(item.values, 'Marque'),
-                image: null,
-            };
-    */
             const productCor: Product = new ProductItem(item);
-    /*
-            // ProductCardComponent
-            const productCor: Product = {
-                id: item.id,
-                slug: getPimalionValue(item.values, 'Marque'),
-                name: item.label,
-                sku:  getPimalionValue(item.values, 'sku'),
-                price: getPimalionValue(item.attributes, 'commerce'), // item.attributes['commerce'].value,
-                compareAtPrice: 0,
-                images: [item.thumbnailUrl],
-                badges: ['hot'],                         // badges:  ['sale', 'hot', 'new']
-                rating: 1,
-                reviews: 888,
-                availability: 'availability',                          // item.attributes['fabdis'].value,              // доступность
-                brand: brandCor,                                       // item.values['Marque'].value,
-                categories: [categoryCor],
-                attributes: [],
-                customFields: {},
 
-                pimalionReviews: getPimalionValue(item.values, 'Images').label + ' images / ' + getPimalionValue(item.values, 'Documents') + ' documents'
-            };
-    */
            pimalionItemsCor.push(productCor);
         });
     //}

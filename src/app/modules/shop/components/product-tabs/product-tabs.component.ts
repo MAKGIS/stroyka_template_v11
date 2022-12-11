@@ -19,4 +19,8 @@ export class ProductTabsComponent {
     reviews: Review[] = reviews;
 
     constructor() { }
+
+    getAttributes(groupName: string) {
+        return this.product.attributesPimalion.filter(data =>  data.groupName === groupName);
+    }
 }
