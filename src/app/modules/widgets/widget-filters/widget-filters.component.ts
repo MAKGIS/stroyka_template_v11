@@ -72,6 +72,8 @@ export class WidgetFiltersComponent implements OnInit, OnDestroy {
     makeFiltersForm(filters: Filter[]): FormGroup {
         const filtersFromGroup = {};
 
+        // console.log('-- cmp -- WidgetFiltersComponent.ngOnInit() filters ->%o', filters, filters);
+
         filters.forEach(filter => {
             switch (filter.type) {
                 case 'range':

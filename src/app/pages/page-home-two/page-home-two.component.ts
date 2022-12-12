@@ -9,6 +9,7 @@ import { Category } from '../../shared/interfaces/category';
 import { BlockHeaderGroup } from '../../shared/interfaces/block-header-group';
 
 import { getCategoriesName, getCategoriesSlug, getModeSource } from 'src/fake-server/database/brands';
+import { CategoriesService } from 'src/app/shared/api/categories.service';
 
 const mode: string = getModeSource();
 
@@ -45,6 +46,7 @@ export class PageHomeTwoComponent implements OnInit, OnDestroy {
 
     constructor(
         private shop: ShopService,
+        private categoriesService: CategoriesService
     ) { }
 
     ngOnInit(): void {
@@ -61,7 +63,24 @@ export class PageHomeTwoComponent implements OnInit, OnDestroy {
                 'clothes-and-ppe',
             ], 1);
 */
-            this.popularCategories$ = this.shop.getCategoriesBySlug(getCategoriesSlug(), 1);
+
+        const categories = this.categoriesService.CategoriesChangedSub$.getValue();
+        const categoriesSlug = categories.map(x => {
+            return x.slug;
+        });
+
+        switch(getModeSource()) {
+
+            case 'demo.sourcing.pm':
+
+                this.popularCategories$ = this.shop.getCategoriesBySlug(this.categoriesService, categoriesSlug, 1);
+            break;
+
+            default: // 'fake-server'; 'json':
+                this.popularCategories$ = this.shop.getCategoriesBySlug(this.categoriesService, getCategoriesSlug(), 1);
+        }
+
+        // this.popularCategories$ = this.shop.getCategoriesBySlug(this.categoriesService, getCategoriesSlug(), 1);
 
 
         this.columnTopRated$ = this.shop.getTopRated(3);
@@ -79,19 +98,22 @@ export class PageHomeTwoComponent implements OnInit, OnDestroy {
                     products$: this.shop.getFeaturedProducts(null, 10),
                 },
                 {
-                    name: 'Power Tools',
+                    name: categories[0].name,  // 'Power Tools',
                     current: false,
-                    products$: this.shop.getFeaturedProducts(getCategoriesSlug()[0], 10),
+                    // products$: this.shop.getFeaturedProducts(getCategoriesSlug()[0], 10),
+                    products$: this.shop.getFeaturedProducts(categoriesSlug[0], 10),
                 },
                 {
-                    name: 'Hand Tools',
+                    name: categories[1].name,  // 'Hand Tools',
                     current: false,
-                    products$: this.shop.getFeaturedProducts(getCategoriesSlug()[1], 10),
+                    // products$: this.shop.getFeaturedProducts(getCategoriesSlug()[1], 10),
+                    products$: this.shop.getFeaturedProducts(categoriesSlug[1], 10),
                 },
                 {
-                    name: 'Plumbing',
+                    name: categories[2].name,  // 'Plumbing',
                     current: false,
-                    products$: this.shop.getFeaturedProducts(getCategoriesSlug()[2], 10),
+                    // products$: this.shop.getFeaturedProducts(getCategoriesSlug()[2], 10),
+                    products$: this.shop.getFeaturedProducts(categoriesSlug[2], 10),
                 },
             ],
         };
@@ -109,19 +131,22 @@ export class PageHomeTwoComponent implements OnInit, OnDestroy {
                     products$: this.shop.getLatestProducts(null, 8),
                 },
                 {
-                    name: getCategoriesName()[0],
+                    name: categories[0].name,  // getCategoriesName()[0],
                     current: false,
-                    products$: this.shop.getLatestProducts(getCategoriesSlug()[0], 8),
+                    // products$: this.shop.getLatestProducts(getCategoriesSlug()[0], 8),
+                    products$: this.shop.getLatestProducts(categoriesSlug[0], 8),
                 },
                 {
-                    name: getCategoriesName()[1],
+                    name: categories[1].name,  // getCategoriesName()[1],
                     current: false,
-                    products$: this.shop.getLatestProducts(getCategoriesSlug()[1], 8),
+                    // products$: this.shop.getLatestProducts(getCategoriesSlug()[1], 8),
+                    products$: this.shop.getLatestProducts(categoriesSlug[0], 8),
                 },
                 {
-                    name: getCategoriesName()[2], //'Plumbing',
+                    name: categories[2].name,  // getCategoriesName()[2], //'Plumbing',
                     current: false,
-                    products$: this.shop.getLatestProducts(getCategoriesSlug()[2], 8),
+                    // products$: this.shop.getLatestProducts(getCategoriesSlug()[2], 8),
+                    products$: this.shop.getLatestProducts(categoriesSlug[0], 8),
                 },
             ],
         };

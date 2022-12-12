@@ -20,6 +20,7 @@ import { ShopService } from '../../api/shop.service';
 import { Category } from '../../interfaces/category';
 import { DOCUMENT } from '@angular/common';
 import { CartService } from '../../services/cart.service';
+import { CategoriesService } from '../../api/categories.service';
 
 export type SearchLocation = 'header' | 'indicator' | 'mobile-header';
 
@@ -76,12 +77,13 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
         private shop: ShopService,
         private cart: CartService,
         public root: RootService,
+        private categoriesService: CategoriesService
     ) { }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.location && this.location === 'header') {
             /* */
-            this.shop.getCategories(null, 1).pipe(
+            this.shop.getCategories(this.categoriesService, null, 1).pipe(
                 takeUntil(this.destroy$),
             ).subscribe(categories => this.categories = this.getCategoriesWithDepth(categories));
 

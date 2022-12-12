@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { Product } from '../../../../shared/interfaces/product';
 import { ShopService } from '../../../../shared/api/shop.service';
 import { Category } from '../../../../shared/interfaces/category';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { CategoriesService } from 'src/app/shared/api/categories.service';
 
 @Component({
     selector: 'app-product-sidebar',
@@ -16,10 +19,11 @@ export class ProductSidebarComponent implements OnInit {
 
     constructor(
         private shop: ShopService,
+        private categoriesService: CategoriesService
     ) { }
 
     ngOnInit() {
-        this.categories$ = this.shop.getCategories(null, 1);
+        this.categories$ = this.shop.getCategories(this.categoriesService, null, 1);
         this.bestsellers$ = this.shop.getBestsellers().pipe(map(x => x.slice(0, 5)));
     }
 }

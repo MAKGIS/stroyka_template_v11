@@ -44,6 +44,9 @@ import {
 import { getModeSource } from 'src/fake-server/database/brands';
 
 import { PimalionCloudService } from './pimalion-cloud.service';
+
+
+import { CategoriesService } from './categories.service';
 import { BrandsService } from './brands.service';
 
 export interface ListOptions {
@@ -71,7 +74,8 @@ export class ShopService {
     constructor(
         private http: HttpClient,
         private pimalionCloudService: PimalionCloudService,
-        private brandsService: BrandsService
+        private brandsService: BrandsService,
+        private categoriesService: CategoriesService
     ) { }
 
 
@@ -153,7 +157,7 @@ export class ShopService {
 
             case 'demo.sourcing.pm':
 
-                return this.pimalionCloudService.getCloudCategoriesList();
+                return this.pimalionCloudService.getCloudCategoriesList(this.categoriesService);
 
                 break;
              default:
@@ -226,7 +230,7 @@ export class ShopService {
      * @param parent - If a parent is specified then its descendants will be returned.
      * @param depth  - Maximum depth of category tree.
      */
-    getCategories(parent: Partial<Category> = null, depth: number = 0): Observable<Category[]> {
+    getCategories(categoriesService: CategoriesService, parent: Partial<Category> = null, depth: number = 0): Observable<Category[]> {
         /**
          * This is what your API endpoint might look like:
          *
@@ -267,7 +271,7 @@ export class ShopService {
                 break;
             case 'demo.sourcing.pm':
 
-                return this.pimalionCloudService.getCloudCategoriesList();
+                return this.pimalionCloudService.getCloudCategoriesList(this.categoriesService);
 
                 break;
 
@@ -283,7 +287,7 @@ export class ShopService {
      * @param slugs - Array of slugs.
      * @param depth - Maximum depth of category tree.
      */
-    getCategoriesBySlug(slugs: string[], depth: number = 0): Observable<Category[]> {
+    getCategoriesBySlug(categoriesService: CategoriesService, slugs: string[], depth: number = 0): Observable<Category[]> {
         /**
          * This is what your API endpoint might look like:
          *
@@ -322,21 +326,7 @@ export class ShopService {
 
             case 'demo.sourcing.pm':
 
-                return this.pimalionCloudService.getCloudCategoriesList();
-
-            /*
-                const shopCategoriesBySlugs = getShopCategoriesBySlugs(slugs, depth);
-
-                return shopCategoriesBySlugs.pipe(
-                    tap(data => {
-                        if (isShopServiceLog)  {
-                            console.log(`*** ShopService.getCategoriesBySlug() Input slugs -> %O depth -> %O`, slugs, depth);
-                            console.log(`*** ShopService.getCategoriesBySlug() Output shopCategoriesBySlugs -> %O`, data);
-                        }
-                    })
-                );
-                break;
-            */
+                return this.pimalionCloudService.getCloudCategoriesList(this.categoriesService);
 
              default:
 
@@ -436,11 +426,9 @@ export class ShopService {
                                     console.log(`>>> ShopService.getProductsList() Input categorySlug -> %O options -> %O`, categorySlug, options);
                                     console.log(`>>> ShopService.getProductsList() Input pimalionBody -> %O`, pimalionBody);
                                 }
-                                const productsList = getProductsListPimalion(this.brandsService, categorySlug, options, pimalionBody);
+                                const productsList = getProductsListPimalion(this.categoriesService, this.brandsService,
+                                                categorySlug, options, pimalionBody);
 
-                                if (isShopServiceLog)  {
-                                    console.log(`<<< ShopService.getProductsList() Output shopCategory -> %O`, productsList);
-                                }
                                 return productsList;
                             })
                         );

@@ -24,6 +24,7 @@ import { Brand, BrandPimalion } from 'src/app/shared/interfaces/brand';  // '/in
 import {brands} from 'src/fake-server/database/brands';
 import { ProductItem } from './pimalion-cloud.service';
 import { BrandsService } from './brands.service';
+import { CategoriesService } from './categories.service';
 // import { CategoryPimalion } from 'src/app/pimalion/interfaces/category-pimalion';
 
 
@@ -241,7 +242,7 @@ export function getProductHtmlPimalion(productId: string, pimalionItemHtml: stri
  * @param categorySlug Unique human-readable category identifier.
  * @param options Options list.
  */
-export function getProductsListPimalion(brandsService: BrandsService, categorySlug: string|null, options: ListOptions, pimalionBody: any): Observable<ProductsList> {
+export function getProductsListPimalion(categoriesService: CategoriesService, brandsService: BrandsService, categorySlug: string|null, options: ListOptions, pimalionBody: any): Observable<ProductsList> {
 
     const page = options.page || 1;
     const limit = options.limit || 12;
@@ -270,19 +271,6 @@ export function getProductsListPimalion(brandsService: BrandsService, categorySl
            //  console.log(`getProductsListPimalion() (2) item -> %O`, item);
         }
 
-        const categoryCor: Category = {
-             id: 1 + '',
-             type: 'shop',
-             name: 'name category',
-             slug: 'category',
-             path: 'category',
-             image: null,
-             items: 11,
-             customFields: {},
-             parents: null,
-             children: null
-         };
-
         const productCor: Product = new ProductItem(item);
 
          if (isPtoductListPimalionLog) {
@@ -301,9 +289,25 @@ export function getProductsListPimalion(brandsService: BrandsService, categorySl
 
     let items = productsTable.slice();
 
+    // const categories = categoriesService.CategoriesChangedSub$.getValue();
+    const categories: Category[] = [
+        { parents: null, children: null, id:'1', type: 'shop', name: 'Sanitaire', slug: 'Sanitaire', path: '', image: '', items: 1, customFields: {}},
+        { parents: null, children: null, id:'2', type: 'shop', name: 'Electricité', slug: 'Electricité', path: '', image: '', items: 1, customFields: {}},
+        { parents: null, children: null, id:'3', type: 'shop', name: 'Outillage', slug: 'Outillage', path: '', image: '', items: 1, customFields: {}},
+        { parents: null, children: null, id:'4', type: 'shop', name: 'Chauffage', slug: 'Chauffage', path: '', image: '', items: 1, customFields: {}},
+      ];
+
+    const categoriesFilter_: any[] = categories.map(x => {
+        return { type: 'parent', category: x as Category };
+    })  ;
+
+    const categoriesFilter: CategoryFilterItem[] = categoriesFilter_ as CategoryFilterItem[];
+
+    console.log('*** fn *** getProductsListPimalion() categoriesFilter -> %o', categoriesFilter);
 
     // Make filters.
     if (categorySlug === null) {
+        /*
         filters.push({
             type: 'categories',
             slug: 'categories',
@@ -314,26 +318,48 @@ export function getProductsListPimalion(brandsService: BrandsService, categorySl
               ...shopCategoriesTree.map(x => makeCategoryFilterItem('child', x)),
             ],
         });
+        */
+        filters.push({
+            type: 'categories',
+            slug: 'categories',
+            name: 'Categories',
+            root: true,
+            items: [
+              // mak  ...shopCategoriesTree.map(x => makeCategoryFilterItem('child', x)),
+              ...categories.map(x => makeCategoryFilterItem('child', x)),
+            ],
+        });
+
     } else {
         const category = shopCategoriesList.find(x => x.slug === categorySlug);
 
         if (!category) {
             return throwError(new HttpErrorResponse({status: 404, statusText: 'Page Not Found'}));
         }
-
+/*
         filters.push({
             type: 'categories',
             slug: 'categories',
             name: 'Categories',
             root: false,
             items: [
-                /* mak   */
                 ...category.parents.map(x => makeCategoryFilterItem('parent', x)),
                 makeCategoryFilterItem('current', category),
                 ...category.children.map(x => makeCategoryFilterItem('child', x)),
 
             ],
         });
+        */
+        filters.push({
+            type: 'categories',
+            slug: 'categories',
+            name: 'Categories',
+            root: true,
+            items: [
+                // mak  ...shopCategoriesTree.map(x => makeCategoryFilterItem('child', x)),
+                makeCategoryFilterItem('current', category),
+                ...categories.map(x => makeCategoryFilterItem('child', x)),
+              ]});
     }
 
     // Apply values to filters.

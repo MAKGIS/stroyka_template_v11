@@ -11,8 +11,9 @@ import { Brand, BrandPimalion } from '../interfaces/brand';
 import { getCategoriesPimalion } from './products-list-pimalion';
 import { IAttributePimalion, IDocumentPimalion, IImagePimalion, ISiteUrl, Product, ProductAttribute } from '../interfaces/product';
 import { CustomFields } from '../interfaces/custom-fields';
-import { BrandsService } from './brands.service';
 
+import { BrandsService } from './brands.service';
+import { CategoriesService } from './categories.service';
 
 
 const httpOptions = {
@@ -311,7 +312,7 @@ export class PimalionCloudService {
   constructor(private http: HttpClient) { }
 
   // 01 Post Homepage Get all categories
-  getCloudCategoriesList(): Observable<Category[]> {
+  getCloudCategoriesList(categoriesService: CategoriesService): Observable<Category[]> {
 
     const url = `${environment.pimalionCloudUrl}/api/shop/categories`;
 
@@ -334,11 +335,20 @@ export class PimalionCloudService {
                     }
                 }),
                 map(itemData => {
+
                     var i: number = 0;
-                    return itemData.map(value => {
+                    const categories = itemData.map(value => {
                         i = i + 1;
                         return new CategoryItem(i + '', value.filterValue, value.filterValue, value.filterCount);
                     })
+
+                    if (isPimalionCloudServiceLog) {
+                        console.log('*srv*** PimalionCloudService.getCloudCategoriesList() categories -> %O', categories);
+                    }
+
+                    categoriesService.next(categories);
+
+                    return categories;
                 }),
                 tap((items: any) => {
                     if (isPimalionCloudServiceLog) {

@@ -3,9 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Brand } from '../interfaces/brand';
 
-export interface BrandsServiceInterface {
-    isBrandsChanged$: Observable<Brand[]>;
-    isBrandsChangedValue: Brand[];
+export interface IBrandsServiceInterface {
     reset(): void;
     complete(): void;
     next(brands: Brand[]): void;
@@ -16,7 +14,7 @@ export interface BrandsServiceInterface {
 @Injectable({
     providedIn: 'root'
 })
-export class BrandsService implements BrandsServiceInterface {
+export class BrandsService implements IBrandsServiceInterface {
 
   private BrandsInit: Brand[] = [
     { id:'1', image: '', name: 'LEGRAND', slug: 'LEGRAND', count: 111},
@@ -31,8 +29,8 @@ export class BrandsService implements BrandsServiceInterface {
 
   constructor() {
   }
-    isBrandsChanged$: Observable<any[]>;
-    isBrandsChangedValue: any[];
+    isBrandsChanged$: Observable<Brand[]>;
+    isBrandsChangedValue: Brand[];
 
   public reset() {
       this.BrandsChangedSub$.next(this.BrandsInit);

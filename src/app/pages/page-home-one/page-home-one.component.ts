@@ -10,6 +10,7 @@ import { takeUntil, tap } from 'rxjs/operators';
 
 
 import { getCategoriesName, getCategoriesSlug, getModeSource } from 'src/fake-server/database/brands';
+import { CategoriesService } from 'src/app/shared/api/categories.service';
 
 const mode: string = getModeSource();
 
@@ -46,6 +47,7 @@ export class PageHomeOneComponent implements OnInit, OnDestroy {
 
     constructor(
         private shop: ShopService,
+        private categoriesService: CategoriesService
     ) { }
 
     ngOnInit(): void {
@@ -64,7 +66,21 @@ export class PageHomeOneComponent implements OnInit, OnDestroy {
                 'clothes-and-ppe',
             ], 1);
 */
-        this.popularCategories$ = this.shop.getCategoriesBySlug(getCategoriesSlug(), 1);
+        const categories = this.categoriesService.CategoriesChangedSub$.getValue();
+        const categoriesSlug = categories.map(x => {
+            return x.slug;
+        });
+
+        switch(getModeSource()) {
+
+            case 'demo.sourcing.pm':
+
+                this.popularCategories$ = this.shop.getCategoriesBySlug(this.categoriesService, categoriesSlug, 1);
+               break;
+
+            default: // 'fake-server'; 'json':
+                this.popularCategories$ = this.shop.getCategoriesBySlug(this.categoriesService, getCategoriesSlug(), 1);
+        }
 
 
 
@@ -85,19 +101,22 @@ export class PageHomeOneComponent implements OnInit, OnDestroy {
                     products$: this.shop.getFeaturedProducts(null, 8),
                 },
                 {
-                    name: getCategoriesName()[0],
+                    name: categories[0].name,  // getCategoriesName()[0],
                     current: false,
-                    products$: this.shop.getFeaturedProducts(getCategoriesSlug()[0], 8),
+                    // products$: this.shop.getFeaturedProducts(getCategoriesSlug()[0], 8),
+                    products$: this.shop.getFeaturedProducts(categories[0].slug, 8),
                 },
                 {
-                    name: getCategoriesName()[1],
+                    name: categories[1].name, // getCategoriesName()[1],
                     current: false,
-                    products$: this.shop.getFeaturedProducts(getCategoriesSlug()[1], 8),
+                    // products$: this.shop.getFeaturedProducts(getCategoriesSlug()[1], 8),
+                    products$: this.shop.getFeaturedProducts(categories[1].slug, 8),
                 },
                 {
-                    name: getCategoriesName()[2],
+                    name: categories[2].name, // getCategoriesName()[2],
                     current: false,
-                    products$: this.shop.getFeaturedProducts(getCategoriesSlug()[2], 8),
+                    // products$: this.shop.getFeaturedProducts(getCategoriesSlug()[2], 8),
+                    products$: this.shop.getFeaturedProducts(categories[2].slug, 8),
                 },
             ],
         };
@@ -115,19 +134,22 @@ export class PageHomeOneComponent implements OnInit, OnDestroy {
                     products$: this.shop.getLatestProducts(null, 8),
                 },
                 {
-                    name: getCategoriesName()[0],
+                    name: categories[0].name, // getCategoriesName()[0],
                     current: false,
-                    products$: this.shop.getLatestProducts(getCategoriesSlug()[0], 8),
+                    // products$: this.shop.getLatestProducts(getCategoriesSlug()[0], 8),
+                    products$: this.shop.getLatestProducts(categories[0].slug, 8),
                 },
                 {
-                    name: getCategoriesName()[1],
+                    name: categories[1].name, // getCategoriesName()[1],
                     current: false,
-                    products$: this.shop.getLatestProducts(getCategoriesSlug()[1], 8),
+                    // products$: this.shop.getLatestProducts(getCategoriesSlug()[1], 8),
+                    products$: this.shop.getLatestProducts(categories[1].slug, 8),
                 },
                 {
-                    name: getCategoriesName()[2],
+                    name: categories[2].name, // getCategoriesName()[2],
                     current: false,
-                    products$: this.shop.getLatestProducts(getCategoriesSlug()[2], 8),
+                    // products$: this.shop.getLatestProducts(getCategoriesSlug()[2], 8),
+                    products$: this.shop.getLatestProducts(categories[2].slug, 8),
                 },
             ],
         };
