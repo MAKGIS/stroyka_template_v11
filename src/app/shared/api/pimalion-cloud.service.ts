@@ -11,6 +11,7 @@ import { Brand, BrandPimalion } from '../interfaces/brand';
 import { getCategoriesPimalion } from './products-list-pimalion';
 import { IAttributePimalion, IDocumentPimalion, IImagePimalion, ISiteUrl, Product, ProductAttribute } from '../interfaces/product';
 import { CustomFields } from '../interfaces/custom-fields';
+import { BrandsService } from './brands.service';
 
 
 
@@ -52,7 +53,7 @@ class BrandItem {
     slug: string;
 
     image: string = 'assets/images/logos/logo-1.png';
-    items: number;
+    count: number;
 
     constructor( id: string, name: string, slug: string, filterCount: number ) {
 
@@ -61,7 +62,7 @@ class BrandItem {
         this.name = name,
         this.slug = slug,
 
-        this.items = filterCount   // ???
+        this.count = filterCount + 1  // ???
     }
 }
 
@@ -353,7 +354,7 @@ export class PimalionCloudService {
     }
 
   // 02 Post Brands A list of brands
-  getCloudBrandsList(): Observable<Brand[]> {
+  getCloudBrandsList(brandsService: BrandsService): Observable<Brand[]> {
 
     const url = `${environment.pimalionCloudUrl}/api/shop/brands`;
 
@@ -370,10 +371,19 @@ export class PimalionCloudService {
             }),
             map(itemData => {
                 var i: number = 0;
-                return itemData.map(value => {
+
+                const brands = itemData.map(value => {
                     i = i + 1;
                     return new BrandItem(i + '', value.filterValue, value.filterValue, value.filterCount);
-                })
+                });
+
+                if (isPimalionCloudServiceLog) {
+                    console.log('*srv*** PimalionCloudService.getCloudBrandsList() brands -> %O', brands);
+                }
+
+                brandsService.next(brands);
+
+                return brands;
             }),
             tap((items: any) => {
                 if (isPimalionCloudServiceLog) {
@@ -444,19 +454,8 @@ export class PimalionCloudService {
          map((response: any) => {
 
                 if (isPimalionCloudServiceLog) {
-                    console.log('*srv*** PimalionCloudService.getProductsList() map response -> %O', response);
+                  //  console.log('*srv*** PimalionCloudService.getProductsList() map response -> %O', response);
                 }
-                 // const keys = response.headers.keys();
-                 /*
-                 const headers = keys.map( key => {
-                        const keyName = `${key}: ${response.headers.get(key)}`;
-                        console.log('*srv*** PimalionCloudService.getProductsList() keyName -> %O', keyName);
-                        mainHeaders[key] = response.headers.get(key);
-                        console.log('*srv*** PimalionCloudService.getProductsList() header -> %O', response.headers.get(key));
-                    }
-                   );
-                   */
-                 // tslint:disable-next-line:no-shadowed-variable
 
                  const body: any = {
                     items: response.body.products, // response.body.tableValues,

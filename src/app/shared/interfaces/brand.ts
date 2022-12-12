@@ -4,7 +4,7 @@ export interface Brand {
     slug: string;
     image: string;
 
-    items?: string;  // pimaloin   // ???
+    count?: number;  // pimaloin   // ???
 }
 
 export interface BrandPimalion {

@@ -31,19 +31,20 @@ import { getSuggestions } from 'src/fake-server/database/products';
 
 
 import {
-    getCategoriesPimalion,
-    getBrandsPimalion,
-    getProductHtmlPimalion,
+    // getCategoriesPimalion,
+    // getBrandsPimalion,
+    // getProductHtmlPimalion,
 
     getProductsListPimalion,
     getProductsPimalion,
 
-    getCategyPimalion,
+    // getCategyPimalion,
 } from './products-list-pimalion';
 
 import { getModeSource } from 'src/fake-server/database/brands';
 
 import { PimalionCloudService } from './pimalion-cloud.service';
+import { BrandsService } from './brands.service';
 
 export interface ListOptions {
     query?: string;
@@ -69,7 +70,8 @@ const httpOptions = {
 export class ShopService {
     constructor(
         private http: HttpClient,
-        private pimalionCloudService: PimalionCloudService
+        private pimalionCloudService: PimalionCloudService,
+        private brandsService: BrandsService
     ) { }
 
 
@@ -108,7 +110,7 @@ export class ShopService {
 
             case 'demo.sourcing.pm':
 
-                return this.pimalionCloudService.getCloudBrandsList();
+                return this.pimalionCloudService.getCloudBrandsList(this.brandsService);
 
                 break;
 
@@ -434,7 +436,7 @@ export class ShopService {
                                     console.log(`>>> ShopService.getProductsList() Input categorySlug -> %O options -> %O`, categorySlug, options);
                                     console.log(`>>> ShopService.getProductsList() Input pimalionBody -> %O`, pimalionBody);
                                 }
-                                const productsList = getProductsListPimalion(categorySlug, options, pimalionBody);
+                                const productsList = getProductsListPimalion(this.brandsService, categorySlug, options, pimalionBody);
 
                                 if (isShopServiceLog)  {
                                     console.log(`<<< ShopService.getProductsList() Output shopCategory -> %O`, productsList);
