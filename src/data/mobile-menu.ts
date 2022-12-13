@@ -1,6 +1,6 @@
 import { MobileMenuItem } from '../app/shared/interfaces/mobile-menu-item';
 
-export const mobileMenu: MobileMenuItem[] = [
+const mobileMenu: MobileMenuItem[] = [
     {type: 'link', label: 'Pimalion', url: '/', children: [
         {type: 'link', label: 'Catégories', url: '/pimalion/categories'},
         {type: 'link', label: 'Marques', url: '/pimalion/brands'},

@@ -2,8 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { MobileMenuService } from '../../../../shared/services/mobile-menu.service';
-import { mobileMenu } from '../../../../../data/mobile-menu';
+// import { mobileMenu } from '../../../../../data/mobile-menu';
 import { MobileMenuItem } from '../../../../shared/interfaces/mobile-menu-item';
+import { NavigationMobileService } from 'src/app/shared/api/navigation-mobile.service';
 
 @Component({
     selector: 'app-mobile-menu',
@@ -14,11 +15,15 @@ export class MobileMenuComponent implements OnDestroy, OnInit {
     private destroy$: Subject<any> = new Subject();
 
     isOpen = false;
-    links: MobileMenuItem[] = mobileMenu;
+    links: MobileMenuItem[] = []; // mobileMenu;
 
-    constructor(public mobilemenu: MobileMenuService) { }
+    constructor(
+        public mobilemenu: MobileMenuService,
+        private navigationMobileService: NavigationMobileService
+        ) { }
 
     ngOnInit(): void {
+        this.links = this.navigationMobileService.NavigationChangedSub$.getValue();
         this.mobilemenu.isOpen$.pipe(takeUntil(this.destroy$)).subscribe(isOpen => this.isOpen = isOpen);
     }
 

@@ -1,8 +1,8 @@
 import { getCategoriesName, getCategoriesSlug, getModeSource } from 'src/fake-server/database/brands';
 import { NavigationLink } from '../app/shared/interfaces/navigation-link';
 
-export var departments: NavigationLink[];
-
+ var departments: NavigationLink[];
+// export var departments: NavigationLink[];
 /*
 const departmentsPimalion: NavigationLink[] = [
     {label: 'Sanitaire',        url: '/shop/catalog/Sanitaire'},

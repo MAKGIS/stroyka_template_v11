@@ -10,13 +10,16 @@ import {
 } from '@angular/core';
 import { fromEvent, merge, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
-import { departments } from '../../../../../data/header-departments';
+
 import { NavigationLink } from '../../../../shared/interfaces/navigation-link';
 import { isPlatformBrowser } from '@angular/common';
 import { HeaderService } from '../../../../shared/services/header.service';
 import { fromMatchMedia } from '../../../../shared/functions/rxjs/fromMatchMedia';
 import { fromOutsideTouchClick } from '../../../../shared/functions/rxjs/fromOutsideTouchClick';
 
+import { DepartmentsService } from 'src/app/shared/api/departments.service';
+
+// import { departments } from '../../../../../data/header-departments';
 @Component({
     selector: 'app-header-departments',
     templateUrl: './departments.component.html',
@@ -30,7 +33,7 @@ export class DepartmentsComponent implements OnInit, OnDestroy, AfterViewInit, A
     @ViewChildren('submenuElement') submenuElements: QueryList<ElementRef>;
     @ViewChildren('itemElement') itemElements: QueryList<ElementRef>;
 
-    items: NavigationLink[] = departments;
+    items: NavigationLink[] = []; // departments;
     hoveredItem: NavigationLink = null;
 
     isOpen = false;
@@ -49,11 +52,15 @@ export class DepartmentsComponent implements OnInit, OnDestroy, AfterViewInit, A
         private el: ElementRef,
         private header: HeaderService,
         private zone: NgZone,
+        private departmentsService: DepartmentsService
     ) { }
 
     ngOnInit(): void {
         const root = this.element.querySelector('.departments') as HTMLElement;
         const content = this.element.querySelector('.departments__links-wrapper') as HTMLElement;
+
+        this.items = this.departmentsService.DepartmentsChangedSub$.getValue();
+        console.log('-- cmp -- DepartmentsComponent.ngOnInit() items -> %o', this.items);
 
         merge(
             this.header.navPanelPositionState$,

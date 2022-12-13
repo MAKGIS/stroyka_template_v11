@@ -10,7 +10,6 @@ export interface ICategoriesServiceInterface {
   }
 
 
-
 @Injectable({
     providedIn: 'root'
 })

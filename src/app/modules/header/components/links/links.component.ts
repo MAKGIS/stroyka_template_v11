@@ -1,10 +1,11 @@
 import { AfterViewChecked, Component, ElementRef, NgZone, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { navigation } from '../../../../../data/header-navigation';
+// import { navigation } from '../../../../../data/header-navigation';
 import { NavigationLink } from '../../../../shared/interfaces/navigation-link';
 import { DirectionService } from '../../../../shared/services/direction.service';
 import { merge, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { HeaderService } from '../../../../shared/services/header.service';
+import { NavigationService } from 'src/app/shared/api/navigation.service';
 
 @Component({
     selector: 'app-header-links',
@@ -17,7 +18,7 @@ export class LinksComponent implements OnInit, OnDestroy, AfterViewChecked {
 
     destroy$: Subject<void> = new Subject<void>();
 
-    items: NavigationLink[] = navigation;
+    items: NavigationLink[] = []; // navigation;
     hoveredItem: NavigationLink = null;
 
     reCalcSubmenuPosition = false;
@@ -26,6 +27,7 @@ export class LinksComponent implements OnInit, OnDestroy, AfterViewChecked {
         private direction: DirectionService,
         private header: HeaderService,
         private zone: NgZone,
+        private navigationService: NavigationService
     ) {}
 
     onItemMouseEnter(item: NavigationLink): void {
@@ -70,6 +72,9 @@ export class LinksComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
 
     ngOnInit(): void {
+
+        this.items = this.navigationService.NavigationChangedSub$.getValue();
+
         merge(
             this.header.navPanelPositionState$,
             this.header.navPanelVisibility$,

@@ -1,6 +1,6 @@
 import { NavigationLink } from '../app/shared/interfaces/navigation-link';
 
-export const navigation: NavigationLink[] = [
+const navigation: NavigationLink[] = [
     {label: 'Pimalion', url: '/', menu: {
         type: 'menu',
         items: [
