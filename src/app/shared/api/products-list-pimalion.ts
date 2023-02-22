@@ -251,11 +251,11 @@ export function getProductsListPimalion(categoriesService: CategoriesService, br
     const filterValues = options.filterValues || {};
     const filters: Filter[] = [];
     const filtersDef = [
-        {type: 'range', slug: 'price', name: 'Price'},
-        //  {type: 'check', slug: 'brand', name: 'Brand', items: brands},
+        // {type: 'range', slug: 'price', name: 'Price'},
+          {type: 'check', slug: 'brand', name: 'Marques', items: brands},
         // {type: 'check', slug: 'brand', name: 'Brand'},
-        {type: 'radio', slug: 'discount', name: 'With Discount'},
-        {type: 'color', slug: 'color', name: 'Color'},
+        // {type: 'radio', slug: 'discount', name: 'With Discount'},
+        // {type: 'color', slug: 'color', name: 'Color'},
     ];
 
     if (isPtoductListPimalionLog) {
@@ -291,10 +291,13 @@ export function getProductsListPimalion(categoriesService: CategoriesService, br
 
     // const categories = categoriesService.CategoriesChangedSub$.getValue();
     const categories: Category[] = [
-        { parents: null, children: null, id:'1', type: 'shop', name: 'Sanitaire', slug: 'Sanitaire', path: '', image: '', items: 1, customFields: {}},
-        { parents: null, children: null, id:'2', type: 'shop', name: 'Electricité', slug: 'Electricité', path: '', image: '', items: 1, customFields: {}},
-        { parents: null, children: null, id:'3', type: 'shop', name: 'Outillage', slug: 'Outillage', path: '', image: '', items: 1, customFields: {}},
-        { parents: null, children: null, id:'4', type: 'shop', name: 'Chauffage', slug: 'Chauffage', path: '', image: '', items: 1, customFields: {}},
+        { parents: null, children: null, id:'AC_7/', type: 'shop', name: 'Aciers', slug: 'Aciers', path: '', image: '', items: 1, customFields: {}},
+        { parents: null, children: null, id:'DE_2/', type: 'shop', name: 'Décoration', slug: 'Electricité', path: '', image: '', items: 1, customFields: {}},
+        { parents: null, children: null, id:'EL_3/', type: 'shop', name: 'Electricité', slug: 'Outillage', path: '', image: '', items: 1, customFields: {}},
+        { parents: null, children: null, id:'EP_1/', type: 'shop', name: 'EPI - Protection - Hygiène - Sécurité', slug: 'Chauffage', path: '', image: '', items: 1, customFields: {}},
+        { parents: null, children: null, id:'IN_4/', type: 'shop', name: 'Industrie', slug: 'Chauffage', path: '', image: '', items: 1, customFields: {}},
+        { parents: null, children: null, id:'OU_5/', type: 'shop', name: 'Outils pro & fournitures industrielles', slug: 'Chauffage', path: '', image: '', items: 1, customFields: {}},
+        { parents: null, children: null, id:'SA_1/', type: 'shop', name: 'Sanitaire - Chauffage', slug: 'Chauffage', path: '', image: '', items: 1, customFields: {}},
       ];
 
     const categoriesFilter_: any[] = categories.map(x => {
@@ -371,7 +374,7 @@ export function getProductsListPimalion(categoriesService: CategoriesService, br
         console.log('getProductsListPimalion() (4.b) brandsFilter -> %O', brandsFilter);
      }
 
-    let filterBrand: Filter = { type: 'check', slug: 'brand', name: 'Brand', value: [], items: brandsFilter };
+    let filterBrand: Filter = { type: 'check', slug: 'brand', name: 'Marques', value: [], items: brandsFilter };
 
     filters.push(filterBrand);
 

@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
-// modules Stroyka
+// modules distriland
 import { SharedModule } from 'src/app/shared/shared.module';
 
 // module Pimalion
@@ -75,7 +75,7 @@ import { PagePimalionCategoriesGridComponent } from './pages/page-categories-gri
         // modules (third-party)
         CarouselModule,
 
-        // modules Stroyka
+        // modules distriland
         SharedModule,
 
         // modules Pimalion

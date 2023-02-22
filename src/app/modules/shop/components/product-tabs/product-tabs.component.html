@@ -8,30 +8,38 @@
 
         <a href="#tab-specification" class="product-tabs__item"
            [ngClass]="{'product-tabs__item--active': tab === 'specification'}"
-           (click)="$event.preventDefault(); tab = 'specification'">Specification</a>
+           (click)="$event.preventDefault(); tab = 'specification'">Caractéristiques</a>
 
+        <a href="#tab-documents" class="product-tabs__item"
+           [ngClass]="{'product-tabs__item--active': tab === 'documents'}"
+           (click)="$event.preventDefault(); tab = 'documents'">Documents</a>
+           
         <a href="#tab-reviews" class="product-tabs__item"
            [ngClass]="{'product-tabs__item--active': tab === 'reviews'}"
-           (click)="$event.preventDefault(); tab = 'reviews'">Reviews</a>
+           (click)="$event.preventDefault(); tab = 'reviews'">SEO</a>
     </div>
     <div class="product-tabs__content">
 
         <div class="product-tabs__pane" id="tab-description" [ngClass]="{'product-tabs__pane--active': tab === 'description'}">
             <div class="typography">
-                <h3>Product Full Description</h3>
-                <h3> {{this.product.name}}</h3>
-                <p>
+                <h3>Description du produit</h3>
+                <h3 contenteditable> {{this.product.name}}</h3>
+                <p contenteditable>
                     {{this.product.overview}}
                 </p>
-                <p>
-                    {{this.product.description}}
+                <p  [innerHTML]="this.product.description" contenteditable>                  
                 </p>
+
+                <!-- <button class="btn btn-primary btn-sm">Générer une description</button> -->
+                <button type="submit" class="btn btn-primary mt-2 mt-md-3 mt-lg-4">Générer un titre</button>
+                <button type="submit" class="btn btn-primary mt-2 mt-md-3 mt-lg-4" style="margin-left: 10px;">Générer une description</button>
+                <button type="submit" class="btn btn-success mt-2 mt-md-3 mt-lg-4" style="margin-left: 10px;">Sauver la description</button>
             </div>
         </div>
 
         <div class="product-tabs__pane" id="tab-specification" [ngClass]="{'product-tabs__pane--active': tab === 'specification'}">
             <div class="spec">
-                <h3 class="spec__header">Specification</h3>
+                <h3 class="spec__header">Caractéristiques</h3>
 
                 <ng-container *ngIf="product.attributesPimalion.length > 0">
 
@@ -48,9 +56,12 @@
 
                 </ng-container>
 
+                <button type="submit" class="btn btn-primary mt-2 mt-md-3 mt-lg-4" style="margin-right: 10px;">Générer les Caractéristiques</button>
+                <button type="submit" class="btn btn-secondary mt-2 mt-md-3 mt-lg-4">Ajouter une Caractéristique au datamodèle</button>
+                
+
                 <div class="spec__disclaimer">
-                    Information on technical characteristics, the delivery set, the country of manufacture and the appearance
-                    of the goods is for reference only and is based on the latest information available at the time of publication.
+                    
                 </div>
 <!--
                 <div *ngFor="let section of specification" class="spec__section">
@@ -68,11 +79,61 @@
             </div>
         </div>
 
-        <div class="product-tabs__pane" id="tab-reviews" [ngClass]="{'product-tabs__pane--active': tab === 'reviews'}">
-            <div class="reviews-view">
-                <div class="reviews-view__list">
-                    <h3 class="reviews-view__header">Customer Reviews</h3>
+        <div class="product-tabs__pane" id="tab-documents" [ngClass]="{'product-tabs__pane--active': tab === 'documents'}">
+            <div class="spec">
+                <h3 class="spec__header">Documents</h3>
 
+                <ng-container *ngIf="product.documents.length > 0">
+                    <div class="product__documents">
+                        Documents source:
+                    </div>
+                    <ul class="product__description" *ngFor="let item of product.documents">
+                        <li >
+                        Document: <a href="{{item.url}}" target="blank">{{item.label}} priority {{item.priority}}</a>
+                        </li>
+                    </ul>
+                </ng-container>
+
+                
+<!--
+                <div *ngFor="let section of specification" class="spec__section">
+                    <h4 class="spec__section-title">{{ section.name }}</h4>
+                    <div *ngFor="let feature of section.features" class="spec__row">
+                        <div class="spec__name">{{ feature.name }}</div><div class="spec__value">{{ feature.value }}</div>
+                    </div>
+                </div>
+                <div class="spec__disclaimer">
+                    Information on technical characteristics, the delivery set, the country of manufacture and the appearance
+                    of the goods is for reference only and is based on the latest information available at the time of publication.
+                </div>
+                -->
+
+            </div>
+        </div>
+
+
+        
+        <div class="product-tabs__pane" id="tab-reviews" [ngClass]="{'product-tabs__pane--active': tab === 'reviews'}">
+            <div class="typography">
+                <h3>Mots clés</h3>
+                
+                <div class="product__tags tags">
+                    <div class="tags__list">
+                        <a href="" appClick>Mot clé 1</a>
+                        <a href="" appClick>Mot clé 2</a>
+                        <a href="" appClick>Mot clé 3</a>
+                    </div>
+                </div>
+
+
+                <!-- <button class="btn btn-primary btn-sm">Générer une description</button> -->
+                <button type="submit" class="btn btn-primary mt-2 mt-md-3 mt-lg-4">Générer mots clés</button>
+                <button type="submit" class="btn btn-success mt-2 mt-md-3 mt-lg-4" style="margin-left: 10px;">Rechercher sur Google</button>
+            </div>
+            
+            <div class="reviews-view" style="margin-top: 40px;">
+                <h3>Avis</h3>
+                <div class="reviews-view__list">
                     <div class="reviews-list">
                         <ol class="reviews-list__content">
                             <li *ngFor="let review of reviews" class="reviews-list__item">
@@ -95,8 +156,8 @@
                     </div>
                 </div>
 
-                <form class="reviews-view__form">
-                    <h3 class="reviews-view__header">Write A Review</h3>
+                <!-- <form class="reviews-view__form">
+                    <h3 class="reviews-view__header">Ecrire un avis</h3>
                     <div class="row">
                         <div class="col-12 col-lg-9 col-xl-8">
                             <div class="form-row">
@@ -128,7 +189,7 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                </form> -->
             </div>
         </div>
 

@@ -14,7 +14,7 @@
     "serve:ssr": "node dist/stroyka/server/main.js",
     "build:ssr": "ng build --prod && ng run stroyka:server:production",
     "prerender": "ng run stroyka:prerender",
-  "deploy": "ng build --prod --base-href https://makgis.github.io/stroyka_template_v11/ && npx ngh --dir=docs"
+    "deploy": "ng build --prod --base-href https://makgis.github.io/stroyka_template_v11/ && npx ngh --dir=docs"
   },
   "private": true,
   "dependencies": {

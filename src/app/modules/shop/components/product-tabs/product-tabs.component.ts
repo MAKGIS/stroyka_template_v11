@@ -11,7 +11,7 @@ import { Review } from '../../../../shared/interfaces/review';
 })
 export class ProductTabsComponent {
     @Input() withSidebar = false;
-    @Input() tab: 'description'|'specification'|'reviews' = 'description';
+    @Input() tab: 'description'|'specification'|'reviews'|'documents' = 'description';
 
     @Input() product: Product;
 

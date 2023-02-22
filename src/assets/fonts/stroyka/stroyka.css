@@ -1,9 +1,9 @@
 @font-face {
-    font-family: 'stroyka';
+    font-family: 'distriland';
     src:
-            url('stroyka.ttf') format('truetype'),
-            url('stroyka.woff') format('woff'),
-            url('stroyka.svg#stroyka') format('svg');
+            url('distriland.ttf') format('truetype'),
+            url('distriland.woff') format('woff'),
+            url('distriland.svg#distriland') format('svg');
     font-weight: normal;
     font-style: normal;
 }

@@ -1,22 +1,21 @@
 import { NavigationLink } from '../app/shared/interfaces/navigation-link';
 
 const navigation: NavigationLink[] = [
-    {label: 'Pimalion', url: '/', menu: {
+    {label: 'Parcourir', url: '/', menu: {
         type: 'menu',
         items: [
-            {label: 'Catégories', url: '/pimalion/categories'},
             {label: 'Marques', url: '/pimalion/brands'},
-            {label: 'Des produits', url: '/pimalion/catalog'},
+            {label: 'Produits', url: '/pimalion/catalog'},
         ]
     }},
-    {label: 'Home', url: '/', menu: {
-        type: 'menu',
-        items: [
-            {label: 'Home 1', url: '/'},
-            {label: 'Home 2', url: '/home-two'},
-            {label: 'Offcanvas Cart', url: '/offcanvas-cart'}
-        ]
-    }},
+    // {label: 'Home', url: '/', menu: {
+    //     type: 'menu',
+    //     items: [
+    //         {label: 'Home 1', url: '/'},
+    //         {label: 'Home 2', url: '/home-two'},
+    //         {label: 'Offcanvas Cart', url: '/offcanvas-cart'}
+    //     ]
+    // }},
     {label: 'Megamenu', url: '/shop/catalog', menu: {
         type: 'megamenu',
         size: 'nl',
@@ -115,5 +114,5 @@ const navigation: NavigationLink[] = [
             {label: 'Typography',           url: '/site/typography'}
         ]
     }},
-    {label: 'Buy Theme', url: 'https://themeforest.net/item/stroyka-tools-store-angular-7-template/23523630', external: true}
+    {label: 'Buy Theme', url: 'https://themeforest.net/item/distriland-tools-store-angular-7-template/23523630', external: true}
 ];

@@ -1,16 +1,15 @@
 import { MobileMenuItem } from '../app/shared/interfaces/mobile-menu-item';
 
 const mobileMenu: MobileMenuItem[] = [
-    {type: 'link', label: 'Pimalion', url: '/', children: [
-        {type: 'link', label: 'Catégories', url: '/pimalion/categories'},
+    {type: 'link', label: 'Parcourir', url: '/pimalion/catalog', children: [
         {type: 'link', label: 'Marques', url: '/pimalion/brands'},
-        {type: 'link', label: 'Des produits', url: '/pimalion/catalog'}
+        {type: 'link', label: 'Produits', url: '/pimalion/catalog'}
     ]},
-    {type: 'link', label: 'Home', url: '/', children: [
-        {type: 'link', label: 'Home 1', url: '/'},
-        {type: 'link', label: 'Home 2', url: '/home-two'},
-        {type: 'link', label: 'Offcanvas Cart', url: '/offcanvas-cart'}
-    ]},
+    // {type: 'link', label: 'Home', url: '/', children: [
+    //     {type: 'link', label: 'Home 1', url: '/'},
+    //     {type: 'link', label: 'Home 2', url: '/home-two'},
+    //     {type: 'link', label: 'Offcanvas Cart', url: '/offcanvas-cart'}
+    // ]},
 
     {type: 'link', label: 'Categories', url: '/shop/catalog', children: [
         {type: 'link', label: 'Power Tools', url: '/shop/catalog', children: [

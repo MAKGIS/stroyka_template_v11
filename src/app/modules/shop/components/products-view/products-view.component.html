@@ -12,7 +12,7 @@
                 <div class="view-options__filters-button">
                     <button type="button" class="filters-button" (click)="sidebar.open()">
                         <app-icon class="filters-button__icon" name="filters-16" size="16"></app-icon>
-                        <span class="filters-button__title">Filters</span>
+                        <span class="filters-button__title">Filtres</span>
                         <span class="filters-button__counter" *ngIf="filtersCount > 0">{{ filtersCount }}</span>
                     </button>
                 </div>
@@ -38,23 +38,23 @@
                     </div>
                 </div>
                 <div class="view-options__legend">
-                    Showing {{ this.pageService.from }}–{{ this.pageService.to }}
+                    Afficher {{ this.pageService.from }}–{{ this.pageService.to }}
                     of {{ this.pageService.total }}
-                    results
+                    resultats
                 </div>
                 <div class="view-options__divider"></div>
                 <div class="view-options__control">
-                    <label for="view-options-sort">Sort By</label>
+                    <label for="view-options-sort">Trier par</label>
                     <div>
                         <select class="form-control form-control-sm" id="view-options-sort" formControlName="sort">
-                            <option value="default">Default</option>
-                            <option value="name_asc">Name (A-Z)</option>
-                            <option value="name_desc">Name (Z-A)</option>
+                            <option value="default">Defaut</option>
+                            <option value="name_asc">Nom (A-Z)</option>
+                            <option value="name_desc">Nom (Z-A)</option>
                         </select>
                     </div>
                 </div>
                 <div class="view-options__control">
-                    <label for="view-options-limit">Show</label>
+                    <label for="view-options-limit">Montrer</label>
                     <div>
                         <select class="form-control form-control-sm" id="view-options-limit" formControlName="limit">
                             <option value="12">12</option>
@@ -79,8 +79,8 @@
     </div>
 
     <div *ngIf="!pageService.items?.length" class="products-view__empty">
-        <div class="products-view__empty-title">No matching items</div>
-        <div class="products-view__empty-subtitle">Try resetting the filters</div>
-        <button type="button" class="btn btn-primary btn-sm" (click)="resetFilters()">Reset filters</button>
+        <div class="products-view__empty-title">Pas de produits</div>
+        <div class="products-view__empty-subtitle">Nettoyage des filtres</div>
+        <button type="button" class="btn btn-primary btn-sm" (click)="resetFilters()">Nettoyer les filtres</button>
     </div>
 </div>

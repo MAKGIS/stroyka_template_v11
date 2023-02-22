@@ -16,10 +16,13 @@ export interface ICategoriesServiceInterface {
 export class CategoriesService implements ICategoriesServiceInterface {
 
   private CategoriesInit: Category[] = [
-    { id:'1', type: 'shop', name: 'Sanitaire', slug: 'Sanitaire', path: '', image: '', items: 1, customFields: {}},
-    { id:'1', type: 'shop', name: 'Electricité', slug: 'Electricité', path: '', image: '', items: 1, customFields: {}},
-    { id:'1', type: 'shop', name: 'Outillage', slug: 'Outillage', path: '', image: '', items: 1, customFields: {}},
-    { id:'1', type: 'shop', name: 'Chauffage', slug: 'Chauffage', path: '', image: '', items: 1, customFields: {}},
+    { parents: null, children: null, id:'AC_7/', type: 'shop', name: 'Aciers', slug: 'Aciers', path: '', image: '', items: 1, customFields: {}},
+    { parents: null, children: null, id:'DE_2/', type: 'shop', name: 'Décoration', slug: 'Electricité', path: '', image: '', items: 1, customFields: {}},
+    { parents: null, children: null, id:'EL_3/', type: 'shop', name: 'Electricité', slug: 'Outillage', path: '', image: '', items: 1, customFields: {}},
+    { parents: null, children: null, id:'EP_1/', type: 'shop', name: 'EPI - Protection - Hygiène - Sécurité', slug: 'Chauffage', path: '', image: '', items: 1, customFields: {}},
+    { parents: null, children: null, id:'IN_4/', type: 'shop', name: 'Industrie', slug: 'Chauffage', path: '', image: '', items: 1, customFields: {}},
+    { parents: null, children: null, id:'OU_5/', type: 'shop', name: 'Outils pro & fournitures industrielles', slug: 'Chauffage', path: '', image: '', items: 1, customFields: {}},
+    { parents: null, children: null, id:'SA_1/', type: 'shop', name: 'Sanitaire - Chauffage', slug: 'Chauffage', path: '', image: '', items: 1, customFields: {}},
   ];
 
   public CategoriesChangedSub$ =  new BehaviorSubject<Category[]>(this.CategoriesInit);

@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
         // with the arguments of the built-in pipe "currency"
         // https://angular.io/api/common/CurrencyPipe
         this.currency.options = {
-            code: 'USD',
+            code: 'EUR',
             // display: 'symbol',
             // digitsInfo: '1.2-2',
             // locale: 'en-US'

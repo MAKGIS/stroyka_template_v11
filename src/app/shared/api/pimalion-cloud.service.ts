@@ -250,13 +250,13 @@ export class ProductItem implements Product {
         this.supplierReference = itemData.supplierReference;  // "100501957"  '83690/32',
 
         this.price = itemData.price; // + 1;      // "price": "0.0",
-        this.compareAtPrice = itemData.price; // + 2;   //  number|null;
+        this.compareAtPrice = null; // + 2;   //  number|null;
 
         this.images = getImagesForProduct(itemData.images);
         this.urls = getSiteUrlForProduct(itemData.images);
         this.imagesPimalion = itemData.images;
 
-        this.badges = ['hot']; // badges: string[];
+        this.badges = []; //['hot']; // badges: string[];
 
         this.rating = 2; // rating: number;
         this.reviews = 3; // reviews: number;
@@ -266,24 +266,19 @@ export class ProductItem implements Product {
         this.brand = { id: '1', name: itemData.brandName, slug: itemData.brandName, image: 'assets/images/logos/logo-1.png'};
         // brand: brands.find(x => x.slug === bran_Marque) || null, // brandCor
 
-        this.categories = [{ id:'1', name: 'Sanitaire', slug: 'Sanitaire', items: 111 , path: 'category', image: null, type: 'shop', customFields: {},
+        this.categories = [
+            { id:'1',
+             name: 'Sanitaire', 
+             slug: 'Sanitaire', 
+             items: 111 , 
+             path: 'category', 
+             image: null, 
+             type: 'shop', 
+             customFields: {},
                 parents: null,
                 children: null
             }];
-/*
-const categoryCor: Category = {
-             id: 1 + '',
-             type: 'shop',
-             name: 'name category',
-             slug: 'category',
-             path: 'category',
-             image: null,
-             items: 11,
-             customFields: {},
-             parents: null,
-             children: null
-         };
-*/
+
         // ???
         this.attributes = getAttributesForProduct(itemData.attributes); //itemData.attributes; // attributes: ProductAttribute[];
         this.attributesPimalion = itemData.attributes;

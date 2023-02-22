@@ -9,20 +9,20 @@ import { PageOffcanvasCartComponent } from './pages/page-offcanvas-cart/page-off
 
 const routes: Routes = [
     // START / ONLY_FOR_DEMO_YOU_CAN_DELETE_IT
-    {
-        path: 'home-two',
-        component: RootComponent,
-        data: {
-            headerLayout: 'compact',
-            dropcartType: 'dropdown'
-        },
-        children: [
-            {
-                path: '',
-                component: PageHomeTwoComponent
-            }
-        ],
-    },
+    // {
+    //     path: 'home-two',
+    //     component: RootComponent,
+    //     data: {
+    //         headerLayout: 'compact',
+    //         dropcartType: 'dropdown'
+    //     },
+    //     children: [
+    //         {
+    //             path: '',
+    //             component: PageHomeOneComponent
+    //         }
+    //     ],
+    // },
     {
         path: 'offcanvas-cart',
         component: RootComponent,
@@ -45,7 +45,7 @@ const routes: Routes = [
             // Header layout. Choose one of ['classic', 'compact'].
             headerLayout: 'classic',
             // Dropcart type. Choose one of ['dropdown', 'offcanvas'].
-            dropcartType: 'dropdown'
+            dropcartType: 'offcanvas'
         },
         children: [
             {

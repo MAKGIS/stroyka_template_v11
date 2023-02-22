@@ -19,8 +19,8 @@ import { ShopSidebarService } from '../../services/shop-sidebar.service';
 export class ShopSidebarComponent implements OnInit, OnDestroy {
     /**
      * Indicates when filters will be offcanvas.
-     * - always: https://stroyka.angular.themeforest.scompiler.ru/themes/default-ltr/classic/shop/category-grid-4-columns-full
-     * - mobile: https://stroyka.angular.themeforest.scompiler.ru/themes/default-ltr/classic/shop/category-grid-3-columns-sidebar
+     * - always: https://distriland.angular.themeforest.scompiler.ru/themes/default-ltr/classic/shop/category-grid-4-columns-full
+     * - mobile: https://distriland.angular.themeforest.scompiler.ru/themes/default-ltr/classic/shop/category-grid-3-columns-sidebar
      */
     @Input() offcanvas: 'always'|'mobile' = 'mobile';
 

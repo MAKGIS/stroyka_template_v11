@@ -252,7 +252,7 @@
                     "slug": "yes"
                 }
             ],
-            "name": "With Discount",
+            "name": "With Discosunt",
             "slug": "discount",
             "type": "radio",
             "value": "any"

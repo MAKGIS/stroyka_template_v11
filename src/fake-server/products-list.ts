@@ -32,10 +32,10 @@ export function getProductsList(categorySlug: string|null, options: ListOptions)
     const filters: Filter[] = [];
 
     const filtersDef = [
-        {type: 'range', slug: 'price', name: 'Price'},
-        {type: 'check', slug: 'brand', name: 'Brand'},
-        {type: 'radio', slug: 'discount', name: 'With Discount'},
-        {type: 'color', slug: 'color', name: 'Color'},
+        // {type: 'range', slug: 'price', name: 'Price'},
+        {type: 'check', slug: 'brand', name: 'Marques'},
+        // {type: 'radio', slug: 'discount', name: 'With Discount'},
+        // {type: 'color', slug: 'color', name: 'Color'},
     ];
     let items = productsTable.slice();
 

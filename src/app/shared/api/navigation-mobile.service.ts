@@ -22,10 +22,9 @@ interface INavigationMobileServiceInterface {
 export class NavigationMobileService implements INavigationMobileServiceInterface {
 
     private mobileMenuPimalion: MobileMenuItem[] = [
-        {type: 'link', label: 'Pimalion', url: '/', children: [
-            {type: 'link', label: 'Catégories', url: '/pimalion/categories'},
+        {type: 'link', label: 'Parcourir', url: '/', children: [            
             {type: 'link', label: 'Marques', url: '/pimalion/brands'},
-            {type: 'link', label: 'Des produits', url: '/pimalion/catalog'}
+            {type: 'link', label: 'Produits', url: '/pimalion/catalog'}
         ]}
     ];
 
@@ -50,11 +49,11 @@ export class NavigationMobileService implements INavigationMobileServiceInterfac
     ];
 
     private mobileMenu: MobileMenuItem[] = [
-        {type: 'link', label: 'Home', url: '/', children: [
-            {type: 'link', label: 'Home 1', url: '/'},
-            {type: 'link', label: 'Home 2', url: '/home-two'},
-            {type: 'link', label: 'Offcanvas Cart', url: '/offcanvas-cart'}
-        ]},
+        // {type: 'link', label: 'Home', url: '/', children: [
+        //     {type: 'link', label: 'Home 1', url: '/'},
+        //     {type: 'link', label: 'Home 2', url: '/home-two'},
+        //     {type: 'link', label: 'Offcanvas Cart', url: '/offcanvas-cart'}
+        // ]},
 
         {type: 'link', label: 'Shop', url: '/shop/catalog', children: [    // ???
             {type: 'link', label: 'Shop Grid', url: '/shop/catalog', children: [    // ???
@@ -88,25 +87,25 @@ export class NavigationMobileService implements INavigationMobileServiceInterfac
             {type: 'link', label: 'Change Password', url: '/account/password'}
         ]},
 
-        {type: 'link', label: 'Blog', url: '/blog', children: [
-            {type: 'link', label: 'Blog Classic',         url: '/blog/category-classic'},
-            {type: 'link', label: 'Blog Grid',            url: '/blog/category-grid'},
-            {type: 'link', label: 'Blog List',            url: '/blog/category-list'},
-            {type: 'link', label: 'Blog Left Sidebar',    url: '/blog/category-left-sidebar'},
-            {type: 'link', label: 'Post Page',            url: '/blog/post-classic'},
-            {type: 'link', label: 'Post Without Sidebar', url: '/blog/post-full'}
-        ]},
+        // {type: 'link', label: 'Blog', url: '/blog', children: [
+        //     {type: 'link', label: 'Blog Classic',         url: '/blog/category-classic'},
+        //     {type: 'link', label: 'Blog Grid',            url: '/blog/category-grid'},
+        //     {type: 'link', label: 'Blog List',            url: '/blog/category-list'},
+        //     {type: 'link', label: 'Blog Left Sidebar',    url: '/blog/category-left-sidebar'},
+        //     {type: 'link', label: 'Post Page',            url: '/blog/post-classic'},
+        //     {type: 'link', label: 'Post Without Sidebar', url: '/blog/post-full'}
+        // ]},
 
-        {type: 'link', label: 'Pages', url: '/site', children: [
-            {type: 'link', label: 'About Us',             url: '/site/about-us'},
-            {type: 'link', label: 'Contact Us',           url: '/site/contact-us'},
-            {type: 'link', label: 'Contact Us Alt',       url: '/site/contact-us-alt'},
-            {type: 'link', label: '404',                  url: '/site/not-found'},
-            {type: 'link', label: 'Terms And Conditions', url: '/site/terms'},
-            {type: 'link', label: 'FAQ',                  url: '/site/faq'},
-            {type: 'link', label: 'Components',           url: '/site/components'},
-            {type: 'link', label: 'Typography',           url: '/site/typography'}
-        ]},
+        // {type: 'link', label: 'Pages', url: '/site', children: [
+        //     {type: 'link', label: 'About Us',             url: '/site/about-us'},
+        //     {type: 'link', label: 'Contact Us',           url: '/site/contact-us'},
+        //     {type: 'link', label: 'Contact Us Alt',       url: '/site/contact-us-alt'},
+        //     {type: 'link', label: '404',                  url: '/site/not-found'},
+        //     {type: 'link', label: 'Terms And Conditions', url: '/site/terms'},
+        //     {type: 'link', label: 'FAQ',                  url: '/site/faq'},
+        //     {type: 'link', label: 'Components',           url: '/site/components'},
+        //     {type: 'link', label: 'Typography',           url: '/site/typography'}
+        // ]},
 
         {type: 'button', label: 'Currency', children: [
             {type: 'button', label: '€ Euro',           data: {currency: 'EUR'}},
