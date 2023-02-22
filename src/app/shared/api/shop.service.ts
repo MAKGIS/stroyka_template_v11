@@ -346,39 +346,6 @@ export class ShopService {
      * @param options.filterValues - An object whose keys are filter slugs and values ​​are filter values (optional).
      */
     getProductsList(categorySlug: string|null, options: ListOptions): Observable<ProductsList> {
-        /**
-         * This is what your API endpoint might look like:
-         *
-         * https://example.com/api/products.json?category=screwdriwers&page=2&limit=12&sort=name_desc&filter_price=500-1000
-         *
-         * where:
-         * - category     = categorySlug
-         * - page         = options.page
-         * - limit        = options.limit
-         * - sort         = options.sort
-         * - filter_price = options.filterValues.price
-         */
-        // const params: {[param: string]: string} = {};
-        //
-        // if (categorySlug) {
-        //     params.category = categorySlug;
-        // }
-        // if ('page' in options) {
-        //     params.page = options.page.toString();
-        // }
-        // if ('limit' in options) {
-        //     params.limit = options.limit.toString();
-        // }
-        // if ('sort' in options) {
-        //     params.sort = options.sort;
-        // }
-        // if ('filterValues' in options) {
-        //     Object.keys(options.filterValues).forEach(slug => params[`filter_${slug}`] = options.filterValues[slug]);
-        // }
-        //
-        // return this.http.get<ProductsList>('https://example.com/api/products.json', {params});
-
-        // This is for demonstration purposes only. Remove it and use the code above.
 
         if (isShopServiceLog)  {
             console.log('ShopService.getProductsList()  categorySlug -> %o', categorySlug);
@@ -411,7 +378,7 @@ export class ShopService {
 
                     const body = {
                        // groupFields: [],
-                       // selection: [],
+                        filters: [{key: "brandName.keyword", value: "DIADORA UTILITY"}],
                         page: pagePimalion - 1,  // !!! ???
                         pageSize: limitPimalion
                       //  sort: [],
@@ -426,8 +393,7 @@ export class ShopService {
                                     console.log(`>>> ShopService.getProductsList() Input categorySlug -> %O options -> %O`, categorySlug, options);
                                     console.log(`>>> ShopService.getProductsList() Input pimalionBody -> %O`, pimalionBody);
                                 }
-                                const productsList = getProductsListPimalion(this.categoriesService, this.brandsService,
-                                                categorySlug, options, pimalionBody);
+                                const productsList = getProductsListPimalion(this.categoriesService, this.brandsService, categorySlug, options, pimalionBody, body.filters);
 
                                 return productsList;
                             })

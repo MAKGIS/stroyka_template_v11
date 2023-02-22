@@ -1,32 +1,20 @@
 
 import { HttpErrorResponse } from '@angular/common/http';
-
-
 import { Observable, of, throwError, timer } from 'rxjs';
 import { map } from 'rxjs/operators';
-
 import { ListOptions } from 'src/app/shared/api/shop.service';
-
-
 import { Product } from 'src/app/shared/interfaces/product';
 import { CategoryFilterItem, ColorFilterItem, Filter, FilterItem } from 'src/app/shared/interfaces/filter';
 import { ProductsList } from 'src/app/shared/interfaces/list';
-
 import { attributesDef, products as productsTable } from 'src/fake-server/database/products'; // database/products';
-
 import { shopCategoriesList, shopCategoriesTree } from 'src/fake-server/database/categories';
 import { environment } from 'src/environments/environment';
-
 import { Category, CategoryPimalion } from 'src/app/shared/interfaces/category';  // '../../interfaces/category-pimalion';
 import { Brand, BrandPimalion } from 'src/app/shared/interfaces/brand';  // '/interfaces/brand';
-
-// import {setShopCategoriesDef} from 'src/fake-server/database/categories';
 import {brands} from 'src/fake-server/database/brands';
 import { ProductItem } from './pimalion-cloud.service';
 import { BrandsService } from './brands.service';
 import { CategoriesService } from './categories.service';
-// import { CategoryPimalion } from 'src/app/pimalion/interfaces/category-pimalion';
-
 
 interface FilterListValueDef {
     slug: string;
@@ -36,49 +24,8 @@ type FilterValueDef = number | FilterListValueDef[];
 
 const isPtoductListPimalionLog = true;
 
-// ???
-/*
-const brandsFilters_const = [
-    {  name: 'LEGRAND', slug: 'LEGRAND',  count: 111},
-    {  name: 'ARNOULD', slug: 'ARNOULD',  count: 222},
-    {  name: 'BTICINO', slug: 'BTICINO', count: 333},
-    {  name: 'PLANET WATTOHM', slug: 'PLANET WATTOHM', count: 444}
-];
-*/
-/*
-export function getCategoriesPimalion_Old(pimalionCategories: any): Observable<Category[]> {
-
-    // console.log(`<<< function getCategoriesPimalion pimalionCategories -> %O`, pimalionCategories);
-
-    const pimalionCategoriesCor: Category[] = [];
-
-    pimalionCategories.tableValues.forEach(item => {
-
-        const categoryCor: Category = {
-            id: item.id,
-            type: 'shop',
-            name: getPimalionValue(item.values, 'Nomenclature Famille fournisseur'),
-            slug: getPimalionValue(item.values, 'Nomenclature Famille fournisseur'),
-            path: null,
-            image: 'assets/images/logos/logo-1.png',        // ???
-            items: getPimalionValue(item.values, 'Articles'),
-            customFields: {}
-        };
-
-        // console.log(`<<< function getCategoriesPimalion brandCor -> %O`, categoryCor);
-        pimalionCategoriesCor.push(categoryCor);
-    });
-
-
-    return timer(0).pipe(map(() => JSON.parse(JSON.stringify(pimalionCategoriesCor))));
-}
-*/
 
 export function getCategoriesPimalion(pimalionCategories: CategoryPimalion[]): Observable<Category[]> {
-
-    // if (isPtoductListPimalionLog) {
-    //     console.log(`<<< function getCategoriesPimalion() pimalionCategories -> %O`, pimalionCategories);
-    // }
 
     const pimalionCategoriesCor: Category[] = [];
 
@@ -101,140 +48,8 @@ export function getCategoriesPimalion(pimalionCategories: CategoryPimalion[]): O
         console.log(`<<< function getCategoriesPimalion() pimalionCategoriesCor -> %O`, pimalionCategoriesCor);
     }
 
-    // setShopCategoriesDef(pimalionCategoriesCor);
-
     return timer(0).pipe(map(() => JSON.parse(JSON.stringify(pimalionCategoriesCor))));
 }
-/*
-export function getCategyPimalion(pimalionCategories: CategoryPimalion[], slug: string): Observable<Category> {
-
-    // if (isPtoductListPimalionLog) {
-    //     console.log(`<<< function getCategyPimalion() pimalionCategories -> %O  slug -> %o`, pimalionCategories, slug);
-    // }
-
-    // const pimalionCategoriesCor: Category[] = [];
-
-     for (let i = 0; i < pimalionCategories.length; i++) {
-
-        const categoryCor: Category = {
-            id: (i).toString(),     // ???
-            type: 'shop',
-            name: pimalionCategories[i].filterValue,
-            slug: pimalionCategories[i].filterValue,
-            path: null,
-            image: 'assets/images/logos/logo-1.png',        // ???
-            items: pimalionCategories[i].filterCount,     // ???
-            customFields: {}
-        };
-
-        if (categoryCor.slug === slug) {
-
-            if (isPtoductListPimalionLog) {
-                console.log(`<<< function getCategyPimalion() categoryCor -> %O`, categoryCor);
-            }
-
-            return timer(0).pipe(map(() => JSON.parse(JSON.stringify(categoryCor))));
-        }
-    };
-
-    const categoryEmpty: Category = {
-        id: (0).toString(),     // ???
-        type: 'shop',
-        name: 'NotCategory',
-        slug: 'NotCategory',
-        path: null,
-        image: 'assets/images/logos/logo-1.png',        // ???
-        items: 0,     // ???
-        customFields: {}
-    };
-    return of(categoryEmpty);
-}
-*/
-/*
-export function getBrandsPimalion(pimalionBrands: BrandPimalion[]): Observable<Brand[]> {
-
-    // if (isPtoductListPimalionLog) {
-    //     console.log(`<<< function getBrandsPimalion() pimalionBrands -> %O`, pimalionBrands);
-    // }
-
-    const pimalionBrandsCor: Brand[] = [];
-
-        var id = 0;
-
-        pimalionBrands.forEach(item => {
-
-            const brandCor: Brand = {
-                id: (++id).toString(), // ++lastBrandId,
-                name: item.filterValue,
-                slug: item.filterValue,
-                image: 'assets/images/logos/logo-1.png',        // ???
-                count: item.filterCount ,   // ???
-            };
-
-        pimalionBrandsCor.push(brandCor);
-    });
-
-    if (isPtoductListPimalionLog) {
-        console.log(`<<< function getBrandsPimalion() pimalionBrandsCor -> %O`, pimalionBrandsCor);
-    }
-
-    // setShopBrandDef(pimalionBrandsCor);
-
-    return timer(0).pipe(map(() => JSON.parse(JSON.stringify(pimalionBrandsCor))));
-}
-*/
-/*
-export function getProductHtmlPimalion(productId: string, pimalionItemHtml: string): Observable<Product> {
-
-    if (isPtoductListPimalionLog) {
-         console.log(`<<< function getProductHtmlPimalion pimalionItemHtml -> %O`, pimalionItemHtml);
-    }
-
-    const begPosition = pimalionItemHtml.indexOf('<body>', 0) + 6;
-    // const begPosition = pimalionItemHtml.indexOf('</style>', 0) + 8;
-
-    const endPosition = pimalionItemHtml.indexOf('</body>', begPosition) - 1;
-
-    if (isPtoductListPimalionLog) {
-        console.log(`<<< function getProductHtmlPimalion begPosition -> %O   endPosition -> %O`, begPosition, endPosition);
-    }
-
-    let pimalionItemHtmlCor = pimalionItemHtml.substring(begPosition, endPosition);
-
-    do {
-        pimalionItemHtmlCor = pimalionItemHtmlCor.replace('<img src=', '<img width="30%" src=');
-      } while ( pimalionItemHtmlCor.indexOf('<img src=') > 0);
-
-
-    const productCor: Product = {
-        id: productId,
-        slug: productId,
-        name: productId,
-        sku:  null,
-        price: null,
-        compareAtPrice: null,
-        images: null,
-        badges: [],                         // badges:  ['sale', 'hot', 'new']
-        rating: null,
-        reviews: null,
-        availability: null,                          // item.attributes['fabdis'].value,              // доступность
-        brand: null,                                       // item.values['Marque'].value,
-        categories: null,
-        attributes: null,
-        customFields: null,
-
-        pimalionReviews: null,
-
-        pimalionHtml : pimalionItemHtmlCor,
-    };
-
-    if (isPtoductListPimalionLog) {
-        console.log(`<<< function getProductHtmlPimalion pimalionItemHtmlCor -> %O`, pimalionItemHtmlCor);
-    }
-
-    return timer(0).pipe(map(() => JSON.parse(JSON.stringify(productCor))));
-}
-*/
 
 /**
  * Returns products list.
@@ -242,25 +57,28 @@ export function getProductHtmlPimalion(productId: string, pimalionItemHtml: stri
  * @param categorySlug Unique human-readable category identifier.
  * @param options Options list.
  */
-export function getProductsListPimalion(categoriesService: CategoriesService, brandsService: BrandsService, categorySlug: string|null, options: ListOptions, pimalionBody: any): Observable<ProductsList> {
+export function getProductsListPimalion(categoriesService: CategoriesService, brandsService: BrandsService, categorySlug: string|null, options: ListOptions, pimalionBody: any, apifilters:any): Observable<ProductsList> {
 
+    
     const page = options.page || 1;
     const limit = options.limit || 12;
     const sort = options.sort || 'default';
-
     const filterValues = options.filterValues || {};
-    const filters: Filter[] = [];
-    const filtersDef = [
-        // {type: 'range', slug: 'price', name: 'Price'},
-          {type: 'check', slug: 'brand', name: 'Marques', items: brands},
+    var  filters: Filter[] = [];
+    var filtersDef = [
+        {type: 'range', slug: 'price', name: 'Price'},
+        // {type: 'check', slug: 'brand', name: 'Marques', items: brands},
         // {type: 'check', slug: 'brand', name: 'Brand'},
         // {type: 'radio', slug: 'discount', name: 'With Discount'},
         // {type: 'color', slug: 'color', name: 'Color'},
     ];
 
+
+
+
+
     if (isPtoductListPimalionLog) {
         console.log(`<<< function getProductsListPimalion() (1) pimalionBody -> %O`, pimalionBody);
-       // console.log(`getProductsListPimalion() (1) filtersDef -> %O`, filtersDef);
     }
 
     const pimalionItemsCor: Product[] = [];
@@ -339,20 +157,7 @@ export function getProductsListPimalion(categoriesService: CategoriesService, br
         if (!category) {
             return throwError(new HttpErrorResponse({status: 404, statusText: 'Page Not Found'}));
         }
-/*
-        filters.push({
-            type: 'categories',
-            slug: 'categories',
-            name: 'Categories',
-            root: false,
-            items: [
-                ...category.parents.map(x => makeCategoryFilterItem('parent', x)),
-                makeCategoryFilterItem('current', category),
-                ...category.children.map(x => makeCategoryFilterItem('child', x)),
 
-            ],
-        });
-        */
         filters.push({
             type: 'categories',
             slug: 'categories',
@@ -365,18 +170,25 @@ export function getProductsListPimalion(categoriesService: CategoriesService, br
               ]});
     }
 
-    // Apply values to filters.
-    // ???
-
      const brandsFilter = brandsService.BrandsChangedSub$.getValue() as FilterItem[];
 
     if (isPtoductListPimalionLog) {
         console.log('getProductsListPimalion() (4.b) brandsFilter -> %O', brandsFilter);
      }
 
-    let filterBrand: Filter = { type: 'check', slug: 'brand', name: 'Marques', value: [], items: brandsFilter };
+    let filterBrand: Filter = { type: 'check', slug: 'brand', name: 'XMarques', value: [], items: brandsFilter };
 
     filters.push(filterBrand);
+
+    if(apifilters != null){
+        apifilters.forEach(filter => {
+            
+            var newfilter = {type: 'check', slug: 'fuck', name: filter.key, items: brands, value: []};
+            filters.push(newfilter);
+        })
+    }
+
+
 
     filters.forEach(filter => {
         if (filter.slug in filterValues && 'value' in filter) {
