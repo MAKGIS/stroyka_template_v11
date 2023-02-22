@@ -51,6 +51,11 @@ const routes: Routes = [
             {
                 path: '',
                 pathMatch: 'full',
+                redirectTo: '/pimalion/catalog',
+            },
+            {
+                path: 'home',
+                pathMatch: 'full',
                 component: PageHomeOneComponent
             },
             {
