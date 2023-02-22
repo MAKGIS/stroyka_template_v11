@@ -13,7 +13,7 @@
         <a href="#tab-documents" class="product-tabs__item"
            [ngClass]="{'product-tabs__item--active': tab === 'documents'}"
            (click)="$event.preventDefault(); tab = 'documents'">Documents</a>
-           
+
         <a href="#tab-reviews" class="product-tabs__item"
            [ngClass]="{'product-tabs__item--active': tab === 'reviews'}"
            (click)="$event.preventDefault(); tab = 'reviews'">SEO</a>
@@ -27,11 +27,11 @@
                 <p contenteditable>
                     {{this.product.overview}}
                 </p>
-                <p  [innerHTML]="this.product.description" contenteditable>                  
+                <p  [innerHTML]="this.product.description" contenteditable>
                 </p>
 
                 <!-- <button class="btn btn-primary btn-sm">Générer une description</button> -->
-                <button type="submit" class="btn btn-primary mt-2 mt-md-3 mt-lg-4">Générer un titre</button>
+                <button type="submit" (click)="getTitre()" class="btn btn-primary mt-2 mt-md-3 mt-lg-4">Générer un titre</button>
                 <button type="submit" class="btn btn-primary mt-2 mt-md-3 mt-lg-4" style="margin-left: 10px;">Générer une description</button>
                 <button type="submit" class="btn btn-success mt-2 mt-md-3 mt-lg-4" style="margin-left: 10px;">Sauver la description</button>
             </div>
@@ -58,10 +58,10 @@
 
                 <button type="submit" class="btn btn-primary mt-2 mt-md-3 mt-lg-4" style="margin-right: 10px;">Générer les Caractéristiques</button>
                 <button type="submit" class="btn btn-secondary mt-2 mt-md-3 mt-lg-4">Ajouter une Caractéristique au datamodèle</button>
-                
+
 
                 <div class="spec__disclaimer">
-                    
+
                 </div>
 <!--
                 <div *ngFor="let section of specification" class="spec__section">
@@ -94,7 +94,7 @@
                     </ul>
                 </ng-container>
 
-                
+
 <!--
                 <div *ngFor="let section of specification" class="spec__section">
                     <h4 class="spec__section-title">{{ section.name }}</h4>
@@ -112,11 +112,11 @@
         </div>
 
 
-        
+
         <div class="product-tabs__pane" id="tab-reviews" [ngClass]="{'product-tabs__pane--active': tab === 'reviews'}">
             <div class="typography">
                 <h3>Mots clés</h3>
-                
+
                 <div class="product__tags tags">
                     <div class="tags__list">
                         <a href="" appClick>Mot clé 1</a>
@@ -130,7 +130,7 @@
                 <button type="submit" class="btn btn-primary mt-2 mt-md-3 mt-lg-4">Générer mots clés</button>
                 <button type="submit" class="btn btn-success mt-2 mt-md-3 mt-lg-4" style="margin-left: 10px;">Rechercher sur Google</button>
             </div>
-            
+
             <div class="reviews-view" style="margin-top: 40px;">
                 <h3>Avis</h3>
                 <div class="reviews-view__list">

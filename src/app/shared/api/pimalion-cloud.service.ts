@@ -268,12 +268,12 @@ export class ProductItem implements Product {
 
         this.categories = [
             { id:'1',
-             name: 'Sanitaire', 
-             slug: 'Sanitaire', 
-             items: 111 , 
-             path: 'category', 
-             image: null, 
-             type: 'shop', 
+             name: 'Sanitaire',
+             slug: 'Sanitaire',
+             items: 111 ,
+             path: 'category',
+             image: null,
+             type: 'shop',
              customFields: {},
                 parents: null,
                 children: null
@@ -507,6 +507,43 @@ export class PimalionCloudService {
                 // var i: number = 0;
                 return  new ProductItem(itemData);
             }),
+            tap((item: any) => {
+                if (isPimalionCloudServiceLog) {
+                    console.log('*srv*** PimalionCloudService.getProductDetailPage() item(Product) -> %O', item);
+                }
+            }),
+            catchError((err: any): any => {
+                console.log('*srv*** Error PimalionCloudService.getProductDetailPage() -> %O', err);
+                return of(`<html><head>Product Detail Page</head> <body>Page not found </body></html>`);
+            })
+        );
+  }
+
+  getProductDetailPage_01(productKey: string): Observable<Product> {
+
+    // const url = `${environment.pimalionCloudUrl}/pimalion_demo2_api/api/product/render/html/${productKey}?version=web`;
+
+    // https://demo.sourcing.pm/backend/api/shop/product?id=ReMSlWcBq_r5-pCSVC-G
+
+    const url = `${environment.pimalionCloudUrl}/api/shop/product?id=${productKey}&action=Générer%20un%20titre`;
+
+    if (isPimalionCloudServiceLog) {
+        console.log('*srv*** PimalionCloudService.getProductDetailPage_01() url -> %o', url);
+    }
+    // productKey = 'Ipw9LHUBUvwcyS3bkdSh';
+
+    return this.http.get<any>( url, httpOptions)
+    .pipe(
+             tap((item: any) => {
+                if (isPimalionCloudServiceLog) {
+                    console.log('*srv*** PimalionCloudService.getProductDetailPage_01() item -> %O', item);
+                }
+             }),
+             /*
+            map(itemData => {
+                // var i: number = 0;
+                return  new ProductItem(itemData);
+            }), */
             tap((item: any) => {
                 if (isPimalionCloudServiceLog) {
                     console.log('*srv*** PimalionCloudService.getProductDetailPage() item(Product) -> %O', item);
