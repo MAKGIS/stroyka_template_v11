@@ -375,14 +375,16 @@ export class ShopService {
                     const pagePimalion = options.page  || 1 ;
                     const limitPimalion = options.limit || 12;
                     const sort = options.sort || 'default';
+                    const input = options.filterValues ?? [];
+
+                    const flatFilters = Object.entries(input)
+                        .map(([key, value]) => ({ key, value }))
+                        .flatMap(({ key, value }) => value.split(',').map(v => ({ key:key, value: v })));
 
                     const body = {
-                       // groupFields: [],
-                        filters: [{key: "brandName.keyword", value: "DIADORA UTILITY"}],
+                       filters: flatFilters, 
                         page: pagePimalion - 1,  // !!! ???
                         pageSize: limitPimalion
-                      //  sort: [],
-                      //  productStates: []
                     };
 
                     return this.pimalionCloudService.getProductsList(body)
@@ -392,8 +394,9 @@ export class ShopService {
                                 if (isShopServiceLog)  {
                                     console.log(`>>> ShopService.getProductsList() Input categorySlug -> %O options -> %O`, categorySlug, options);
                                     console.log(`>>> ShopService.getProductsList() Input pimalionBody -> %O`, pimalionBody);
+                                    console.log(`>>>Search`);
                                 }
-                                const productsList = getProductsListPimalion(this.categoriesService, this.brandsService, categorySlug, options, pimalionBody, body.filters);
+                                const productsList = getProductsListPimalion(this.categoriesService, this.brandsService, categorySlug, options, pimalionBody, pimalionBody.facets);
 
                                 return productsList;
                             })

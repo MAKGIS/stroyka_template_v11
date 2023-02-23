@@ -13,16 +13,14 @@ import { PimalionCloudService } from 'src/app/shared/api/pimalion-cloud.service'
 })
 export class ProductTabsComponent {
     @Input() withSidebar = false;
-    @Input() tab: 'description'|'specification'|'reviews'|'documents' = 'description';
-
+    @Input() tab: 'description'|'specification'|'reviews'|'documents'|'Comparateur de prix' = 'description';
     @Input() product: Product;
 
 
     specification: ProductFeaturesSection[] = specification;
     reviews: Review[] = reviews;
 
-    constructor(private pimalionCloudService: PimalionCloudService
-        ) { }
+    constructor(private pimalionCloudService: PimalionCloudService) { }
 
     getAttributes(groupName: string) {
         return this.product.attributesPimalion.filter(data =>  data.groupName === groupName);
@@ -30,7 +28,7 @@ export class ProductTabsComponent {
 
     getTitre() {
         this.pimalionCloudService.getProductDetailPage_01(this.product.id)
-          .subscribe({next:(data: any) => this.product.description = data.description}); // ???
+          .subscribe({next:(data: any) => this.product = data.description}); // ???
     }
 
 }

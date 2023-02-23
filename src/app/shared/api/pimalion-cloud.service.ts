@@ -463,6 +463,7 @@ export class PimalionCloudService {
                 }
 
                  const body: any = {
+                    facets: response.body.facets,
                     items: response.body.products, // response.body.tableValues,
                     sorts: response.body.sorts,
                     total:  Number(response.headers.get('X-Total-Count')), // as number,  // 100, // 79581, //

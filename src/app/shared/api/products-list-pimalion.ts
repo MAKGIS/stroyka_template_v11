@@ -15,6 +15,7 @@ import {brands} from 'src/fake-server/database/brands';
 import { ProductItem } from './pimalion-cloud.service';
 import { BrandsService } from './brands.service';
 import { CategoriesService } from './categories.service';
+import { CheckFilter } from '../interfaces/filter';
 
 interface FilterListValueDef {
     slug: string;
@@ -58,7 +59,6 @@ export function getCategoriesPimalion(pimalionCategories: CategoryPimalion[]): O
  * @param options Options list.
  */
 export function getProductsListPimalion(categoriesService: CategoriesService, brandsService: BrandsService, categorySlug: string|null, options: ListOptions, pimalionBody: any, apifilters:any): Observable<ProductsList> {
-
     
     const page = options.page || 1;
     const limit = options.limit || 12;
@@ -66,16 +66,12 @@ export function getProductsListPimalion(categoriesService: CategoriesService, br
     const filterValues = options.filterValues || {};
     var  filters: Filter[] = [];
     var filtersDef = [
-        {type: 'range', slug: 'price', name: 'Price'},
-        // {type: 'check', slug: 'brand', name: 'Marques', items: brands},
+        //{type: 'range', slug: 'price', name: 'Price'},
+         {type: 'check', slug: 'brand', name: 'Marques', items: brands},
         // {type: 'check', slug: 'brand', name: 'Brand'},
         // {type: 'radio', slug: 'discount', name: 'With Discount'},
         // {type: 'color', slug: 'color', name: 'Color'},
     ];
-
-
-
-
 
     if (isPtoductListPimalionLog) {
         console.log(`<<< function getProductsListPimalion() (1) pimalionBody -> %O`, pimalionBody);
@@ -84,17 +80,7 @@ export function getProductsListPimalion(categoriesService: CategoriesService, br
     const pimalionItemsCor: Product[] = [];
 
     pimalionBody.items.forEach(item => {
-
-        if (isPtoductListPimalionLog) {
-           //  console.log(`getProductsListPimalion() (2) item -> %O`, item);
-        }
-
         const productCor: Product = new ProductItem(item);
-
-         if (isPtoductListPimalionLog) {
-           // console.log(`getProductsListPimalion() (3) productCor -> %O`, productCor);
-         }
-
         pimalionItemsCor.push(productCor);
      });
 
@@ -102,9 +88,7 @@ export function getProductsListPimalion(categoriesService: CategoriesService, br
      if (isPtoductListPimalionLog) {
         console.log('getProductsListPimalion() (4) pimalionItemsCor -> %O', pimalionItemsCor);
      }
-        // get items Pimalion
-
-
+        
     let items = productsTable.slice();
 
     // const categories = categoriesService.CategoriesChangedSub$.getValue();
@@ -123,8 +107,6 @@ export function getProductsListPimalion(categoriesService: CategoriesService, br
     })  ;
 
     const categoriesFilter: CategoryFilterItem[] = categoriesFilter_ as CategoryFilterItem[];
-
-    console.log('*** fn *** getProductsListPimalion() categoriesFilter -> %o', categoriesFilter);
 
     // Make filters.
     if (categorySlug === null) {
@@ -170,25 +152,15 @@ export function getProductsListPimalion(categoriesService: CategoriesService, br
               ]});
     }
 
-     const brandsFilter = brandsService.BrandsChangedSub$.getValue() as FilterItem[];
-
-    if (isPtoductListPimalionLog) {
-        console.log('getProductsListPimalion() (4.b) brandsFilter -> %O', brandsFilter);
-     }
-
-    let filterBrand: Filter = { type: 'check', slug: 'brand', name: 'XMarques', value: [], items: brandsFilter };
-
-    filters.push(filterBrand);
-
     if(apifilters != null){
-        apifilters.forEach(filter => {
+        apifilters.forEach(filter => {   
             
-            var newfilter = {type: 'check', slug: 'fuck', name: filter.key, items: brands, value: []};
+            //map the filter.filters array to a new array of objects with slug and name count
+            var newItems: FilterItem[] = filter.filters.map(x => { return { slug: x.filterValue, name: x.filterValue, count: x.filterCount }});
+            var newfilter:CheckFilter = { type: 'check', slug: filter.facetName, name: filter.facetName, items: newItems, value: []};
             filters.push(newfilter);
         })
     }
-
-
 
     filters.forEach(filter => {
         if (filter.slug in filterValues && 'value' in filter) {
