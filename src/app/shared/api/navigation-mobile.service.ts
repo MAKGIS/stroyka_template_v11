@@ -22,7 +22,7 @@ interface INavigationMobileServiceInterface {
 export class NavigationMobileService implements INavigationMobileServiceInterface {
 
     private mobileMenuPimalion: MobileMenuItem[] = [
-        {type: 'link', label: 'Parcourir', url: '/', children: [            
+        {type: 'link', label: 'Parcourir', url: '/pimalion/catalog', children: [            
             {type: 'link', label: 'Marques', url: '/pimalion/brands'},
             {type: 'link', label: 'Produits', url: '/pimalion/catalog'}
         ]}

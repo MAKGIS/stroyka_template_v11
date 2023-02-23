@@ -136,8 +136,8 @@ export class NavigationService implements INavigationServiceInterface {
 
 
     private navigationPimalion: NavigationLink[] = [
-        {label: 'Home', url: '/home'        },
-        {label: 'Parcourir', url: '/', menu: {
+        {label: 'Home', url: '/pimalion/catalog'        },
+        {label: 'Parcourir', url: '/pimalion/catalog', menu: {
             type: 'menu',
             items: [
                 {label: 'Marques', url: '/pimalion/brands'},

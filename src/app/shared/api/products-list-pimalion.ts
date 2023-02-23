@@ -66,11 +66,11 @@ export function getProductsListPimalion(categoriesService: CategoriesService, br
     const filterValues = options.filterValues || {};
     var  filters: Filter[] = [];
     var filtersDef = [
-        //{type: 'range', slug: 'price', name: 'Price'},
-         {type: 'check', slug: 'brand', name: 'Marques', items: brands},
+        {type: 'range', slug: 'Prix', name: 'Prix', min: 1, max: 1000, value:[1,1000]},
+        {type: 'check', slug: 'brand', name: 'Marques', items: brands},
         // {type: 'check', slug: 'brand', name: 'Brand'},
-        // {type: 'radio', slug: 'discount', name: 'With Discount'},
-        // {type: 'color', slug: 'color', name: 'Color'},
+         {type: 'radio', slug: 'nouveau', name: 'Nouveauté'},
+        {type: 'color', slug: 'color', name: 'Couleur'},
     ];
 
     if (isPtoductListPimalionLog) {

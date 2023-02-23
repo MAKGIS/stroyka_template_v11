@@ -28,7 +28,7 @@ export class ProductTabsComponent {
 
     getTitre() {
         this.pimalionCloudService.getProductDetailPage_01(this.product.id)
-          .subscribe({next:(data: any) => this.product = data.description}); // ???
+          .subscribe({next:(data: any) => this.product.name = data.title}); // ???
     }
 
 }
