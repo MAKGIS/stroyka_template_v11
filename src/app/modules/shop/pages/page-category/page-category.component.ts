@@ -1,10 +1,10 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ShopSidebarService } from '../../services/shop-sidebar.service';
 import { PageCategoryService } from '../../services/page-category.service';
 import { Link } from '../../../../shared/interfaces/link';
 import { RootService } from '../../../../shared/services/root.service';
-import { of, Subject, timer } from 'rxjs';
+import { Observable, of, Subject, timer } from 'rxjs';
 import { debounce, mergeMap, takeUntil } from 'rxjs/operators';
 import { Location } from '@angular/common';
 import { parseProductsListParams } from '../../resolvers/products-list-resolver.service';
@@ -20,8 +20,12 @@ import { parseFilterValue } from '../../../../shared/helpers/filter';
         {provide: ShopSidebarService, useClass: ShopSidebarService},
     ]
 })
-export class PageCategoryComponent implements OnDestroy {
+export class PageCategoryComponent implements OnInit, OnDestroy {
+
     destroy$: Subject<void> = new Subject<void>();
+
+    // brands$: Observable<any[]>;
+    // categories$: Observable<any[]>;
 
     columns: 3|4|5 = 3;
     viewMode: 'grid'|'grid-with-features'|'list' = 'grid';
@@ -94,6 +98,14 @@ export class PageCategoryComponent implements OnDestroy {
             this.pageService.setList(list);
             this.pageService.setIsLoading(false);
         });
+
+
+
+    }
+
+    ngOnInit(): void {
+       // this.brands$ = this.shop.getPopularBrands();
+       // this.categories$ =  this.shop.getCategoriesList();
     }
 
     ngOnDestroy(): void {

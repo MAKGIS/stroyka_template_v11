@@ -33,6 +33,8 @@ export class PageHomeTwoComponent implements OnInit, OnDestroy {
     destroy$: Subject<void> = new Subject<void>();
     bestsellers$: Observable<Product[]>;
     brands$: Observable<Brand[]>;
+
+    pimalionCategories$: Observable<Category[]>;
     popularCategories$: Observable<Category[]>;
 
     columnTopRated$: Observable<Product[]>;
@@ -63,6 +65,10 @@ export class PageHomeTwoComponent implements OnInit, OnDestroy {
                 'clothes-and-ppe',
             ], 1);
 */
+        // mak ???
+        // <ng-container> {{pimalionCategories$|async}}</ng-container>
+        // this.pimalionCategories$ =  this.shop.getCategoriesList();
+
 
         const categories = this.categoriesService.CategoriesChangedSub$.getValue();
         const categoriesSlug = categories.map(x => {

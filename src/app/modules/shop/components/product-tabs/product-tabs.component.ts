@@ -22,7 +22,7 @@ export class ProductTabsComponent {
 
     specification: ProductFeaturesSection[] = specification;
     reviews: Review[] = reviews;
-    generateTitleText = "Générer les contenus";
+    generateTitleText = "G�n�rer les contenus";
     generateAttributesText = "Generer les contenus";
 
     constructor(private pimalionCloudService: PimalionCloudService) { }
@@ -32,7 +32,7 @@ export class ProductTabsComponent {
     }
 
     generateAttributes(groupName: string) {
-            this.generateAttributesText = "Génération en cours...";
+            this.generateAttributesText = "G�n�ration en cours...";
             this.pimalionCloudService.getProductDetailPage_01(this.product.id)
               .subscribe({
                 next:(data: any) => {this.product = new ProductItem(data);this.generateTitleText = "Generer les contenus"} //this.product.name = data.title

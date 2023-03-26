@@ -3,6 +3,13 @@
 
 <app-page-header [header]="pageHeader" [breadcrumbs]="breadcrumbs"></app-page-header>
 
+<!--
+<ng-container *ngIf="brands$|async">
+</ng-container>
+
+<ng-container *ngIf="categories$|async">
+</ng-container>
+-->
 <ng-container *ngIf="columns === 3">
     <div class="container">
         <div class="shop-layout shop-layout--sidebar--{{ sidebarPosition }}">
