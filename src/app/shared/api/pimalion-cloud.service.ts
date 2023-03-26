@@ -256,7 +256,7 @@ export class ProductItem implements Product {
         this.urls = getSiteUrlForProduct(itemData.images);
         this.imagesPimalion = itemData.images;
 
-        this.badges = []; //['hot']; // badges: string[];
+        this.badges = itemData.keywords; //['hot']; // badges: string[];
 
         this.rating = 2; // rating: number;
         this.reviews = 3; // reviews: number;

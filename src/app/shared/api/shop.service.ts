@@ -377,9 +377,17 @@ export class ShopService {
                     const sort = options.sort || 'default';
                     const input = options.filterValues ?? [];
 
-                    const flatFilters = Object.entries(input)
-                        .map(([key, value]) => ({ key, value }))
-                        .flatMap(({ key, value }) => value.split(',').map(v => ({ key:key, value: v })));
+                    // var flatFilters = Object.entries(input)
+                    //     .map(([key, value]) => ({ key, value }))
+                    //     .flatMap(({ key, value }) => value.split(',').map(v => ({ key:key, value: v })));
+
+                    var flatFilters = Object.entries(input)
+                    .map(([key, value]) => ({ key, value }))
+                    .reduce((acc, { key, value }) => {
+                      return acc.concat(value.split(',').map(v => ({ key, value: v })));
+                    }, []);
+                  
+
 
                     const body = {
                        filters: flatFilters, 

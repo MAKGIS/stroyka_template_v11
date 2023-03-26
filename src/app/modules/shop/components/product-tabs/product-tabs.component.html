@@ -17,6 +17,12 @@
         <a href="#tab-reviews" class="product-tabs__item"
            [ngClass]="{'product-tabs__item--active': tab === 'reviews'}"
            (click)="$event.preventDefault(); tab = 'reviews'">SEO</a>
+
+           <a href="#tab-price" class="product-tabs__item"
+           [ngClass]="{'product-tabs__item--active': tab === 'price'}"
+           (click)="$event.preventDefault(); tab = 'price'">Comparateur de prix</a>
+
+
     </div>
     <div class="product-tabs__content">
 
@@ -31,9 +37,11 @@
                 </p>
 
                 <!-- <button class="btn btn-primary btn-sm">Générer une description</button> -->
-                <button type="submit" (click)="getTitre()" class="btn btn-primary mt-2 mt-md-3 mt-lg-4">Générer un titre</button>
-                <button type="submit" class="btn btn-primary mt-2 mt-md-3 mt-lg-4" style="margin-left: 10px;">Générer une description</button>
+                <button type="submit" (click)="getTitre()" class="btn btn-primary mt-2 mt-md-3 mt-lg-4">{{this.generateTitleText}}</button>
+                <!-- <button type="submit" (click)="getDescription()" class="btn btn-primary mt-2 mt-md-3 mt-lg-4" style="margin-left: 10px;">Générer une description</button> -->
+                <button type="submit" class="btn btn-secondary mt-2 mt-md-3 mt-lg-4" style="margin-left: 10px;">Trouver des image</button>
                 <button type="submit" class="btn btn-success mt-2 mt-md-3 mt-lg-4" style="margin-left: 10px;">Sauver la description</button>
+                
             </div>
         </div>
 
@@ -56,8 +64,9 @@
 
                 </ng-container>
 
-                <button type="submit" class="btn btn-primary mt-2 mt-md-3 mt-lg-4" style="margin-right: 10px;">Générer les Caractéristiques</button>
-                <button type="submit" class="btn btn-secondary mt-2 mt-md-3 mt-lg-4">Ajouter une Caractéristique au datamodèle</button>
+                <!-- <button type="submit" (click)="generateAttributes()" class="btn btn-primary mt-2 mt-md-3 mt-lg-4" style="margin-right: 10px;">{{this.generateAttributesText}}</button> -->
+                <button type="submit" (click)="getTitre()" class="btn btn-primary mt-2 mt-md-3 mt-lg-4">{{this.generateTitleText}}</button>
+                <button type="submit" class="btn btn-secondary mt-2 mt-md-3 mt-lg-4" style="margin-left: 10px;">Ajouter une Caractéristique au datamodèle</button>
 
 
                 <div class="spec__disclaimer">
@@ -85,11 +94,11 @@
 
                 <ng-container *ngIf="product.documents.length > 0">
                     <div class="product__documents">
-                        Documents source:
+                        <!-- Documents source: -->
                     </div>
                     <ul class="product__description" *ngFor="let item of product.documents">
                         <li >
-                        Document: <a href="{{item.url}}" target="blank">{{item.label}} priority {{item.priority}}</a>
+                        <i class="input-check__icon"></i> <a href="{{item.url}}" target="blank">{{item.label}}</a>
                         </li>
                     </ul>
                 </ng-container>
@@ -117,14 +126,20 @@
             <div class="typography">
                 <h3>Mots clés</h3>
 
-                <div class="product__tags tags">
+                <!-- <div class="product__tags tags">
                     <div class="tags__list">
                         <a href="" appClick>Mot clé 1</a>
                         <a href="" appClick>Mot clé 2</a>
                         <a href="" appClick>Mot clé 3</a>
                     </div>
-                </div>
+                </div> -->
 
+                <div class="product__tags tags">
+                    <div class="tags__list">
+                      <a *ngFor="let badge of product.badges" href="{{ badge }}" appClick>{{ badge }}</a>
+                    </div>
+                  </div>
+                  
 
                 <!-- <button class="btn btn-primary btn-sm">Générer une description</button> -->
                 <button type="submit" class="btn btn-primary mt-2 mt-md-3 mt-lg-4">Générer mots clés</button>
@@ -193,5 +208,16 @@
             </div>
         </div>
 
+
+        <div class="product-tabs__pane" id="tab-price" [ngClass]="{'product-tabs__pane--active': tab === 'price'}">
+            <div class="spec">
+                <h3 class="spec__header">Comparateur de prix</h3>
+
+                Aucun produit chargé
+           
+           </div>
+        </div>
+
+        
     </div>
 </div>
