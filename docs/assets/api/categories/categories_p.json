@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Sanitaire",
+        "slug": "Sanitaire",
+        "items": 111
+    },
+    {
+        "name": "Electricité",
+        "slug": "Electricité",
+        "items": 222
+    },
+    {
+        "name": "Outillage",
+        "slug": "Outillage",
+        "items": 333
+    },
+    {
+        "name": "Chauffage",
+        "slug": "Chauffage",
+        "items": 444
+    }
+]

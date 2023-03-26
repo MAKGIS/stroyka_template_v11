@@ -1,0 +1,1857 @@
+{
+    "filters": [
+        {
+            "items": [
+                {
+                    "category": {
+                        "children": null,
+                        "customFields": {
+                        },
+                        "id": 1,
+                        "image": null,
+                        "items": 272,
+                        "name": "Instruments",
+                        "parents": null,
+                        "path": "instruments",
+                        "slug": "instruments",
+                        "type": "shop"
+                    },
+                    "count": 272,
+                    "name": "Instruments",
+                    "slug": "instruments",
+                    "type": "parent"
+                },
+                {
+                    "category": {
+                        "children": null,
+                        "customFields": {
+                        },
+                        "id": 2,
+                        "image": "assets/images/categories/category-1.jpg",
+                        "items": 370,
+                        "name": "Power Tools",
+                        "parents": null,
+                        "path": "instruments/power-tools",
+                        "slug": "power-tools",
+                        "type": "shop"
+                    },
+                    "count": 370,
+                    "name": "Power Tools",
+                    "slug": "power-tools",
+                    "type": "current"
+                },
+                {
+                    "category": {
+                        "children": null,
+                        "customFields": {
+                        },
+                        "id": 3,
+                        "image": null,
+                        "items": 57,
+                        "name": "Drills & Mixers",
+                        "parents": null,
+                        "path": "instruments/power-tools/drills-mixers",
+                        "slug": "drills-mixers",
+                        "type": "shop"
+                    },
+                    "count": 57,
+                    "name": "Drills & Mixers",
+                    "slug": "drills-mixers",
+                    "type": "child"
+                },
+                {
+                    "category": {
+                        "children": null,
+                        "customFields": {
+                        },
+                        "id": 4,
+                        "image": null,
+                        "items": 15,
+                        "name": "Cordless Screwdrivers",
+                        "parents": null,
+                        "path": "instruments/power-tools/cordless-screwdrivers",
+                        "slug": "cordless-screwdrivers",
+                        "type": "shop"
+                    },
+                    "count": 15,
+                    "name": "Cordless Screwdrivers",
+                    "slug": "cordless-screwdrivers",
+                    "type": "child"
+                },
+                {
+                    "category": {
+                        "children": null,
+                        "customFields": {
+                        },
+                        "id": 5,
+                        "image": null,
+                        "items": 126,
+                        "name": "Screwdrivers",
+                        "parents": null,
+                        "path": "instruments/power-tools/screwdrivers",
+                        "slug": "screwdrivers",
+                        "type": "shop"
+                    },
+                    "count": 126,
+                    "name": "Screwdrivers",
+                    "slug": "screwdrivers",
+                    "type": "child"
+                },
+                {
+                    "category": {
+                        "children": null,
+                        "customFields": {
+                        },
+                        "id": 6,
+                        "image": null,
+                        "items": 12,
+                        "name": "Wrenches",
+                        "parents": null,
+                        "path": "instruments/power-tools/wrenches",
+                        "slug": "wrenches",
+                        "type": "shop"
+                    },
+                    "count": 12,
+                    "name": "Wrenches",
+                    "slug": "wrenches",
+                    "type": "child"
+                },
+                {
+                    "category": {
+                        "children": null,
+                        "customFields": {
+                        },
+                        "id": 7,
+                        "image": null,
+                        "items": 25,
+                        "name": "Grinding Machines",
+                        "parents": null,
+                        "path": "instruments/power-tools/grinding-machines",
+                        "slug": "grinding-machines",
+                        "type": "shop"
+                    },
+                    "count": 25,
+                    "name": "Grinding Machines",
+                    "slug": "grinding-machines",
+                    "type": "child"
+                },
+                {
+                    "category": {
+                        "children": null,
+                        "customFields": {
+                        },
+                        "id": 8,
+                        "image": null,
+                        "items": 78,
+                        "name": "Milling Cutters",
+                        "parents": null,
+                        "path": "instruments/power-tools/milling-cutters",
+                        "slug": "milling-cutters",
+                        "type": "shop"
+                    },
+                    "count": 78,
+                    "name": "Milling Cutters",
+                    "slug": "milling-cutters",
+                    "type": "child"
+                },
+                {
+                    "category": {
+                        "children": null,
+                        "customFields": {
+                        },
+                        "id": 9,
+                        "image": null,
+                        "items": 3,
+                        "name": "Electric Spray Guns",
+                        "parents": null,
+                        "path": "instruments/power-tools/electric-spray-guns",
+                        "slug": "electric-spray-guns",
+                        "type": "shop"
+                    },
+                    "count": 3,
+                    "name": "Electric Spray Guns",
+                    "slug": "electric-spray-guns",
+                    "type": "child"
+                }
+            ],
+            "name": "Categories",
+            "root": false,
+            "slug": "categories",
+            "type": "categories"
+        },
+        {
+            "max": 3200,
+            "min": 0,
+            "name": "Price",
+            "slug": "price",
+            "type": "range",
+            "value": [
+                0,
+                3200
+            ]
+        },
+        {
+            "items": [
+                {
+                    "count": 5,
+                    "name": "Brandix5555",
+                    "slug": "brandix"
+                },
+                {
+                    "count": 1,
+                    "name": "Zosch",
+                    "slug": "zosch"
+                },
+                {
+                    "count": 2,
+                    "name": "Wakita",
+                    "slug": "wakita"
+                },
+                {
+                    "count": 1,
+                    "name": "WeVALT",
+                    "slug": "wevalt"
+                },
+                {
+                    "count": 4,
+                    "name": "Hammer",
+                    "slug": "hammer"
+                },
+                {
+                    "count": 2,
+                    "name": "Mitasia",
+                    "slug": "mitasia"
+                },
+                {
+                    "count": 1,
+                    "name": "Metaggo",
+                    "slug": "metaggo"
+                }
+            ],
+            "name": "Brand",
+            "slug": "brand",
+            "type": "check",
+            "value": [
+            ]
+        },
+        {
+            "items": [
+                {
+                    "count": 16,
+                    "name": "Any",
+                    "slug": "any"
+                },
+                {
+                    "count": 15,
+                    "name": "No",
+                    "slug": "no"
+                },
+                {
+                    "count": 1,
+                    "name": "Yes",
+                    "slug": "yes"
+                }
+            ],
+            "name": "With Discosunt",
+            "slug": "discount",
+            "type": "radio",
+            "value": "any"
+        },
+        {
+            "items": [
+                {
+                    "color": "#fff",
+                    "count": 1,
+                    "name": "White",
+                    "slug": "white"
+                },
+                {
+                    "color": "#d9d9d9",
+                    "count": 1,
+                    "name": "Silver",
+                    "slug": "silver"
+                },
+                {
+                    "color": "#b3b3b3",
+                    "count": 1,
+                    "name": "Light Gray",
+                    "slug": "light-gray"
+                },
+                {
+                    "color": "#808080",
+                    "count": 1,
+                    "name": "Gray",
+                    "slug": "gray"
+                },
+                {
+                    "color": "#666",
+                    "count": 1,
+                    "name": "Dark Gray",
+                    "slug": "dark-gray"
+                },
+                {
+                    "color": "#4d4d4d",
+                    "count": 1,
+                    "name": "Coal",
+                    "slug": "coal"
+                },
+                {
+                    "color": "#262626",
+                    "count": 1,
+                    "name": "Black",
+                    "slug": "black"
+                },
+                {
+                    "color": "#ff4040",
+                    "count": 1,
+                    "name": "Red",
+                    "slug": "red"
+                },
+                {
+                    "color": "#ff8126",
+                    "count": 1,
+                    "name": "Orange",
+                    "slug": "orange"
+                },
+                {
+                    "color": "#ffd333",
+                    "count": 2,
+                    "name": "Yellow",
+                    "slug": "yellow"
+                },
+                {
+                    "color": "#becc1f",
+                    "count": 1,
+                    "name": "Pear Green",
+                    "slug": "pear-green"
+                },
+                {
+                    "color": "#8fcc14",
+                    "count": 1,
+                    "name": "Green",
+                    "slug": "green"
+                },
+                {
+                    "color": "#47cc5e",
+                    "count": 1,
+                    "name": "Emerald",
+                    "slug": "emerald"
+                },
+                {
+                    "color": "#47cca0",
+                    "count": 1,
+                    "name": "Shamrock",
+                    "slug": "shamrock"
+                },
+                {
+                    "color": "#47cccc",
+                    "count": 1,
+                    "name": "Shakespeare",
+                    "slug": "shakespeare"
+                },
+                {
+                    "color": "#40bfff",
+                    "count": 1,
+                    "name": "Blue",
+                    "slug": "blue"
+                },
+                {
+                    "color": "#3d6dcc",
+                    "count": 1,
+                    "name": "Dark Blue",
+                    "slug": "dark-blue"
+                },
+                {
+                    "color": "#7766cc",
+                    "count": 1,
+                    "name": "Violet",
+                    "slug": "violet"
+                },
+                {
+                    "color": "#b852cc",
+                    "count": 1,
+                    "name": "Purple",
+                    "slug": "purple"
+                },
+                {
+                    "color": "#e53981",
+                    "count": 1,
+                    "name": "Cerise",
+                    "slug": "cerise"
+                }
+            ],
+            "name": "Color",
+            "slug": "color",
+            "type": "color",
+            "value": [
+            ]
+        }
+    ],
+    "filterValues": {
+    },
+    "from": 1,
+    "items": [
+        {
+            "attributes": [
+                {
+                    "customFields": {
+                    },
+                    "featured": false,
+                    "name": "Color",
+                    "slug": "color",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Yellow",
+                            "slug": "yellow"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Speed",
+                    "slug": "speed",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "750 RPM",
+                            "slug": "750-rpm"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Power Source",
+                    "slug": "power-source",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Cordless-Electric",
+                            "slug": "cordless-electric"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Battery Cell Type",
+                    "slug": "battery-cell-type",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Lithium",
+                            "slug": "lithium"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Voltage",
+                    "slug": "voltage",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "20 Volts",
+                            "slug": "20-volts"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Battery Capacity",
+                    "slug": "battery-capacity",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "2 Ah",
+                            "slug": "2-Ah"
+                        }
+                    ]
+                }
+            ],
+            "availability": "in-stock",
+            "badges": [
+                "new"
+            ],
+            "brand": {
+                "id": 1,
+                "image": "assets/images/logos/logo-1.png",
+                "name": "Brandix",
+                "slug": "brandix"
+            },
+            "categories": [
+                {
+                    "children": null,
+                    "customFields": {
+                    },
+                    "id": 5,
+                    "image": null,
+                    "items": 126,
+                    "name": "Screwdrivers",
+                    "parents": null,
+                    "path": "instruments/power-tools/screwdrivers",
+                    "slug": "screwdrivers",
+                    "type": "shop"
+                }
+            ],
+            "compareAtPrice": null,
+            "customFields": {
+            },
+            "id": 1,
+            "images": [
+                "assets/images/products/product-1.jpg",
+                "assets/images/products/product-1-1.jpg"
+            ],
+            "name": "Electric Planer Brandix KL370090G 300 Watts",
+            "price": 749,
+            "rating": 4,
+            "reviews": 12,
+            "sku": "83690/32",
+            "slug": "electric-planer-brandix-kl370090g-300-watts"
+        },
+        {
+            "attributes": [
+                {
+                    "customFields": {
+                    },
+                    "featured": false,
+                    "name": "Color",
+                    "slug": "color",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Silver",
+                            "slug": "silver"
+                        },
+                        {
+                            "customFields": {
+                            },
+                            "name": "Cerise",
+                            "slug": "cerise"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Speed",
+                    "slug": "speed",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "750 RPM",
+                            "slug": "750-rpm"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Power Source",
+                    "slug": "power-source",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Cordless-Electric",
+                            "slug": "cordless-electric"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Battery Cell Type",
+                    "slug": "battery-cell-type",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Lithium",
+                            "slug": "lithium"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Voltage",
+                    "slug": "voltage",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "20 Volts",
+                            "slug": "20-volts"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Battery Capacity",
+                    "slug": "battery-capacity",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "2 Ah",
+                            "slug": "2-Ah"
+                        }
+                    ]
+                }
+            ],
+            "availability": "in-stock",
+            "badges": [
+                "hot"
+            ],
+            "brand": {
+                "id": 3,
+                "image": "assets/images/logos/logo-3.png",
+                "name": "Zosch",
+                "slug": "zosch"
+            },
+            "categories": [
+            ],
+            "compareAtPrice": null,
+            "customFields": {
+            },
+            "id": 2,
+            "images": [
+                "assets/images/products/product-2.jpg",
+                "assets/images/products/product-2-1.jpg"
+            ],
+            "name": "Undefined Tool IRadix DPS3000SY 2700 Watts",
+            "price": 1019,
+            "rating": 5,
+            "reviews": 3,
+            "sku": "83690/32",
+            "slug": "undefined-tool-iradix-dps3000sy-2700-watts"
+        },
+        {
+            "attributes": [
+                {
+                    "customFields": {
+                    },
+                    "featured": false,
+                    "name": "Color",
+                    "slug": "color",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Yellow",
+                            "slug": "yellow"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Speed",
+                    "slug": "speed",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "750 RPM",
+                            "slug": "750-rpm"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Power Source",
+                    "slug": "power-source",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Cordless-Electric",
+                            "slug": "cordless-electric"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Battery Cell Type",
+                    "slug": "battery-cell-type",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Lithium",
+                            "slug": "lithium"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Voltage",
+                    "slug": "voltage",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "20 Volts",
+                            "slug": "20-volts"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Battery Capacity",
+                    "slug": "battery-capacity",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "2 Ah",
+                            "slug": "2-Ah"
+                        }
+                    ]
+                }
+            ],
+            "availability": "in-stock",
+            "badges": [
+            ],
+            "brand": {
+                "id": 1,
+                "image": "assets/images/logos/logo-1.png",
+                "name": "Brandix",
+                "slug": "brandix"
+            },
+            "categories": [
+            ],
+            "compareAtPrice": null,
+            "customFields": {
+            },
+            "id": 3,
+            "images": [
+                "assets/images/products/product-3.jpg",
+                "assets/images/products/product-3-1.jpg"
+            ],
+            "name": "Drill Screwdriver Brandix ALX7054 200 Watts",
+            "price": 850,
+            "rating": 4,
+            "reviews": 8,
+            "sku": "83690/32",
+            "slug": "drill-screwdriver-brandix-alx7054-200-watts"
+        },
+        {
+            "attributes": [
+                {
+                    "customFields": {
+                    },
+                    "featured": false,
+                    "name": "Color",
+                    "slug": "color",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "White",
+                            "slug": "white"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Speed",
+                    "slug": "speed",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "750 RPM",
+                            "slug": "750-rpm"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Power Source",
+                    "slug": "power-source",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Cordless-Electric",
+                            "slug": "cordless-electric"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Battery Cell Type",
+                    "slug": "battery-cell-type",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Lithium",
+                            "slug": "lithium"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Voltage",
+                    "slug": "voltage",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "20 Volts",
+                            "slug": "20-volts"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Battery Capacity",
+                    "slug": "battery-capacity",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "2 Ah",
+                            "slug": "2-Ah"
+                        }
+                    ]
+                }
+            ],
+            "availability": "in-stock",
+            "badges": [
+                "sale"
+            ],
+            "brand": {
+                "id": 1,
+                "image": "assets/images/logos/logo-1.png",
+                "name": "Brandix",
+                "slug": "brandix"
+            },
+            "categories": [
+            ],
+            "compareAtPrice": 1189,
+            "customFields": {
+            },
+            "id": 4,
+            "images": [
+                "assets/images/products/product-4.jpg",
+                "assets/images/products/product-4-1.jpg"
+            ],
+            "name": "Drill Series 3 Brandix KSR4590PQS 1500 Watts",
+            "price": 949,
+            "rating": 3,
+            "reviews": 15,
+            "sku": "83690/32",
+            "slug": "drill-series-3-brandix-ksr4590pqs-1500-watts"
+        },
+        {
+            "attributes": [
+                {
+                    "customFields": {
+                    },
+                    "featured": false,
+                    "name": "Color",
+                    "slug": "color",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Dark Blue",
+                            "slug": "dark-blue"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Speed",
+                    "slug": "speed",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "750 RPM",
+                            "slug": "750-rpm"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Power Source",
+                    "slug": "power-source",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Cordless-Electric",
+                            "slug": "cordless-electric"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Battery Cell Type",
+                    "slug": "battery-cell-type",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Lithium",
+                            "slug": "lithium"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Voltage",
+                    "slug": "voltage",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "20 Volts",
+                            "slug": "20-volts"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Battery Capacity",
+                    "slug": "battery-capacity",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "2 Ah",
+                            "slug": "2-Ah"
+                        }
+                    ]
+                }
+            ],
+            "availability": "in-stock",
+            "badges": [
+            ],
+            "brand": {
+                "id": 2,
+                "image": "assets/images/logos/logo-2.png",
+                "name": "Wakita",
+                "slug": "wakita"
+            },
+            "categories": [
+            ],
+            "compareAtPrice": null,
+            "customFields": {
+            },
+            "id": 5,
+            "images": [
+                "assets/images/products/product-5.jpg",
+                "assets/images/products/product-5-1.jpg"
+            ],
+            "name": "Brandix Router Power Tool 2017ERXPK",
+            "price": 1700,
+            "rating": 4,
+            "reviews": 2,
+            "sku": "83690/32",
+            "slug": "brandix-router-power-tool-2017erxpk"
+        },
+        {
+            "attributes": [
+                {
+                    "customFields": {
+                    },
+                    "featured": false,
+                    "name": "Color",
+                    "slug": "color",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Orange",
+                            "slug": "orange"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Speed",
+                    "slug": "speed",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "750 RPM",
+                            "slug": "750-rpm"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Power Source",
+                    "slug": "power-source",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Cordless-Electric",
+                            "slug": "cordless-electric"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Battery Cell Type",
+                    "slug": "battery-cell-type",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Lithium",
+                            "slug": "lithium"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Voltage",
+                    "slug": "voltage",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "20 Volts",
+                            "slug": "20-volts"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Battery Capacity",
+                    "slug": "battery-capacity",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "2 Ah",
+                            "slug": "2-Ah"
+                        }
+                    ]
+                }
+            ],
+            "availability": "in-stock",
+            "badges": [
+            ],
+            "brand": {
+                "id": 2,
+                "image": "assets/images/logos/logo-2.png",
+                "name": "Wakita",
+                "slug": "wakita"
+            },
+            "categories": [
+            ],
+            "compareAtPrice": null,
+            "customFields": {
+            },
+            "id": 6,
+            "images": [
+                "assets/images/products/product-6.jpg",
+                "assets/images/products/product-6-1.jpg"
+            ],
+            "name": "Brandix Drilling Machine DM2019KW4 4kW",
+            "price": 3199,
+            "rating": 3,
+            "reviews": 21,
+            "sku": "83690/32",
+            "slug": "brandix-drilling-machine-dm2019kw4-4kw"
+        },
+        {
+            "attributes": [
+                {
+                    "customFields": {
+                    },
+                    "featured": false,
+                    "name": "Color",
+                    "slug": "color",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Red",
+                            "slug": "red"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Speed",
+                    "slug": "speed",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "750 RPM",
+                            "slug": "750-rpm"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Power Source",
+                    "slug": "power-source",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Cordless-Electric",
+                            "slug": "cordless-electric"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Battery Cell Type",
+                    "slug": "battery-cell-type",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Lithium",
+                            "slug": "lithium"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Voltage",
+                    "slug": "voltage",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "20 Volts",
+                            "slug": "20-volts"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Battery Capacity",
+                    "slug": "battery-capacity",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "2 Ah",
+                            "slug": "2-Ah"
+                        }
+                    ]
+                }
+            ],
+            "availability": "in-stock",
+            "badges": [
+            ],
+            "brand": {
+                "id": 4,
+                "image": "assets/images/logos/logo-4.png",
+                "name": "WeVALT",
+                "slug": "wevalt"
+            },
+            "categories": [
+            ],
+            "compareAtPrice": null,
+            "customFields": {
+            },
+            "id": 7,
+            "images": [
+                "assets/images/products/product-7.jpg",
+                "assets/images/products/product-7-1.jpg"
+            ],
+            "name": "Brandix Pliers",
+            "price": 24,
+            "rating": 2,
+            "reviews": 1,
+            "sku": "83690/32",
+            "slug": "brandix-pliers"
+        },
+        {
+            "attributes": [
+                {
+                    "customFields": {
+                    },
+                    "featured": false,
+                    "name": "Color",
+                    "slug": "color",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Pear Green",
+                            "slug": "pear-green"
+                        },
+                        {
+                            "customFields": {
+                            },
+                            "name": "Blue",
+                            "slug": "blue"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Speed",
+                    "slug": "speed",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "750 RPM",
+                            "slug": "750-rpm"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Power Source",
+                    "slug": "power-source",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Cordless-Electric",
+                            "slug": "cordless-electric"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Battery Cell Type",
+                    "slug": "battery-cell-type",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Lithium",
+                            "slug": "lithium"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Voltage",
+                    "slug": "voltage",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "20 Volts",
+                            "slug": "20-volts"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Battery Capacity",
+                    "slug": "battery-capacity",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "2 Ah",
+                            "slug": "2-Ah"
+                        }
+                    ]
+                }
+            ],
+            "availability": "in-stock",
+            "badges": [
+            ],
+            "brand": {
+                "id": 5,
+                "image": "assets/images/logos/logo-5.png",
+                "name": "Hammer",
+                "slug": "hammer"
+            },
+            "categories": [
+            ],
+            "compareAtPrice": null,
+            "customFields": {
+            },
+            "id": 8,
+            "images": [
+                "assets/images/products/product-8.jpg",
+                "assets/images/products/product-8-1.jpg"
+            ],
+            "name": "Water Hose 40cm",
+            "price": 15,
+            "rating": 2,
+            "reviews": 5,
+            "sku": "83690/32",
+            "slug": "water-hose-40cm"
+        },
+        {
+            "attributes": [
+                {
+                    "customFields": {
+                    },
+                    "featured": false,
+                    "name": "Color",
+                    "slug": "color",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Green",
+                            "slug": "green"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Speed",
+                    "slug": "speed",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "750 RPM",
+                            "slug": "750-rpm"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Power Source",
+                    "slug": "power-source",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Cordless-Electric",
+                            "slug": "cordless-electric"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Battery Cell Type",
+                    "slug": "battery-cell-type",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Lithium",
+                            "slug": "lithium"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Voltage",
+                    "slug": "voltage",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "20 Volts",
+                            "slug": "20-volts"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Battery Capacity",
+                    "slug": "battery-capacity",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "2 Ah",
+                            "slug": "2-Ah"
+                        }
+                    ]
+                }
+            ],
+            "availability": "in-stock",
+            "badges": [
+            ],
+            "brand": {
+                "id": 5,
+                "image": "assets/images/logos/logo-5.png",
+                "name": "Hammer",
+                "slug": "hammer"
+            },
+            "categories": [
+            ],
+            "compareAtPrice": null,
+            "customFields": {
+            },
+            "id": 9,
+            "images": [
+                "assets/images/products/product-9.jpg",
+                "assets/images/products/product-9-1.jpg"
+            ],
+            "name": "Spanner Wrench",
+            "price": 19,
+            "rating": 4,
+            "reviews": 34,
+            "sku": "83690/32",
+            "slug": "spanner-wrench"
+        },
+        {
+            "attributes": [
+                {
+                    "customFields": {
+                    },
+                    "featured": false,
+                    "name": "Color",
+                    "slug": "color",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Gray",
+                            "slug": "gray"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Speed",
+                    "slug": "speed",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "750 RPM",
+                            "slug": "750-rpm"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Power Source",
+                    "slug": "power-source",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Cordless-Electric",
+                            "slug": "cordless-electric"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Battery Cell Type",
+                    "slug": "battery-cell-type",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Lithium",
+                            "slug": "lithium"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Voltage",
+                    "slug": "voltage",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "20 Volts",
+                            "slug": "20-volts"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Battery Capacity",
+                    "slug": "battery-capacity",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "2 Ah",
+                            "slug": "2-Ah"
+                        }
+                    ]
+                }
+            ],
+            "availability": "in-stock",
+            "badges": [
+            ],
+            "brand": {
+                "id": 5,
+                "image": "assets/images/logos/logo-5.png",
+                "name": "Hammer",
+                "slug": "hammer"
+            },
+            "categories": [
+            ],
+            "compareAtPrice": null,
+            "customFields": {
+            },
+            "id": 10,
+            "images": [
+                "assets/images/products/product-10.jpg",
+                "assets/images/products/product-10-1.jpg"
+            ],
+            "name": "Water Tap",
+            "price": 15,
+            "rating": 5,
+            "reviews": 3,
+            "sku": "83690/32",
+            "slug": "water-tap"
+        },
+        {
+            "attributes": [
+                {
+                    "customFields": {
+                    },
+                    "featured": false,
+                    "name": "Color",
+                    "slug": "color",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Black",
+                            "slug": "black"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Speed",
+                    "slug": "speed",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "750 RPM",
+                            "slug": "750-rpm"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Power Source",
+                    "slug": "power-source",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Cordless-Electric",
+                            "slug": "cordless-electric"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Battery Cell Type",
+                    "slug": "battery-cell-type",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Lithium",
+                            "slug": "lithium"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Voltage",
+                    "slug": "voltage",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "20 Volts",
+                            "slug": "20-volts"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Battery Capacity",
+                    "slug": "battery-capacity",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "2 Ah",
+                            "slug": "2-Ah"
+                        }
+                    ]
+                }
+            ],
+            "availability": "in-stock",
+            "badges": [
+            ],
+            "brand": {
+                "id": 5,
+                "image": "assets/images/logos/logo-5.png",
+                "name": "Hammer",
+                "slug": "hammer"
+            },
+            "categories": [
+            ],
+            "compareAtPrice": null,
+            "customFields": {
+            },
+            "id": 11,
+            "images": [
+                "assets/images/products/product-11.jpg",
+                "assets/images/products/product-11-1.jpg"
+            ],
+            "name": "Hand Tool Kit",
+            "price": 149,
+            "rating": 4,
+            "reviews": 7,
+            "sku": "83690/32",
+            "slug": "hand-tool-kit"
+        },
+        {
+            "attributes": [
+                {
+                    "customFields": {
+                    },
+                    "featured": false,
+                    "name": "Color",
+                    "slug": "color",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Violet",
+                            "slug": "violet"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Speed",
+                    "slug": "speed",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "750 RPM",
+                            "slug": "750-rpm"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Power Source",
+                    "slug": "power-source",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Cordless-Electric",
+                            "slug": "cordless-electric"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Battery Cell Type",
+                    "slug": "battery-cell-type",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "Lithium",
+                            "slug": "lithium"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Voltage",
+                    "slug": "voltage",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "20 Volts",
+                            "slug": "20-volts"
+                        }
+                    ]
+                },
+                {
+                    "customFields": {
+                    },
+                    "featured": true,
+                    "name": "Battery Capacity",
+                    "slug": "battery-capacity",
+                    "values": [
+                        {
+                            "customFields": {
+                            },
+                            "name": "2 Ah",
+                            "slug": "2-Ah"
+                        }
+                    ]
+                }
+            ],
+            "availability": "in-stock",
+            "badges": [
+            ],
+            "brand": {
+                "id": 6,
+                "image": "assets/images/logos/logo-6.png",
+                "name": "Mitasia",
+                "slug": "mitasia"
+            },
+            "categories": [
+            ],
+            "compareAtPrice": null,
+            "customFields": {
+            },
+            "id": 12,
+            "images": [
+                "assets/images/products/product-12.jpg",
+                "assets/images/products/product-12-1.jpg"
+            ],
+            "name": "Ash's Chainsaw 3.5kW",
+            "price": 666.99,
+            "rating": 5,
+            "reviews": 17,
+            "sku": "83690/32",
+            "slug": "ash-s-chainsaw-3.5kw"
+        }
+    ],
+    "limit": 12,
+    "page": 1,
+    "pages": 2,
+    "sort": "default",
+    "to": 12,
+    "total": 16
+}

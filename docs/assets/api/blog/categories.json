@@ -1,0 +1,56 @@
+[
+  {
+      "name": "Latest News",
+      "slug": "latest-news"
+  },
+  {
+      "name": "Special Offers",
+      "slug": "special-offers",
+      "children": [
+          {
+              "name": "Spring Sales",
+              "slug": "spring-sales"
+          },
+          {
+              "name": "Summer Sales",
+              "slug": "summer-sales"
+          },
+          {
+              "name": "Autumn Sales",
+              "slug": "autumn-sales"
+          },
+          {
+              "name": "Christmas Sales",
+              "slug": "christmas-sales"
+          },
+          {
+              "name": "Other Sales",
+              "slug": "other-sales"
+          }
+      ]
+  },
+  {
+      "name": "New Arrivals",
+      "slug": "new-arrivals"
+  },
+  {
+      "name": "Reviews",
+      "slug": "reviews"
+  },
+  {
+      "name": "Drills and Mixers",
+      "slug": "drills-and-mixers"
+  },
+  {
+      "name": "Cordless Screwdrivers",
+      "slug": "cordless-screwdrivers"
+  },
+  {
+      "name": "Screwdrivers",
+      "slug": "screwdrivers"
+  },
+  {
+      "name": "Wrenches",
+      "slug": "wrenches"
+  }
+]

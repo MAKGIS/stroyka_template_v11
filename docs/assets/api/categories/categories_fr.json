@@ -1,0 +1,10 @@
+
+[
+    { "parents": null, "children": null, "id":"AC_7/", "type": "shop", "name": "Aciers", "slug": "Aciers", "path": "", "image": "", "items": 11, "customFields": {}},
+    { "parents": null, "children": null, "id":"DE_2/", "type": "shop", "name": "Decoration", "slug": "Electricite", "path": "", "image": "", "items": 12, "customFields": {}},
+    { "parents": null, "children": null, "id":"EL_3/", "type": "shop", "name": "Electricite", "slug": "Outillage", "path": "", "image": "", "items": 13, "customFields": {}},
+    { "parents": null, "children": null, "id":"EP_1/", "type": "shop", "name": "EPI - Protection - Hygiene - Securite", "slug": "Chauffage", "path": "", "image": "", "items": 14, "customFields": {}},
+    { "parents": null, "children": null, "id":"IN_4/", "type": "shop", "name": "Industrie", "slug": "Chauffage", "path": "", "image": "", "items": 15, "customFields": {}},
+    { "parents": null, "children": null, "id":"OU_5/", "type": "shop", "name": "Outils pro & fournitures industrielles", "slug": "Chauffage", "path": "", "image": "", "items": 16, "customFields": {}},
+    { "parents": null, "children": null, "id":"SA_1/", "type": "shop", "name": "Sanitaire - Chauffage", "slug": "Chauffage", "path": "", "image": "", "items": 17, "customFields": {}}
+  ]

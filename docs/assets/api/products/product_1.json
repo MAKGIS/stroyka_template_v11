@@ -1,0 +1,23 @@
+{
+  "slug": "electric-planer-brandix-kl370090g-300-watts",
+  "name": "Electric Planer Brandix KL370090G 300 Watts",
+  "price": 7491,
+  "images": [
+      "assets/images/products/product-1.jpg",
+      "assets/images/products/product-1-1.jpg"
+  ],
+  "badges": "new",
+  "rating": 4,
+  "reviews": 12,
+  "availability": "in-stock",
+  "brand": "brandix",
+  "categories": ["screwdrivers"],
+  "attributes": [
+      {"slug": "color",             "values": ["yellow"]},
+      {"slug": "speed",             "values": ["750-rpm"],           "featured": true},
+      {"slug": "power-source",      "values": ["cordless-electric"], "featured": true},
+      {"slug": "battery-cell-type", "values": ["lithium"],           "featured": true},
+      {"slug": "voltage",           "values": ["20-volts"],          "featured": true},
+      {"slug": "battery-capacity",  "values": ["2-Ah"],              "featured": true}
+  ]
+}
