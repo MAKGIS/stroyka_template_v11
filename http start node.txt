@@ -19,7 +19,7 @@ https://demo.sourcing.pm/backend/swagger/ui/index#/Shop
 
 2.
 edit index.html  !!!
-  <base href="/">
+  <base href="/stroyka_template_v11/">
 
 3.
 > docs  --> to github
