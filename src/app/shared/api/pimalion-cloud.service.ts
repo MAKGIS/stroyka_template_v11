@@ -309,7 +309,9 @@ export class PimalionCloudService {
   // 01 Post Homepage Get all categories
   getCloudCategoriesList(categoriesService: CategoriesService): Observable<Category[]> {
 
-    const url = `${environment.pimalionCloudUrl}/api/shop/categories`;
+    // const url = `${environment.pimalionCloudUrl}/api/shop/categories`;
+    // mak ???
+    const url = 'assets/api/categories/categories_fr.json';
 
     if (isPimalionCloudServiceLog) {
         console.log('PimalionCloudService.getCloudCategoriesList() -> %o ', url);
@@ -321,7 +323,8 @@ export class PimalionCloudService {
               .set('Accept',  'application/json')
         };
 
-     return this.http.get<CategoryPimalion[]>(url, httpOptions_cat)
+     // return this.http.get<CategoryPimalion[]>(url, httpOptions_cat)
+     return this.http.get<Category[]>(url, httpOptions_cat)  // mak ???
     .pipe(
 
                 tap((items: any) => {
@@ -334,7 +337,10 @@ export class PimalionCloudService {
                     var i: number = 0;
                     const categories = itemData.map(value => {
                         i = i + 1;
-                        return new CategoryItem(i + '', value.filterValue, value.filterValue, value.filterCount);
+                        // return new CategoryItem(i + '', value.filterValue, value.filterValue, value.filterCount);
+                        // mak ???
+                        return new CategoryItem(value.id, value.name, value.slug, value.items);
+
                     })
 
                     if (isPimalionCloudServiceLog) {
@@ -463,7 +469,6 @@ export class PimalionCloudService {
                 }
 
                  const body: any = {
-                    facets: response.body.facets,
                     items: response.body.products, // response.body.tableValues,
                     sorts: response.body.sorts,
                     total:  Number(response.headers.get('X-Total-Count')), // as number,  // 100, // 79581, //
@@ -556,6 +561,7 @@ export class PimalionCloudService {
             })
         );
   }
+
 /*
   getProducts(body: any): Observable<any> {
 

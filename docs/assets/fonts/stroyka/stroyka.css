@@ -1,9 +1,0 @@
-@font-face {
-    font-family: 'distriland';
-    src:
-            url('distriland.ttf') format('truetype'),
-            url('distriland.woff') format('woff'),
-            url('distriland.svg#distriland') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}

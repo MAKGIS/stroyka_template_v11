@@ -9,7 +9,7 @@ import { Category } from '../interfaces/category';
 import { Brand } from '../interfaces/brand';
 import { Product } from '../interfaces/product';
 import { ProductsList } from '../interfaces/list';
-import { SerializedFilterValues } from '../interfaces/filter';
+import { Filter, SerializedFilterValues } from '../interfaces/filter';
 import {
     getBestsellers,
     getFeatured,
@@ -48,6 +48,13 @@ import { PimalionCloudService } from './pimalion-cloud.service';
 
 import { CategoriesService } from './categories.service';
 import { BrandsService } from './brands.service';
+import { IFilterOption } from './filter-option.service';
+
+// [{"key": "brandName.keyword", "value": "NICOLL"}]
+export interface FilterValue {
+    key: string;
+    value: string;
+}
 
 export interface ListOptions {
     query?: string;
@@ -55,6 +62,7 @@ export interface ListOptions {
     limit?: number;
     sort?: string;
     filterValues?: SerializedFilterValues;
+    filtersBrand?: FilterValue[];
 }
 
 const delayTest = 0;
@@ -346,10 +354,43 @@ export class ShopService {
      * @param options.filterValues - An object whose keys are filter slugs and values ​​are filter values (optional).
      */
     getProductsList(categorySlug: string|null, options: ListOptions): Observable<ProductsList> {
+        /**
+         * This is what your API endpoint might look like:
+         *
+         * https://example.com/api/products.json?category=screwdriwers&page=2&limit=12&sort=name_desc&filter_price=500-1000
+         *
+         * where:
+         * - category     = categorySlug
+         * - page         = options.page
+         * - limit        = options.limit
+         * - sort         = options.sort
+         * - filter_price = options.filterValues.price
+         */
+        // const params: {[param: string]: string} = {};
+        //
+        // if (categorySlug) {
+        //     params.category = categorySlug;
+        // }
+        // if ('page' in options) {
+        //     params.page = options.page.toString();
+        // }
+        // if ('limit' in options) {
+        //     params.limit = options.limit.toString();
+        // }
+        // if ('sort' in options) {
+        //     params.sort = options.sort;
+        // }
+        // if ('filterValues' in options) {
+        //     Object.keys(options.filterValues).forEach(slug => params[`filter_${slug}`] = options.filterValues[slug]);
+        // }
+        //
+        // return this.http.get<ProductsList>('https://example.com/api/products.json', {params});
+
+        // This is for demonstration purposes only. Remove it and use the code above.
 
         if (isShopServiceLog)  {
-            console.log('ShopService.getProductsList()  categorySlug -> %o', categorySlug);
-            console.log('ShopService.getProductsList()  options -> %o', options);
+            console.log('-s-->>> ShopService.getProductsList()  categorySlug -> %o', categorySlug);
+            console.log('-s-->>> ShopService.getProductsList()  options -> %o', options);
         }
 
             switch (mode) {
@@ -374,17 +415,24 @@ export class ShopService {
 
                     const pagePimalion = options.page  || 1 ;
                     const limitPimalion = options.limit || 12;
-                    const sort = options.sort || 'default';
-                    const input = options.filterValues ?? [];
-
-                    const flatFilters = Object.entries(input)
-                        .map(([key, value]) => ({ key, value }))
-                        .flatMap(({ key, value }) => value.split(',').map(v => ({ key:key, value: v })));
+                    // const sort = options.sort || 'default';
+                    const filters = options.filtersBrand || [];
+                    // filterValues: {brand: 'NICOLL,HAGER'}
 
                     const body = {
-                       filters: flatFilters, 
+                       // groupFields: [],
+                       // selection: [],
+
+                       // filters: [{'key': 'brandName.keyword', 'value': 'NICOLL'}],
+                       // mak ???
+                        // let result = condition ? value1 : value2;
+                       filters: filters.length == 0 ? [] :  [filters[0]],  // filters, ???
+                        // sort: [],  // ???
+
                         page: pagePimalion - 1,  // !!! ???
                         pageSize: limitPimalion
+
+                      //  productStates: []
                     };
 
                     return this.pimalionCloudService.getProductsList(body)
@@ -392,11 +440,11 @@ export class ShopService {
                             switchMap(pimalionBody => {
 
                                 if (isShopServiceLog)  {
-                                    console.log(`>>> ShopService.getProductsList() Input categorySlug -> %O options -> %O`, categorySlug, options);
-                                    console.log(`>>> ShopService.getProductsList() Input pimalionBody -> %O`, pimalionBody);
-                                    console.log(`>>>Search`);
+                                    console.log(`-->>> ShopService.getProductsList() Input categorySlug -> %O options -> %O`, categorySlug, options);
+                                    console.log(`-->>> ShopService.getProductsList() Input pimalionBody -> %O`, pimalionBody);
                                 }
-                                const productsList = getProductsListPimalion(this.categoriesService, this.brandsService, categorySlug, options, pimalionBody, pimalionBody.facets);
+                                const productsList = getProductsListPimalion(this.categoriesService, this.brandsService,
+                                                categorySlug, options, pimalionBody);
 
                                 return productsList;
                             })
@@ -416,11 +464,19 @@ export class ShopService {
         const sort = options.sort || [];
         const query = options.query || '';
 
+        const filters = options.filtersBrand || [];
+
         // categorySlug ???
 
        const body = {
                 //groupFields: [],
                 //selection: [],
+
+                // filters: [{'key': 'brandName.keyword', 'value': 'NICOLL'}],
+                // mak ???
+                // let result = condition ? value1 : value2;
+               filters: filters.length == 0 ? [] :  [filters[0]],  // filters, ???
+
                 page: pagePimalion - 1,  // !!! ???
                 pageSize: limitPimalion,
                 //isManaged: true,
@@ -881,7 +937,7 @@ export class ShopService {
           }
     }
 
-    getSuggestions(query: string, limit: number, categorySlug: string = null): Observable<Product[]> {
+    getSuggestions(query: string, limit: number, categorySlug: string = null, filterOption: IFilterOption ): Observable<Product[]> {
         /*
          * This is what your API endpoint might look like:
          *
@@ -902,6 +958,8 @@ export class ShopService {
 
         // This is for demonstration purposes only. Remove it and use the code above.
 
+        if (isShopServiceLog)  {console.log('-srv-->> ShopService.getSuggestions() filterOption ->%o', filterOption)}
+
 
         switch (mode) {
 
@@ -921,8 +979,6 @@ export class ShopService {
                );
                break;
             case 'demo.sourcing.pm':
-
-                if (isShopServiceLog)  {console.log('ShopService.getSuggestions()')}
 /*
 	"query": "INTER AUTO 2 FILS MG",
 	"groupFields": [],
@@ -933,12 +989,20 @@ export class ShopService {
 }
 
 */
+                const filtersBrand = filterOption.filtersBrand || [];
+
                 const options: ListOptions = {
+                   // mak ???
+                   // let result = condition ? value1 : value2;
+                   filtersBrand: filtersBrand.length == 0 ? [] :  [filtersBrand[0]],  // filters, ???
                    query: query, // 'INTER AUTO 2 FILS MG',
                    page: 0,
                    limit: limit,
                    // sort: []
                 };
+
+                if (isShopServiceLog)  {console.log('-srv-->> ShopService.getSuggestions() options ->%o', options)}
+
                 return this.getTypeProducts(null, options, 5);
                 break;
              default:

@@ -56,4 +56,4 @@ export interface RadioFilter extends ValuableFilterBase {
     items: FilterItem[];
 }
 
-export type Filter = CategoryFilter | RangeFilter | CheckFilter | ColorFilter | RadioFilter;
+export type Filter = CategoryFilter | RangeFilter | CheckFilter | ColorFilter | RadioFilter | any;

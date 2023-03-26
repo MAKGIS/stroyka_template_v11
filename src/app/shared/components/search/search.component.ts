@@ -21,6 +21,9 @@ import { Category } from '../../interfaces/category';
 import { DOCUMENT } from '@angular/common';
 import { CartService } from '../../services/cart.service';
 import { CategoriesService } from '../../api/categories.service';
+import { PageCategoryService } from 'src/app/modules/shop/services/page-category.service';
+
+import { FilterOptionService } from '../../api/filter-option.service';
 
 export type SearchLocation = 'header' | 'indicator' | 'mobile-header';
 
@@ -74,16 +77,18 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
         private fb: FormBuilder,
         private elementRef: ElementRef,
         private zone: NgZone,
-        private shop: ShopService,
-        private cart: CartService,
-        public root: RootService,
-        private categoriesService: CategoriesService
+        private shopService: ShopService,
+        private cartService: CartService,
+        public rootService: RootService,
+        private categoriesService: CategoriesService,
+        // private pageCategoryService: PageCategoryService,
+        private filterOptionService: FilterOptionService
     ) { }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.location && this.location === 'header') {
             /* */
-            this.shop.getCategories(this.categoriesService, null, 1).pipe(
+            this.shopService.getCategories(this.categoriesService, null, 1).pipe(
                 takeUntil(this.destroy$),
             ).subscribe(categories => this.categories = this.getCategoriesWithDepth(categories));
 
@@ -102,8 +107,20 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
             switchMap(query => {
                 if (query) {
                     const categorySlug = this.form.value.category !== 'all' ? this.form.value.category : null;
+                    console.log('-- cmp -- SearchComponent.ngOnInit() categorySlug -> %o', categorySlug);
 
-                    return this.shop.getSuggestions(query, 5, categorySlug);
+                    // mak ???
+                    /*
+                    const item = [{"key": "brandName.keyword", "value": "NICOLL"}];
+                    var filterOption_ = new  FilterOptionItem (item);
+
+                    this.filterOptionService.next(filterOption_);
+                    */
+                    const filterOption = this.filterOptionService.FilterOptionChangedSub$.getValue();
+                    console.log('-- cmp -- SearchComponent.ngOnInit() 1 filterOption -> %o', filterOption);
+
+                        return this.shopService.getSuggestions(query, 5, categorySlug, filterOption);
+
                 }
 
                 return of([]);
@@ -175,7 +192,7 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
         }
 
         this.addedToCartProducts.push(product);
-        this.cart.add(product, 1).subscribe({
+        this.cartService.add(product, 1).subscribe({
             complete: () => {
                 this.addedToCartProducts = this.addedToCartProducts.filter(eachProduct => eachProduct !== product);
             }

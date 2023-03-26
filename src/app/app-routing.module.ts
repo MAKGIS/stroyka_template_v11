@@ -75,7 +75,7 @@ const routes: Routes = [
                 loadChildren: () => import('./modules/site/site.module').then(m => m.SiteModule)
             },
             {
-                path: 'pimalion',
+                path: 'pimalion', // 'pimalion',
                 loadChildren: () => import('./pimalion/modules/shop/shop-pimalion.module').then(m => m.ShopPimalionModule)
             },
             {

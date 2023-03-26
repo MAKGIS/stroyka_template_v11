@@ -1,5 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# work dir
+/.arx
+
 # compiled output
 /dist
 /tmp

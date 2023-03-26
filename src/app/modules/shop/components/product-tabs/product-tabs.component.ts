@@ -3,7 +3,6 @@ import { Product, ProductFeaturesSection} from '../../../../shared/interfaces/pr
 import { specification } from '../../../../../data/shop-product-spec';
 import { reviews } from '../../../../../data/shop-product-reviews';
 import { Review } from '../../../../shared/interfaces/review';
-
 import { PimalionCloudService } from 'src/app/shared/api/pimalion-cloud.service';
 
 @Component({
@@ -13,9 +12,9 @@ import { PimalionCloudService } from 'src/app/shared/api/pimalion-cloud.service'
 })
 export class ProductTabsComponent {
     @Input() withSidebar = false;
-    @Input() tab: 'description'|'specification'|'reviews'|'documents'|'Comparateur de prix' = 'description';
-    @Input() product: Product;
+    @Input() tab: 'description'|'specification'|'reviews'|'documents' = 'description';
 
+    @Input() product: Product;
 
     specification: ProductFeaturesSection[] = specification;
     reviews: Review[] = reviews;
@@ -27,8 +26,9 @@ export class ProductTabsComponent {
     }
 
     getTitre() {
-        this.pimalionCloudService.getProductDetailPage_01(this.product.id)
-          .subscribe({next:(data: any) => this.product.name = data.title}); // ???
-    }
 
+        this.pimalionCloudService.getProductDetailPage_01(this.product.id)
+          .subscribe({next:(data: any) => this.product.name = data.title }); // ???
+
+    }
 }

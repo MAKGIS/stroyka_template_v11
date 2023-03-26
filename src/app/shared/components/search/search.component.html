@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="suggestions__item-info">
-                    <a [routerLink]="root.product(product)" class="suggestions__item-name" (click)="closeSuggestion()">
+                    <a [routerLink]="rootService.product(product)" class="suggestions__item-name" (click)="closeSuggestion()">
                         {{ product.name }}
                     </a>
                     <div class="suggestions__item-meta">SKU: {{ product.sku }}</div>

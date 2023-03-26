@@ -45,7 +45,7 @@ export class PageCompareComponent implements OnInit, OnDestroy {
                     features.push(feature);
                 }
 
-                feature.values[product.id] = productAttribute.values.map(x => x).join(', ');
+                feature.values[product.id] = productAttribute.values.map(x => x.name).join(', ');
             }));
 
             this.products = products;

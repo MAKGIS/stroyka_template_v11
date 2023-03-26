@@ -2,13 +2,18 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Params, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { EMPTY, Observable } from 'rxjs';
 import { ProductsList } from '../../../shared/interfaces/list';
-import { catchError } from 'rxjs/operators';
+import { catchError, mergeMap, take } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RootService } from '../../../shared/services/root.service';
 import { ListOptions, ShopService } from '../../../shared/api/shop.service';
 
 export function parseProductsListParams(params: Params): ListOptions {
     const options: ListOptions = {};
+
+    console.log('-->>> ProductsListResolverService.parseProductsListParams() 1 params -> %o', params);
+    console.log('-->>> ProductsListResolverService.parseProductsListParams() 1 params.page -> %o', params.page);
+    console.log('-->>> ProductsListResolverService.parseProductsListParams() 1 params.limit -> %o', params.limit);
+    console.log('-->>> ProductsListResolverService.parseProductsListParams() 1 params.sort -> %o', params.sort);
 
     if (params.page) {
         options.page = parseFloat(params.page);
@@ -35,6 +40,9 @@ export function parseProductsListParams(params: Params): ListOptions {
 
         options.filterValues[filterSlug] = params[param];
     }
+    // mak
+   // options.filters = [{'key': 'brandName.keyword', 'value': 'LEGRAND'}];
+    console.log('-->>> ProductsListResolverService.parseProductsListParams() 2 options -> %o', options);
 
     return options;
 }
@@ -46,20 +54,32 @@ export class ProductsListResolverService implements Resolve<ProductsList> {
     constructor(
         private root: RootService,
         private router: Router,
-        private shop: ShopService,
+        private shopService: ShopService,
     ) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ProductsList> {
         const categorySlug = route.params.categorySlug || route.data.categorySlug || null;
 
-        return this.shop.getProductsList(categorySlug, parseProductsListParams(route.queryParams)).pipe(
-            catchError(error => {
-                if (error instanceof HttpErrorResponse && error.status === 404) {
-                    this.router.navigate([this.root.notFound()]).then();
-                }
+           // mak ???
+            return  this.shopService.getCategoriesList().pipe(
+                mergeMap( categories => {
+                    console.log('--->>> ProductsListResolverService-getCategoriesList categories -> %o', categories);
 
-                return EMPTY;
-            })
-        );
+                    return this.shopService.getPopularBrands().pipe(
+                    mergeMap( brands => {
+                        console.log('--->>> ProductsListResolverService-getPopularBrands brands -> %o', brands);
+
+                        return this.shopService.getProductsList(categorySlug, parseProductsListParams(route.queryParams)).pipe(
+                            catchError(error => {
+                                if (error instanceof HttpErrorResponse && error.status === 404) {
+                                    this.router.navigate([this.root.notFound()]).then();
+                                }
+                                return EMPTY;
+                            })
+                        )
+                    })
+                    )
+                })
+              );
     }
 }

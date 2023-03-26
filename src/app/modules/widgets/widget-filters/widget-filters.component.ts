@@ -15,6 +15,8 @@ import { Subject } from 'rxjs';
 import { PageCategoryService } from '../../shop/services/page-category.service';
 import { map, takeUntil } from 'rxjs/operators';
 
+import { FilterOptionItem, FilterOptionService } from 'src/app/shared/api/filter-option.service';
+
 interface FormFilterValues {
     [filterSlug: string]: [number, number] | {[itemSlug: string]: boolean} | string;
 }
@@ -39,13 +41,14 @@ export class WidgetFiltersComponent implements OnInit, OnDestroy {
         private direction: DirectionService,
         private fb: FormBuilder,
         public root: RootService,
-        public pageCategory: PageCategoryService,
+        public pageCategoryService: PageCategoryService,
+        private filterOptionService: FilterOptionService
     ) {
         this.rightToLeft = this.direction.isRTL();
     }
 
     ngOnInit(): void {
-        this.pageCategory.list$.pipe(
+        this.pageCategoryService.list$.pipe(
             map(x => x.filters),
             takeUntil(this.destroy$),
         ).subscribe(filters => {
@@ -53,8 +56,21 @@ export class WidgetFiltersComponent implements OnInit, OnDestroy {
             this.filtersForm = this.makeFiltersForm(filters);
 
             this.filtersForm.valueChanges.subscribe(formValues => {
-                this.pageCategory.updateOptions({
-                    filterValues: this.convertFormToFilterValues(filters, formValues)
+                console.log('-c->>> WidgetFiltersComponent.filtersForm.valueChanges filters ->%o', filters);
+                console.log('-c->>> WidgetFiltersComponent.filtersForm.valueChanges formValues ->%o', formValues );
+
+                const filtersBrand = this.convertFormToFilterBrandsValues(filters, formValues);
+
+                // mak ???
+
+                    const item = filtersBrand; // [{"key": "brandName.keyword", "value": "NICOLL"}];
+                    var filterOption = new  FilterOptionItem (item);
+
+                    this.filterOptionService.next(filterOption);
+
+                this.pageCategoryService.updateOptions({
+                    filterValues: this.convertFormToFilterValues(filters, formValues),
+                    filtersBrand: filtersBrand
                 });
             });
         });
@@ -127,7 +143,25 @@ export class WidgetFiltersComponent implements OnInit, OnDestroy {
                         filterValues[filter.slug] = `${formValue[0]}-${formValue[1]}`;
                     }
                     break;
+                    // mak
                 case 'check':
+                    const filterFormValuesCheck = formValue as object || {};
+
+                    // Reactive forms do not add a values of disabled checkboxes.
+                    // This code will add them manually.
+                    filter.value.forEach(filterValue => {
+                        if (!(filterValue in filterFormValuesCheck)) {
+                            filterFormValuesCheck[filterValue] = true;
+                        }
+                    });
+
+                    const valuesCheck = Object.keys(filterFormValuesCheck).filter(x => filterFormValuesCheck[x]);
+
+                    if (valuesCheck.length > 0) {
+                        filterValues[filter.slug] = valuesCheck.join(',');
+                    }
+                    break;
+
                 case 'color':
                     const filterFormValues = formValue as object || {};
 
@@ -149,6 +183,50 @@ export class WidgetFiltersComponent implements OnInit, OnDestroy {
                     if (formValue !== filter.items[0].slug) {
                         filterValues[filter.slug] = formValue as string;
                     }
+
+                    break;
+            }
+        });
+
+        return filterValues;
+    }
+
+    convertFormToFilterBrandsValues(filters: Filter[], formValues: FormFilterValues): any[] {
+        const filterValues: any[] = [];
+
+        filters.forEach(filter => {
+            const formValue = formValues[filter.slug];
+
+            switch (filter.type) {
+                case 'range':
+
+                    break;
+                    // mak
+                case 'check':
+                    const filterFormValuesCheck = formValue as object || {};
+
+                    // Reactive forms do not add a values of disabled checkboxes.
+                    // This code will add them manually.
+                    filter.value.forEach(filterValue => {
+                        if (!(filterValue in filterFormValuesCheck)) {
+                            filterFormValuesCheck[filterValue] = true;
+                        }
+                    });
+
+                    const valuesCheck = Object.keys(filterFormValuesCheck).filter(x => filterFormValuesCheck[x]);
+                        // filters: [{'key': 'brandName.keyword', 'value': 'NICOLL'}]
+                    if (valuesCheck.length > 0) {
+                        valuesCheck.forEach(filterValue => {
+                            filterValues.push({'key': 'brandName.keyword', 'value': filterValue});
+                        });
+                        // filterValues.push({'key': 'brandName.keyword', 'value': valuesCheck[0]});
+                    }
+                    break;
+
+                case 'color':
+
+                    break;
+                case 'radio':
 
                     break;
             }
