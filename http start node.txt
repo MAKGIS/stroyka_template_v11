@@ -25,7 +25,7 @@ edit index.html  !!!
 > docs  --> to github
 
 4.  see
-https://makgis.github.io/stroyka_template_v11
+https://makgis.github.io/stroyka_template_v11/
 
 
 https://makgis.github.io/stroyka_template_v11/home
