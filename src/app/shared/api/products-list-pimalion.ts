@@ -313,16 +313,16 @@ export function getProductsListPimalion(categoriesService: CategoriesService, br
             ],
         });
         */
-        filters.push({
-            type: 'categories',
-            slug: 'categories',
-            name: 'Categories',
-            root: true,
-            items: [
-              // mak  ...shopCategoriesTree.map(x => makeCategoryFilterItem('child', x)),
-              ...categories.map(x => makeCategoryFilterItem('child', x)),
-            ],
-        });
+        // filters.push({
+        //     type: 'categories',
+        //     slug: 'categories',
+        //     name: 'Categorieswww',
+        //     root: true,
+        //     items: [
+        //       // mak  ...shopCategoriesTree.map(x => makeCategoryFilterItem('child', x)),
+        //       ...categories.map(x => makeCategoryFilterItem('child', x)),
+        //     ],
+        // });
 
     } else {
         const category = shopCategoriesList.find(x => x.slug === categorySlug);

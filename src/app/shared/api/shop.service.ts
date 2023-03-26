@@ -429,6 +429,18 @@ export class ShopService {
                        filters: filters.length == 0 ? [] :  [filters[0]],  // filters, ???
                         // sort: [],  // ???
 
+                                            // var flatFilters = Object.entries(input)
+                    //     .map(([key, value]) => ({ key, value }))
+                    //     .flatMap(({ key, value }) => value.split(',').map(v => ({ key:key, value: v })));
+
+                    //var flatFilters = Object.entries(input)
+                    //.map(([key, value]) => ({ key, value }))
+                    //.reduce((acc, { key, value }) => {
+                    //  return acc.concat(value.split(',').map(v => ({ key, value: v })));
+                    //}, []);
+                  
+
+
                         page: pagePimalion - 1,  // !!! ???
                         pageSize: limitPimalion
 

@@ -38,7 +38,7 @@
                 {{ product.overview }}
             </div>
 
-            <ng-container *ngIf="product.urls.length > 0">
+            <!-- <ng-container *ngIf="product.urls.length > 0">
                 <div class="product__siteurls">
                     Site source:
                 </div>
@@ -47,7 +47,7 @@
                     url: <a href="{{item.url}}" target="blank">{{item.label}}</a>
                     </li>
                 </ul>
-            </ng-container>
+            </ng-container> -->
 
 
 
@@ -62,7 +62,7 @@
             <ul class="product__meta">
                 <li class="product__meta-availability">Disponibilité: <span class="text-success">En Stock</span></li>
                 <li>Brand: <a href="" appClick>{{product.brandName}}</a></li>
-                <li>SKU: {{product.sku}}</li>
+                <li>SKU: <a target="_blank" href="https://pim.socoda.fr:4343/pimalion-staging/app-v2/dist/#/mappings/{{product.id}}">{{product.sku}} <i class="footer-contacts__icon fas fa-globe-americas"></i> </a></li>
             </ul>
         </div>
         <!-- .product__info / end -->
@@ -159,11 +159,9 @@
         <div class="product__footer">
             <div class="product__tags tags">
                 <div class="tags__list">
-                    <a href="" appClick>Mot clé 1</a>
-                    <a href="" appClick>Mot clé 2</a>
-                    <a href="" appClick>Mot clé 3</a>
+                  <a *ngFor="let badge of product.badges" href="{{ badge }}" appClick>{{ badge }}</a>
                 </div>
-            </div>
+              </div>
 
             <!-- <app-share-buttons
                 class="product__share-buttons"

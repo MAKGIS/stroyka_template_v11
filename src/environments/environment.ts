@@ -4,8 +4,11 @@
 
 export const environment = {
     production: false,
-    pimalionCloudUrl: 'https://demo.sourcing.pm/backend'// 'http://pimsoushasvr01.dev.pimalion.cloud'
+    //pimalionCloudUrl: 'https://demo.sourcing.pm/backend'// 'http://pimsoushasvr01.dev.pimalion.cloud'
     //pimalionCloudUrl: 'http://localhost:44363'// 'http://pimsoushasvr01.dev.pimalion.cloud'
+    //pimalionCloudUrl: 'https://demo.sourcing.pm/backend'// 'http://pimsoushasvr01.dev.pimalion.cloud'
+    //pimalionCloudUrl: 'http://localhost:44363'// 'http://pimsoushasvr01.dev.pimalion.cloud'
+    pimalionCloudUrl: 'https://pim.socoda.fr:4343/pimalion_socoda_staging_api'// 'http://pimsoushasvr01.dev.pimalion.cloud'
 };
 
 /*
