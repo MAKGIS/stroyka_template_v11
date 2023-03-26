@@ -13,7 +13,23 @@ https://docs.google.com/document/d/1Pd0yIxQWWIEsBI04FhVHZnmNYRJeGqsacFW2aGwHt8k/
 
 https://demo.sourcing.pm/backend/swagger/ui/index#/Shop
 
-https://makgis.github.io/demo_sourcing_pm/pimalion/catalog
+-----------------------------------
+
+https://makgis.github.io/stroyka_template_v11
+
+
+https://makgis.github.io/stroyka_template_v11/home
+https://makgis.github.io/stroyka_template_v11/pimalion/brands
+https://makgis.github.io/stroyka_template_v11/pimalion/catalog
+https://makgis.github.io/stroyka_template_v11/compare
+https://makgis.github.io/stroyka_template_v11/shop/products/qOFgJWgBenVimcVmYC33
+
+
+http://localhost:4200/home
+http://localhost:4200/pimalion/brands
+http://localhost:4200/pimalion/catalog
+http://localhost:4200/shop/compare
+http://localhost:4200/shop/products/qOFgJWgBenVimcVmYC33
 
 
 --------------------------
