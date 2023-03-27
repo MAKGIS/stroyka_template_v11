@@ -8,7 +8,7 @@ import { delay, tap } from 'rxjs/operators';
 import { getBlogCategoriesTree } from '../../../fake-server';
 
 const delayTest = 0;
-const isBlogService = true;
+
 const mode: string = 'json'; // 'demo.sourcing.pm';  // 'fake-server', 'json',  'demo.sourcing.pm'
 
 
@@ -16,6 +16,8 @@ const mode: string = 'json'; // 'demo.sourcing.pm';  // 'fake-server', 'json',  
     providedIn: 'root'
 })
 export class BlogService {
+    isViewConsole = true;
+
     constructor(
         private http: HttpClient,
     ) { }
@@ -58,7 +60,7 @@ export class BlogService {
                     .pipe(
                         tap( n=>
                             {
-                                if (isBlogService) {console.log('BlogService getCategories delayTest -> %o', delayTest)}
+                                if (this.isViewConsole) {console.log('--srv-- BlogService getCategories delayTest -> %o', delayTest)}
                         }),
                         delay(delayTest)
                         );
@@ -69,7 +71,7 @@ export class BlogService {
                         .pipe(
                             tap( n=>
                                 {
-                                    if (isBlogService) {console.log('BlogService getCategories delayTest -> %o', delayTest)}
+                                    if (this.isViewConsole) {console.log('--srv-- BlogService getCategories delayTest -> %o', delayTest)}
                             }),
                             delay(delayTest)
                             );

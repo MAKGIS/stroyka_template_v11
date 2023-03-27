@@ -31,6 +31,8 @@ export class WidgetFiltersComponent implements OnInit, OnDestroy {
 
     destroy$: Subject<void> = new Subject<void>();
 
+    isViewConsole = true;
+
     filters: Filter[];
     filtersForm: FormGroup;
     isPlatformBrowser = isPlatformBrowser(this.platformId);
@@ -56,9 +58,10 @@ export class WidgetFiltersComponent implements OnInit, OnDestroy {
             this.filtersForm = this.makeFiltersForm(filters);
 
             this.filtersForm.valueChanges.subscribe(formValues => {
-                console.log('-c->>> WidgetFiltersComponent.filtersForm.valueChanges filters ->%o', filters);
-                console.log('-c->>> WidgetFiltersComponent.filtersForm.valueChanges formValues ->%o', formValues );
-
+                if (this.isViewConsole){
+                    console.log('--cmp-- WidgetFiltersComponent.filtersForm.valueChanges filters ->%o', filters);
+                    console.log('--cmp-- WidgetFiltersComponent.filtersForm.valueChanges formValues ->%o', formValues );
+                }
                 const filtersBrand = this.convertFormToFilterBrandsValues(filters, formValues);
 
                 // mak ???
@@ -88,8 +91,9 @@ export class WidgetFiltersComponent implements OnInit, OnDestroy {
     makeFiltersForm(filters: Filter[]): FormGroup {
         const filtersFromGroup = {};
 
-        // console.log('-- cmp -- WidgetFiltersComponent.ngOnInit() filters ->%o', filters, filters);
-
+        if (this.isViewConsole){
+            console.log('--cmp-- WidgetFiltersComponent.ngOnInit() filters ->%o', filters, filters);
+        }
         filters.forEach(filter => {
             switch (filter.type) {
                 case 'range':

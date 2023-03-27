@@ -36,6 +36,8 @@ export   class FilterOptionItem implements IFilterOption {
 })
 export class FilterOptionService implements IFilterOptionServiceInterface {
 
+    isViewConsole = true;
+
   private filterOptionInit: IFilterOption = {
     filtersBrand: []
   };
@@ -56,7 +58,9 @@ export class FilterOptionService implements IFilterOptionServiceInterface {
   }
   public next(filterOption: IFilterOption) {
     if (filterOption) {
-        console.log('*srv*** FilterOptionService.next() filterOption -> %O', filterOption);
+        if (this.isViewConsole) {
+            console.log('--srv-- FilterOptionService.next() filterOption -> %O', filterOption);
+        }
       this.FilterOptionChangedSub$.next(filterOption);
     } else {
         this.FilterOptionChangedSub$.next(this.filterOptionInit);

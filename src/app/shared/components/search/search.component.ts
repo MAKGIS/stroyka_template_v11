@@ -36,6 +36,9 @@ export type CategoryWithDepth = Category & {depth: number};
     exportAs: 'search',
 })
 export class SearchComponent implements OnChanges, OnInit, OnDestroy {
+
+    isViewConsole = true;
+
     private destroy$: Subject<void> = new Subject<void>();
 
     form: FormGroup;
@@ -107,8 +110,9 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
             switchMap(query => {
                 if (query) {
                     const categorySlug = this.form.value.category !== 'all' ? this.form.value.category : null;
-                    console.log('-- cmp -- SearchComponent.ngOnInit() categorySlug -> %o', categorySlug);
-
+                    if (this.isViewConsole) {
+                        console.log('--cmp-- SearchComponent.ngOnInit() categorySlug -> %o', categorySlug);
+                    }
                     // mak ???
                     /*
                     const item = [{"key": "brandName.keyword", "value": "NICOLL"}];
@@ -117,8 +121,9 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
                     this.filterOptionService.next(filterOption_);
                     */
                     const filterOption = this.filterOptionService.FilterOptionChangedSub$.getValue();
-                    console.log('-- cmp -- SearchComponent.ngOnInit() 1 filterOption -> %o', filterOption);
-
+                    if (this.isViewConsole) {
+                        console.log('--cmp-- SearchComponent.ngOnInit() 1 filterOption -> %o', filterOption);
+                    }
                         return this.shopService.getSuggestions(query, 5, categorySlug, filterOption);
 
                 }
@@ -129,7 +134,9 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
         ).subscribe(products => {
             this.hasSuggestions = products.length > 0;
 
-            console.log('-- cmp -- SearchComponent.ngOnInit() products -> %o', products);
+            if (this.isViewConsole) {
+             console.log('--cmp-- SearchComponent.ngOnInit() products -> %o', products);
+            }
 
             if (products.length > 0) {
                 this.suggestedProducts = products;

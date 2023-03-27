@@ -66,7 +66,7 @@ export interface ListOptions {
 }
 
 const delayTest = 0;
-const isShopServiceLog = true;
+
 
 // 'demo.sourcing.pm'; // 'demo.sourcing.pm';  'fake-server', 'json'
 const mode: string = getModeSource();
@@ -79,6 +79,9 @@ const httpOptions = {
     providedIn: 'root'
 })
 export class ShopService {
+
+    isViewConsole = true;
+
     constructor(
         private http: HttpClient,
         private pimalionCloudService: PimalionCloudService,
@@ -112,8 +115,8 @@ export class ShopService {
                 .pipe(
                    tap( n=>
                     {
-                        if (isShopServiceLog)  {
-                            console.log('ShopService.getPopularBrands() Brands -> %o', n);
+                        if (this.isViewConsole)  {
+                            console.log('--srv-- ShopService.getPopularBrands() Brands -> %o', n);
                         }
                     }),
                    delay(delayTest)
@@ -142,8 +145,6 @@ export class ShopService {
 
         // This is for demonstration purposes only. Remove it and use the code above.
 
-        if (isShopServiceLog)  {console.log('--- ShopService.getCategoriesList() ---')}
-
         switch (mode) {
 
             case 'fake-server':
@@ -157,7 +158,9 @@ export class ShopService {
                 .pipe(
                    tap( data =>
                     {
-                        if (isShopServiceLog)  {console.log('ShopService.getCategoriesList()  n -> %o', data)}
+                        if (this.isViewConsole)  {
+                            console.log('--srv-- ShopService.getCategoriesList() data -> %o', data)
+                        }
                     }),
                    delay(delayTest)
                );
@@ -192,7 +195,7 @@ export class ShopService {
 
         // This is for demonstration purposes only. Remove it and use the code above.
 
-        if (isShopServiceLog)  {console.log('ShopService.getCategory() slug -> %o', slug)}
+        if (this.isViewConsole)  {console.log('--srv-- ShopService.getCategory() slug -> %o', slug)}
 
         switch (mode) {
 
@@ -206,7 +209,7 @@ export class ShopService {
                 .pipe(
                     tap( n=>
                         {
-                        if (isShopServiceLog)  {console.log('ShopService.getCategory()  delayTest -> %o', delayTest)}
+                        if (this.isViewConsole)  {console.log('--srv-- ShopService.getCategory()  delayTest -> %o', delayTest)}
                     }),
                     delay(delayTest)
                 );
@@ -217,11 +220,15 @@ export class ShopService {
               return  this.getCategoriesList()
                 .pipe(
                     tap( data => {
-                        console.log('ShopService.getCategory() data -> %o   slug -> %o', data, slug);
+                        if (this.isViewConsole)  {
+                           console.log('--srv-- ShopService.getCategory() data -> %o   slug -> %o', data, slug);
+                        }
                     }),
                     find((data: any) => data.slug === slug),
                     tap( data => {
-                        console.log('ShopService.getCategory() data(Category) -> %o   slug -> %o', data, slug);
+                        if (this.isViewConsole)  {
+                            console.log('--srv-- ShopService.getCategory() data(Category) -> %o   slug -> %o', data, slug);
+                        }
                     }),
                 );
 
@@ -258,7 +265,7 @@ export class ShopService {
         // This is for demonstration purposes only. Remove it and use the code above.
         // return getShopCategoriesTree(parent ? parent.slug : null, depth);
 
-        if (isShopServiceLog)  {console.log('ShopService.getCategories() parent -> %o  depth -> %o', parent, depth)}
+        if (this.isViewConsole)  {console.log('--srv-- ShopService.getCategories() parent -> %o  depth -> %o', parent, depth)}
 
         switch (mode) {
 
@@ -272,7 +279,7 @@ export class ShopService {
                 .pipe(
                     tap( n=>
                         {
-                            if (isShopServiceLog)  {console.log('ShopService  delayTest -> %o', delayTest)}
+                            if (this.isViewConsole)  {console.log('--srv-- ShopService  delayTest -> %o', delayTest)}
                     }),
                     delay(delayTest)
                 );
@@ -326,7 +333,7 @@ export class ShopService {
                 .pipe(
                    tap( n=>
                     {
-                        if (isShopServiceLog)  {console.log('ShopService  delayTest -> %o', delayTest)}
+                        if (this.isViewConsole)  {console.log('--srv-- ShopService  delayTest -> %o', delayTest)}
                     }),
                    delay(delayTest)
                );
@@ -388,9 +395,9 @@ export class ShopService {
 
         // This is for demonstration purposes only. Remove it and use the code above.
 
-        if (isShopServiceLog)  {
-            console.log('-s-->>> ShopService.getProductsList()  categorySlug -> %o', categorySlug);
-            console.log('-s-->>> ShopService.getProductsList()  options -> %o', options);
+        if (this.isViewConsole)  {
+            console.log('--srv-- ShopService.getProductsList()  categorySlug -> %o', categorySlug);
+            console.log('--srv-- ShopService.getProductsList()  options -> %o', options);
         }
 
             switch (mode) {
@@ -406,7 +413,7 @@ export class ShopService {
                     .pipe(
                     tap( n=>
                         {
-                            if (isShopServiceLog)  {console.log('ShopService  delayTest -> %o', delayTest)}
+                            if (this.isViewConsole)  {console.log('--srv-- ShopService  delayTest -> %o', delayTest)}
                         }),
                     delay(delayTest)
                     );
@@ -438,7 +445,7 @@ export class ShopService {
                     //.reduce((acc, { key, value }) => {
                     //  return acc.concat(value.split(',').map(v => ({ key, value: v })));
                     //}, []);
-                  
+
 
 
                         page: pagePimalion - 1,  // !!! ???
@@ -451,9 +458,9 @@ export class ShopService {
                         .pipe(
                             switchMap(pimalionBody => {
 
-                                if (isShopServiceLog)  {
-                                    console.log(`-->>> ShopService.getProductsList() Input categorySlug -> %O options -> %O`, categorySlug, options);
-                                    console.log(`-->>> ShopService.getProductsList() Input pimalionBody -> %O`, pimalionBody);
+                                if (this.isViewConsole)  {
+                                    console.log(`--srv-- ShopService.getProductsList() Input categorySlug -> %O options -> %O`, categorySlug, options);
+                                    console.log(`--srv-- ShopService.getProductsList() Input pimalionBody -> %O`, pimalionBody);
                                 }
                                 const productsList = getProductsListPimalion(this.categoriesService, this.brandsService,
                                                 categorySlug, options, pimalionBody);
@@ -500,20 +507,20 @@ export class ShopService {
                 body["query"] = query;
             };
 
-            console.log(`>>> ShopService.getTypeProducts().getTypeProducts() Input query -> %O`, query);
+            console.log(`--srv-- ShopService.getTypeProducts().getTypeProducts() Input query -> %O`, query);
 
         return this.pimalionCloudService.getProductsList(body)
             .pipe(
                 switchMap(productsBody => {
 
-                    if (isShopServiceLog)  {
-                      //  console.log(`>>> ShopService.getTypeProducts().getProducts() Input categorySlug -> %O options -> %O`, categorySlug, options);
-                      //  console.log(`>>> ShopService.getTypeProducts().getProducts() Input products -> %O`, productsBody);
+                    if (this.isViewConsole)  {
+                      //  console.log(`--srv-- ShopService.getTypeProducts().getProducts() Input categorySlug -> %O options -> %O`, categorySlug, options);
+                      //  console.log(`--srv-- ShopService.getTypeProducts().getProducts() Input products -> %O`, productsBody);
                     }
                     const productsPimalion = getProductsPimalion(categorySlug, options, productsBody);
 
-                    if (isShopServiceLog)  {
-                       // console.log(`<<< ShopService.getTypeProducts().getProducts() Output productsPimalion -> %O`, productsPimalion);
+                    if (this.isViewConsole)  {
+                       // console.log(`--srv-- ShopService.getTypeProducts().getProducts() Output productsPimalion -> %O`, productsPimalion);
                     }
 
                     return productsPimalion;
@@ -547,7 +554,7 @@ export class ShopService {
                 .pipe(
                    tap( n=>
                     {
-                        if (isShopServiceLog)  {console.log('ShopService  delayTest -> %o', delayTest)}
+                        if (this.isViewConsole)  {console.log('--srv-- ShopService  delayTest -> %o', delayTest)}
                     }),
                    delay(delayTest)
                );
@@ -558,9 +565,9 @@ export class ShopService {
 
                 return product.pipe(
                     tap(data=> {
-                        if (isShopServiceLog)  {
-                            console.log(`*** ShopService.getProduct() Input  productSlug -> %O `, productSlug);
-                            console.log(`*** ShopService.getProduct() Output product -> %O`, data);
+                        if (this.isViewConsole)  {
+                            console.log('--srv-- ShopService.getProduct() Input  productSlug -> %O ', productSlug);
+                            console.log('--srv-- ShopService.getProduct() Output product -> %O', data);
                         }
                     })
                 );
@@ -601,9 +608,9 @@ export class ShopService {
                     /*
                     switchMap(pimalionItemHtml => {
 
-                        if (isShopServiceLog)  {
-                            console.log(`>>> ShopService.getProduct() Input productId -> %O`, productId);
-                            // console.log(`>>> ShopService.getProduct() Input pimalionItemHtml-> %O`, pimalionItemHtml);
+                        if (this.isViewConsole)  {
+                            console.log(`--srv--  ShopService.getProduct() Input productId -> %O`, productId);
+                            // console.log(`--srv--  ShopService.getProduct() Input pimalionItemHtml-> %O`, pimalionItemHtml);
                         }
                         const productCor = getProductHtmlPimalion(productId, pimalionItemHtml);
 
@@ -651,14 +658,14 @@ export class ShopService {
                 .pipe(
                    tap( n=>
                     {
-                        if (isShopServiceLog)  {console.log('ShopService  delayTest -> %o', delayTest)}
+                        if (this.isViewConsole)  {console.log('--srv-- ShopService  delayTest -> %o', delayTest)}
                     }),
                    delay(delayTest)
                );
                break;
             case 'demo.sourcing.pm':
 
-                if (isShopServiceLog)  {console.log('ShopService.getBestsellers()')}
+                if (this.isViewConsole)  {console.log('--srv-- ShopService.getBestsellers()')}
 
                 const options:ListOptions = {
                    page: 0,
@@ -705,7 +712,7 @@ export class ShopService {
                 .pipe(
                    tap( n=>
                     {
-                        if (isShopServiceLog)  {console.log('ShopService  delayTest -> %o', delayTest)}
+                        if (this.isViewConsole)  {console.log('--srv-- ShopService  delayTest -> %o', delayTest)}
                     }),
                    delay(delayTest)
                );
@@ -713,7 +720,7 @@ export class ShopService {
                break;
             case 'demo.sourcing.pm':
 
-                if (isShopServiceLog)  {console.log('ShopService.getTopRated() ')}
+                if (this.isViewConsole)  {console.log('--srv-- ShopService.getTopRated() ')}
 
                 const options:ListOptions = {
                    page: 0,
@@ -760,14 +767,14 @@ export class ShopService {
                 .pipe(
                    tap( n=>
                     {
-                        if (isShopServiceLog)  {console.log('ShopService  delayTest -> %o', delayTest)}
+                        if (this.isViewConsole)  {console.log('--srv-- ShopService  delayTest -> %o', delayTest)}
                     }),
                    delay(delayTest)
                );
                break;
             case 'demo.sourcing.pm':
 
-                if (isShopServiceLog)  {console.log('ShopService.getSpecialOffers()')}
+                if (this.isViewConsole)  {console.log('--srv-- ShopService.getSpecialOffers()')}
 
                 const options:ListOptions = {
                    page: 0,
@@ -818,14 +825,14 @@ export class ShopService {
                 .pipe(
                    tap( n=>
                        {
-                           if (isShopServiceLog)  {console.log('ShopService  delayTest -> %o', delayTest)}
+                           if (this.isViewConsole)  {console.log('--srv-- ShopService  delayTest -> %o', delayTest)}
                        }),
                        delay(delayTest)
                );
                break;
             case 'demo.sourcing.pm':
 
-                if (isShopServiceLog)  {console.log('ShopService.getFeaturedProducts()')}
+                if (this.isViewConsole)  {console.log('--srv-- ShopService.getFeaturedProducts()')}
 
                 const options:ListOptions = {
                    page: 0,
@@ -876,14 +883,14 @@ export class ShopService {
                 .pipe(
                    tap( n=>
                     {
-                        if (isShopServiceLog)  {console.log('ShopService  delayTest -> %o', delayTest)}
+                        if (this.isViewConsole)  {console.log('--srv-- ShopService  delayTest -> %o', delayTest)}
                     }),
                    delay(delayTest)
                );
                break;
             case 'demo.sourcing.pm':
 
-                if (isShopServiceLog)  {console.log('ShopService.getLatestProducts() ')}
+                if (this.isViewConsole)  {console.log('--srv-- ShopService.getLatestProducts() ')}
 
                 const options:ListOptions = {
                    page: 0,
@@ -926,14 +933,14 @@ export class ShopService {
                 .pipe(
                    tap( n=>
                     {
-                        if (isShopServiceLog)  {console.log('ShopService  delayTest -> %o', delayTest)}
+                        if (this.isViewConsole)  {console.log('--srv-- ShopService  delayTest -> %o', delayTest)}
                     }),
                    delay(delayTest)
                );
                break;
             case 'demo.sourcing.pm':
 
-                if (isShopServiceLog)  {console.log('ShopService.getRelatedProducts()')}
+                if (this.isViewConsole)  {console.log('--srv-- ShopService.getRelatedProducts()')}
 
                 const options:ListOptions = {
                    page: 0,
@@ -970,7 +977,7 @@ export class ShopService {
 
         // This is for demonstration purposes only. Remove it and use the code above.
 
-        if (isShopServiceLog)  {console.log('-srv-->> ShopService.getSuggestions() filterOption ->%o', filterOption)}
+        if (this.isViewConsole)  {console.log('--srv-- ShopService.getSuggestions() filterOption ->%o', filterOption)}
 
 
         switch (mode) {
@@ -985,7 +992,7 @@ export class ShopService {
                 .pipe(
                    tap( n=>
                     {
-                        if (isShopServiceLog)  {console.log('ShopService  delayTest -> %o', delayTest)}
+                        if (this.isViewConsole)  {console.log('--srv-- ShopService  delayTest -> %o', delayTest)}
                     }),
                    delay(delayTest)
                );
@@ -1013,7 +1020,7 @@ export class ShopService {
                    // sort: []
                 };
 
-                if (isShopServiceLog)  {console.log('-srv-->> ShopService.getSuggestions() options ->%o', options)}
+                if (this.isViewConsole)  {console.log('--srv-- ShopService.getSuggestions() options ->%o', options)}
 
                 return this.getTypeProducts(null, options, 5);
                 break;

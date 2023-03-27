@@ -16,6 +16,8 @@ export interface IBrandsServiceInterface {
 })
 export class BrandsService implements IBrandsServiceInterface {
 
+    isViewConsole = true;
+
   private BrandsInit: Brand[] = [
     { id:'1', image: '', name: 'LEGRAND', slug: 'LEGRAND', count: 111},
     { id:'2', image: '',  name: 'ARNOULD', slug: 'ARNOULD',  count: 222},
@@ -25,7 +27,7 @@ export class BrandsService implements IBrandsServiceInterface {
 
   public BrandsChangedSub$ =  new BehaviorSubject<Brand[]>(this.BrandsInit);
   public BrandsChanged$ = this.BrandsChangedSub$.asObservable();
-  public BrandsChangedValue = this.BrandsChangedSub$.getValue();
+  // public BrandsChangedValue = this.BrandsChangedSub$.getValue();
 
   constructor() {
   }
@@ -40,7 +42,9 @@ export class BrandsService implements IBrandsServiceInterface {
   }
   public next(brands: Brand[]) {
     if (brands) {
-        console.log('*srv*** BrandsService.next() brands -> %O', brands);
+        if (this.isViewConsole) {
+            console.log('--srv-- BrandsService.next() brands -> %O', brands);
+        }
       this.BrandsChangedSub$.next(brands);
     } else {
         this.BrandsChangedSub$.next(this.BrandsInit);

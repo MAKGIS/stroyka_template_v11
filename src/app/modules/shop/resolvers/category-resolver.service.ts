@@ -11,6 +11,9 @@ import { ShopService } from 'src/app/shared/api/shop.service';
     providedIn: 'root'
 })
 export class CategoryResolverService implements Resolve<any> {
+
+    isViewConsole = true;
+
     constructor(
         private root: RootService,
         private router: Router,
@@ -24,8 +27,10 @@ export class CategoryResolverService implements Resolve<any> {
             return null;
         }
 
-        console.log("CategoryResolverService.resolve() route.params.categorySlug -> %o  route.data.categorySlug -> %o",
+        if (this.isViewConsole) {
+            console.log('--rsr-- CategoryResolverService.resolve() route.params.categorySlug -> %o  route.data.categorySlug -> %o',
                   route.params.categorySlug, route.data.categorySlug);
+        }
 
         return this.shop.getCategory(categorySlug).pipe(
             catchError(error => {

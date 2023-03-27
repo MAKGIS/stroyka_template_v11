@@ -34,7 +34,7 @@ interface FilterListValueDef {
 }
 type FilterValueDef = number | FilterListValueDef[];
 
-const isPtoductListPimalionLog = true;
+const isPtoductListConsole = true;
 
 // ???
 /*
@@ -48,7 +48,7 @@ const brandsFilters_const = [
 /*
 export function getCategoriesPimalion_Old(pimalionCategories: any): Observable<Category[]> {
 
-    // console.log(`<<< function getCategoriesPimalion pimalionCategories -> %O`, pimalionCategories);
+    // console.log(`--fn--  function getCategoriesPimalion pimalionCategories -> %O`, pimalionCategories);
 
     const pimalionCategoriesCor: Category[] = [];
 
@@ -65,7 +65,7 @@ export function getCategoriesPimalion_Old(pimalionCategories: any): Observable<C
             customFields: {}
         };
 
-        // console.log(`<<< function getCategoriesPimalion brandCor -> %O`, categoryCor);
+        // console.log(`--fn--  function getCategoriesPimalion brandCor -> %O`, categoryCor);
         pimalionCategoriesCor.push(categoryCor);
     });
 
@@ -76,8 +76,8 @@ export function getCategoriesPimalion_Old(pimalionCategories: any): Observable<C
 
 export function getCategoriesPimalion(pimalionCategories: CategoryPimalion[]): Observable<Category[]> {
 
-    // if (isPtoductListPimalionLog) {
-    //     console.log(`<<< function getCategoriesPimalion() pimalionCategories -> %O`, pimalionCategories);
+    // if (isPtoductListConsole) {
+    //     console.log(`--fn--  function getCategoriesPimalion() pimalionCategories -> %O`, pimalionCategories);
     // }
 
     const pimalionCategoriesCor: Category[] = [];
@@ -97,8 +97,8 @@ export function getCategoriesPimalion(pimalionCategories: CategoryPimalion[]): O
         pimalionCategoriesCor.push(categoryCor);
     };
 
-    if (isPtoductListPimalionLog) {
-        console.log(`<<< function getCategoriesPimalion() pimalionCategoriesCor -> %O`, pimalionCategoriesCor);
+    if (isPtoductListConsole) {
+        console.log(`--fn-- getCategoriesPimalion() pimalionCategoriesCor -> %O`, pimalionCategoriesCor);
     }
 
     // setShopCategoriesDef(pimalionCategoriesCor);
@@ -108,8 +108,8 @@ export function getCategoriesPimalion(pimalionCategories: CategoryPimalion[]): O
 /*
 export function getCategyPimalion(pimalionCategories: CategoryPimalion[], slug: string): Observable<Category> {
 
-    // if (isPtoductListPimalionLog) {
-    //     console.log(`<<< function getCategyPimalion() pimalionCategories -> %O  slug -> %o`, pimalionCategories, slug);
+    // if (isPtoductListConsole) {
+    //     console.log(`--fn-- getCategyPimalion() pimalionCategories -> %O  slug -> %o`, pimalionCategories, slug);
     // }
 
     // const pimalionCategoriesCor: Category[] = [];
@@ -129,8 +129,8 @@ export function getCategyPimalion(pimalionCategories: CategoryPimalion[], slug: 
 
         if (categoryCor.slug === slug) {
 
-            if (isPtoductListPimalionLog) {
-                console.log(`<<< function getCategyPimalion() categoryCor -> %O`, categoryCor);
+            if (isPtoductListConsole) {
+                console.log(`--fn-- getCategyPimalion() categoryCor -> %O`, categoryCor);
             }
 
             return timer(0).pipe(map(() => JSON.parse(JSON.stringify(categoryCor))));
@@ -153,8 +153,8 @@ export function getCategyPimalion(pimalionCategories: CategoryPimalion[], slug: 
 /*
 export function getBrandsPimalion(pimalionBrands: BrandPimalion[]): Observable<Brand[]> {
 
-    // if (isPtoductListPimalionLog) {
-    //     console.log(`<<< function getBrandsPimalion() pimalionBrands -> %O`, pimalionBrands);
+    // if (isPtoductListConsole) {
+    //     console.log(`--fn-- getBrandsPimalion() pimalionBrands -> %O`, pimalionBrands);
     // }
 
     const pimalionBrandsCor: Brand[] = [];
@@ -174,8 +174,8 @@ export function getBrandsPimalion(pimalionBrands: BrandPimalion[]): Observable<B
         pimalionBrandsCor.push(brandCor);
     });
 
-    if (isPtoductListPimalionLog) {
-        console.log(`<<< function getBrandsPimalion() pimalionBrandsCor -> %O`, pimalionBrandsCor);
+    if (isPtoductListConsole) {
+        console.log(`--fn-- getBrandsPimalion() pimalionBrandsCor -> %O`, pimalionBrandsCor);
     }
 
     // setShopBrandDef(pimalionBrandsCor);
@@ -186,8 +186,8 @@ export function getBrandsPimalion(pimalionBrands: BrandPimalion[]): Observable<B
 /*
 export function getProductHtmlPimalion(productId: string, pimalionItemHtml: string): Observable<Product> {
 
-    if (isPtoductListPimalionLog) {
-         console.log(`<<< function getProductHtmlPimalion pimalionItemHtml -> %O`, pimalionItemHtml);
+    if (isPtoductListConsole) {
+         console.log(`--fn--  function getProductHtmlPimalion pimalionItemHtml -> %O`, pimalionItemHtml);
     }
 
     const begPosition = pimalionItemHtml.indexOf('<body>', 0) + 6;
@@ -195,8 +195,8 @@ export function getProductHtmlPimalion(productId: string, pimalionItemHtml: stri
 
     const endPosition = pimalionItemHtml.indexOf('</body>', begPosition) - 1;
 
-    if (isPtoductListPimalionLog) {
-        console.log(`<<< function getProductHtmlPimalion begPosition -> %O   endPosition -> %O`, begPosition, endPosition);
+    if (isPtoductListConsole) {
+        console.log(`--fn-- getProductHtmlPimalion begPosition -> %O   endPosition -> %O`, begPosition, endPosition);
     }
 
     let pimalionItemHtmlCor = pimalionItemHtml.substring(begPosition, endPosition);
@@ -228,8 +228,8 @@ export function getProductHtmlPimalion(productId: string, pimalionItemHtml: stri
         pimalionHtml : pimalionItemHtmlCor,
     };
 
-    if (isPtoductListPimalionLog) {
-        console.log(`<<< function getProductHtmlPimalion pimalionItemHtmlCor -> %O`, pimalionItemHtmlCor);
+    if (isPtoductListConsole) {
+        console.log(`--fn-- getProductHtmlPimalion pimalionItemHtmlCor -> %O`, pimalionItemHtmlCor);
     }
 
     return timer(0).pipe(map(() => JSON.parse(JSON.stringify(productCor))));
@@ -258,31 +258,31 @@ export function getProductsListPimalion(categoriesService: CategoriesService, br
         // {type: 'color', slug: 'color', name: 'Color'},
     ];
 
-    if (isPtoductListPimalionLog) {
-        console.log(`<<< function getProductsListPimalion() (1) pimalionBody -> %O`, pimalionBody);
-       // console.log(`getProductsListPimalion() (1) filtersDef -> %O`, filtersDef);
+    if (isPtoductListConsole) {
+        console.log(`--fn-- getProductsListPimalion() (1) pimalionBody -> %O`, pimalionBody);
+       // console.log(`--fn-- getProductsListPimalion() (1) filtersDef -> %O`, filtersDef);
     }
 
     const pimalionItemsCor: Product[] = [];
 
     pimalionBody.items.forEach(item => {
 
-        if (isPtoductListPimalionLog) {
-           //  console.log(`getProductsListPimalion() (2) item -> %O`, item);
+        if (isPtoductListConsole) {
+           //  console.log(`--fn-- getProductsListPimalion() (2) item -> %O`, item);
         }
 
         const productCor: Product = new ProductItem(item);
 
-         if (isPtoductListPimalionLog) {
-           // console.log(`getProductsListPimalion() (3) productCor -> %O`, productCor);
+         if (isPtoductListConsole) {
+           // console.log('--fn-- getProductsListPimalion() (3) productCor -> %O`, productCor);
          }
 
         pimalionItemsCor.push(productCor);
      });
 
 
-     if (isPtoductListPimalionLog) {
-        console.log('getProductsListPimalion() (4) pimalionItemsCor -> %O', pimalionItemsCor);
+     if (isPtoductListConsole) {
+        console.log('--fn-- getProductsListPimalion() (4) pimalionItemsCor -> %O', pimalionItemsCor);
      }
         // get items Pimalion
 
@@ -297,8 +297,10 @@ export function getProductsListPimalion(categoriesService: CategoriesService, br
 
     const categoriesFilter: CategoryFilterItem[] = categoriesFilter_ as CategoryFilterItem[];
 
-    console.log('*** fn *** getProductsListPimalion() categoriesFilter -> %o', categoriesFilter);
-
+    if (isPtoductListConsole) {
+        console.log('--fn-- getProductsListPimalion() categoriesFilter -> %o', categoriesFilter);
+    }
+    // mak ???
     // Make filters.
     if (categorySlug === null) {
         /*
@@ -313,16 +315,16 @@ export function getProductsListPimalion(categoriesService: CategoriesService, br
             ],
         });
         */
-        // filters.push({
-        //     type: 'categories',
-        //     slug: 'categories',
-        //     name: 'Categorieswww',
-        //     root: true,
-        //     items: [
-        //       // mak  ...shopCategoriesTree.map(x => makeCategoryFilterItem('child', x)),
-        //       ...categories.map(x => makeCategoryFilterItem('child', x)),
-        //     ],
-        // });
+        filters.push({
+         type: 'categories',
+          slug: 'categories',
+           name: 'Categories',
+            root: true,
+             items: [
+              // mak  ...shopCategoriesTree.map(x => makeCategoryFilterItem('child', x)),
+            ...categories.map(x => makeCategoryFilterItem('child', x)),
+             ],
+         });
 
     } else {
         const category = shopCategoriesList.find(x => x.slug === categorySlug);
@@ -361,8 +363,8 @@ export function getProductsListPimalion(categoriesService: CategoriesService, br
 
      const brandsFilter = brandsService.BrandsChangedSub$.getValue() as FilterItem[];
 
-    if (isPtoductListPimalionLog) {
-        console.log('getProductsListPimalion() (4.b) brandsFilter -> %O', brandsFilter);
+    if (isPtoductListConsole) {
+        console.log('--fn-- getProductsListPimalion() (4.b) brandsFilter -> %O', brandsFilter);
      }
 
     let filterBrand: Filter = { type: 'check', slug: 'brand', name: 'Marques', value: [], items: brandsFilter };
@@ -440,8 +442,8 @@ export function getProductsListPimalion(categoriesService: CategoriesService, br
         filterValues,
     };
 
-    if (isPtoductListPimalionLog) {
-        console.log(`getProductsListPimalion() (5) response -> %O`, response);
+    if (isPtoductListConsole) {
+        console.log(`--fn-- getProductsListPimalion() (5) response -> %O`, response);
      }
 
     // return timer(350).pipe(map(() => JSON.parse(JSON.stringify(response))));
@@ -719,16 +721,16 @@ function sortFilterItems(filterType: string, filterSlug: string, items: FilterIt
 
 export function getProductsPimalion( categorySlug: string|null, options: ListOptions, pimalionBody: any): Observable<Product[]> {
 
-    if (isPtoductListPimalionLog) {
-        console.log(`>>> function getProductsPimalion pimalionBody -> %O`, pimalionBody);
+    if (isPtoductListConsole) {
+        console.log(`--fn-- function getProductsPimalion pimalionBody -> %O`, pimalionBody);
     }
 
     const pimalionItemsCor: Product[] = [];
 
         pimalionBody.items.forEach(item => {
 
-            if (isPtoductListPimalionLog) {
-              //  console.log(`<<< function getProductsPimalion item -> %O`, item);
+            if (isPtoductListConsole) {
+              //  console.log(`--fn--  function getProductsPimalion item -> %O`, item);
             }
 
             const productCor: Product = new ProductItem(item);
@@ -737,8 +739,8 @@ export function getProductsPimalion( categorySlug: string|null, options: ListOpt
         });
     //}
 
-    if (isPtoductListPimalionLog) {
-        console.log(`<<< function getProductsPimalion productCor -> %O`, pimalionItemsCor);
+    if (isPtoductListConsole) {
+        console.log(`--fn-- function getProductsPimalion productCor -> %O`, pimalionItemsCor);
     }
 
      return of(pimalionItemsCor);

@@ -15,6 +15,8 @@ export interface ICategoriesServiceInterface {
 })
 export class CategoriesService implements ICategoriesServiceInterface {
 
+    isViewConsole = true;
+
   private CategoriesInit: Category[] = [
     { parents: null, children: null, id:'AC_7/', type: 'shop', name: 'AciersInit', slug: 'Aciers', path: '', image: '', items: 1, customFields: {}},
     { parents: null, children: null, id:'DE_2/', type: 'shop', name: 'DécorationInit', slug: 'Electricité', path: '', image: '', items: 1, customFields: {}},
@@ -22,7 +24,7 @@ export class CategoriesService implements ICategoriesServiceInterface {
 
   public CategoriesChangedSub$ =  new BehaviorSubject<Category[]>(this.CategoriesInit);
   public CategoriesChanged$ = this.CategoriesChangedSub$.asObservable();
-  public CategoriesChangedValue = this.CategoriesChangedSub$.getValue();
+  // public CategoriesChangedValue = this.CategoriesChangedSub$.getValue();
 
   constructor() {
   }
@@ -37,7 +39,9 @@ export class CategoriesService implements ICategoriesServiceInterface {
   }
   public next(categories: Category[]) {
     if (categories) {
-        console.log('*srv*** CategoriesService.next() categories -> %O', categories);
+        if (this.isViewConsole) {
+            console.log('--srv-- CategoriesService.next() categories -> %O', categories);
+        }
       this.CategoriesChangedSub$.next(categories);
     } else {
         this.CategoriesChangedSub$.next(this.CategoriesInit);

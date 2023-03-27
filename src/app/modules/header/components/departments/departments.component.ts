@@ -60,7 +60,7 @@ export class DepartmentsComponent implements OnInit, OnDestroy, AfterViewInit, A
         const content = this.element.querySelector('.departments__links-wrapper') as HTMLElement;
 
         this.items = this.departmentsService.DepartmentsChangedSub$.getValue();
-        console.log('-- cmp -- DepartmentsComponent.ngOnInit() items -> %o', this.items);
+        console.log('--cmp-- DepartmentsComponent.ngOnInit() items -> %o', this.items);
 
         merge(
             this.header.navPanelPositionState$,

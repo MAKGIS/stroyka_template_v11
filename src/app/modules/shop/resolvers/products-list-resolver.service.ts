@@ -7,13 +7,20 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { RootService } from '../../../shared/services/root.service';
 import { ListOptions, ShopService } from '../../../shared/api/shop.service';
 
+
+
 export function parseProductsListParams(params: Params): ListOptions {
+
+    const isViewProdListResolverConsole = true;
+
     const options: ListOptions = {};
 
-    console.log('-->>> ProductsListResolverService.parseProductsListParams() 1 params -> %o', params);
-    console.log('-->>> ProductsListResolverService.parseProductsListParams() 1 params.page -> %o', params.page);
-    console.log('-->>> ProductsListResolverService.parseProductsListParams() 1 params.limit -> %o', params.limit);
-    console.log('-->>> ProductsListResolverService.parseProductsListParams() 1 params.sort -> %o', params.sort);
+    // if (isViewProdListResolverConsole) {
+    //     console.log('--rsr fn -- ProductsListResolverService.parseProductsListParams() 1 params -> %o', params);
+    //     console.log('--rsr fn -- ProductsListResolverService.parseProductsListParams() 1 params.page -> %o', params.page);
+    //     console.log('--rsr fn -- ProductsListResolverService.parseProductsListParams() 1 params.limit -> %o', params.limit);
+    //     console.log('--rsr fn -- ProductsListResolverService.parseProductsListParams() 1 params.sort -> %o', params.sort);
+    // }
 
     if (params.page) {
         options.page = parseFloat(params.page);
@@ -42,7 +49,9 @@ export function parseProductsListParams(params: Params): ListOptions {
     }
     // mak
    // options.filters = [{'key': 'brandName.keyword', 'value': 'LEGRAND'}];
-    console.log('-->>> ProductsListResolverService.parseProductsListParams() 2 options -> %o', options);
+    if (isViewProdListResolverConsole) {
+        console.log('--rsr fn -- ProductsListResolverService.parseProductsListParams() 2 options -> %o', options);
+    }
 
     return options;
 }
@@ -51,6 +60,9 @@ export function parseProductsListParams(params: Params): ListOptions {
     providedIn: 'root'
 })
 export class ProductsListResolverService implements Resolve<ProductsList> {
+
+    isViewConsole = true;
+
     constructor(
         private root: RootService,
         private router: Router,
@@ -63,12 +75,15 @@ export class ProductsListResolverService implements Resolve<ProductsList> {
            // mak ???
             return  this.shopService.getCategoriesList().pipe(
                 mergeMap( categories => {
-                    console.log('--->>> ProductsListResolverService-getCategoriesList categories -> %o', categories);
 
+                    if (this.isViewConsole) {
+                        console.log('--rsr-- ProductsListResolverService-getCategoriesList categories -> %o', categories);
+                    }
                     return this.shopService.getPopularBrands().pipe(
                     mergeMap( brands => {
-                        console.log('--->>> ProductsListResolverService-getPopularBrands brands -> %o', brands);
-
+                        if (this.isViewConsole) {
+                            console.log('--rsr-- ProductsListResolverService-getPopularBrands brands -> %o', brands);
+                        }
                         return this.shopService.getProductsList(categorySlug, parseProductsListParams(route.queryParams)).pipe(
                             catchError(error => {
                                 if (error instanceof HttpErrorResponse && error.status === 404) {

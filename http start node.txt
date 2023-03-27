@@ -16,6 +16,7 @@ https://demo.sourcing.pm/backend/swagger/ui/index#/Shop
 ---- Deploy to gitHub -------------------------------
 1.
 > ng build --prod --base-href https://makgis.github.io/stroyka_template_v11/ && npx ngh --dir=docs
+> ng build --prod && npx ngh --dir=docs
 
 2.
 edit index.html  !!!
