@@ -22,7 +22,7 @@ export class ProductTabsComponent {
 
     specification: ProductFeaturesSection[] = specification;
     reviews: Review[] = reviews;
-    generateTitleText = "G�n�rer les contenus";
+    generateTitleText = "Générer les contenus";
     generateAttributesText = "Generer les contenus";
 
     constructor(private pimalionCloudService: PimalionCloudService) { }
