@@ -27,6 +27,9 @@
         <div class="product-card__name">
             <a appClick [routerLink]="root.product(product)">{{ product.name }}</a>
         </div>
+        <div class="product-card__Marque_name">
+            {{ product.brandName }}
+        </div>
         <div class="product-card__rating">
             <app-rating [value]="product.rating"></app-rating>
             <div class="product-card__rating-legend">{{ product.reviews }} Reviews</div>

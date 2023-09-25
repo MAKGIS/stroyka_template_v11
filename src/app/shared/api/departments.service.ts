@@ -15,6 +15,8 @@ export interface IDepartmentsServiceInterface {
     getDepartments(): NavigationLink[];
   }
 
+  const isDepartmentsServiceLog = true;
+
 @Injectable({
     providedIn: 'root'
 })

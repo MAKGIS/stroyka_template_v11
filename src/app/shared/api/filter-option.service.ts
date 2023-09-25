@@ -30,13 +30,12 @@ export   class FilterOptionItem implements IFilterOption {
     }
 }
 
+const isFilterOptionServiceLog = true;
 
 @Injectable({
     providedIn: 'root'
 })
 export class FilterOptionService implements IFilterOptionServiceInterface {
-
-    isViewConsole = true;
 
   private filterOptionInit: IFilterOption = {
     filtersBrand: []
@@ -58,7 +57,7 @@ export class FilterOptionService implements IFilterOptionServiceInterface {
   }
   public next(filterOption: IFilterOption) {
     if (filterOption) {
-        if (this.isViewConsole) {
+        if (isFilterOptionServiceLog) {
             console.log('--srv-- FilterOptionService.next() filterOption -> %O', filterOption);
         }
       this.FilterOptionChangedSub$.next(filterOption);

@@ -38,11 +38,15 @@
 
                 <!-- <button class="btn btn-primary btn-sm">Générer une description</button> -->
                 <!-- <button type="submit" class="btn btn-primary mt-2 mt-md-3 mt-lg-4">Générer un titre</button> -->
-                <button type="submit" (click)="getTitre()" class="btn btn-primary mt-2 mt-md-3 mt-lg-4">Générer un titre</button>
+                <button type="submit" (click)="getTitre()" class="btn btn-primary mt-2 mt-md-3 mt-lg-4">
+                        <span *ngIf = isLoadDescriptionII_1 class="spinner-border spinner-border-sm spinner-location" role="status" aria-hidden="true"></span>
+                        <span *ngIf = isLoadDescriptionII_1 class="sr-only spinner-location">Loading...</span>
+                        Générer un titre
+                </button>
 
                 <button type="submit" class="btn btn-primary mt-2 mt-md-3 mt-lg-4" style="margin-left: 10px;">Générer une description</button>
                 <button type="submit" class="btn btn-success mt-2 mt-md-3 mt-lg-4" style="margin-left: 10px;">Sauver la description</button>
-                
+
             </div>
         </div>
 
@@ -140,7 +144,7 @@
                       <a *ngFor="let badge of product.badges" href="{{ badge }}" appClick>{{ badge }}</a>
                     </div>
                   </div>
-                  
+
 
                 <!-- <button class="btn btn-primary btn-sm">Générer une description</button> -->
                 <button type="submit" class="btn btn-primary mt-2 mt-md-3 mt-lg-4">Générer mots clés</button>
@@ -215,10 +219,10 @@
                 <h3 class="spec__header">Comparateur de prix</h3>
 
                 Aucun produit chargé
-           
+
            </div>
         </div>
 
-        
+
     </div>
 </div>

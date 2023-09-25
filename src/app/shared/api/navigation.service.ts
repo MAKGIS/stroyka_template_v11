@@ -14,6 +14,7 @@ export interface INavigationServiceInterface {
     getNavigation(): NavigationLink[];
   }
 
+  const isNavigationServiceLog = true;
 
 @Injectable({
     providedIn: 'root'

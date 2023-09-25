@@ -54,7 +54,7 @@ class BrandItem {
     slug: string;
 
     image: string = 'assets/images/logos/logo-1.png';
-    count: number;
+    count?: number;
 
     constructor( id: string, name: string, slug: string, filterCount: number ) {
 
@@ -236,6 +236,8 @@ export class ProductItem implements Product {
     relatedProducts?: any[];
     productVariants?: any[];
 
+    agentId?: string;
+    keywords?: any[];
 
     constructor( itemData: any ) {
 
@@ -256,7 +258,7 @@ export class ProductItem implements Product {
         this.urls = getSiteUrlForProduct(itemData.images);
         this.imagesPimalion = itemData.images;
 
-        this.badges = itemData.keywords; //['hot']; // badges: string[];
+        this.badges = []; // itemData.keywords; //['hot']; // badges: string[];
 
         this.rating = 2; // rating: number;
         this.reviews = 3; // reviews: number;
@@ -297,25 +299,130 @@ export class ProductItem implements Product {
     }
 };
 
-
+const isPimalionCloudServiceLog = true;
 @Injectable({
   providedIn: 'root'
 })
 export class PimalionCloudService {
 
-    isViewConsole = true;
 
   constructor(private http: HttpClient) { }
 
-  // 01 Post Homepage Get all categories
-  getCloudCategoriesList(categoriesService: CategoriesService): Observable<Category[]> {
+  getCategoriesList( facets: any ): any {
+
+    const itemsCategories = facets.find((item) => item.facetName === "Categories");
+
+    if (isPimalionCloudServiceLog) {
+       // console.log('- fn -- getCategoriesList() itemsCategories -> %O', itemsCategories);
+    }
+
+    const itemData = itemsCategories.filters;
+    if (isPimalionCloudServiceLog) {
+       // console.log('- fn -- getCategoriesList() itemData -> %O', itemData);
+    }
+
+    var i: number = 0;
+    var num: number = 0;
+    const categories = itemData.map(value => {
+        i = i + 1;
+        num = num + value.filterCount;
+        // return new CategoryItem(i + '', value.filterValue, value.filterValue, value.filterCount);
+        // mak ???
+        return new CategoryItem(value.filterKey, value.filterValue, value.filterValue, value.filterCount);
+    })
+
+    if (isPimalionCloudServiceLog) {
+        // console.log('- fn -- getCategoriesList() categories -> %O  num -> %o', categories, num);
+    }
+
+    return {categories, num};
+  }
+
+    // 01 Post Homepage Get all categories
+    getCloudCategoriesList(categoriesService: CategoriesService): Observable<Category[]> {
+
+        // const url = `${environment.pimalionCloudUrl}/api/shop/categories`;
+        // mak ???
+        const url = `${environment.pimalionCloudUrl}/api/shop/search`;
+
+        const   body = {
+            page: 0,
+            pageSize: 3,
+        };
+
+        if (isPimalionCloudServiceLog) {
+            console.log('PimalionCloudService.getCloudCategoriesList()  url -> %o  body -> %o', url, body);
+        }
+
+         // return this.http.get<CategoryPimalion[]>(url, httpOptions_cat)
+        const mainHeaders = [];
+
+        return this.http.post<any>( url, body, {
+                headers: new HttpHeaders()
+                  .set('Content-Type', 'application/json')
+                  .set('Accept', 'application/json')
+                  , responseType: 'json'
+                  , observe: 'response'
+            })
+        .pipe(
+                    tap((response: any) => {
+                        if (isPimalionCloudServiceLog) {
+                            console.log('- srv --  PimalionCloudService.getCloudCategoriesList() response -> %O', response);
+                        }
+                    }),
+                    map((response: any) => {
+                        // response.body.products
+                        // response.body.facets
+    /*
+                        const itemsCategories = response.body.facets.find((item) => item.facetName === "Categories");
+                        if (isPimalionCloudServiceLog) {
+                           // console.log('- srv --  PimalionCloudService.getCloudCategoriesList() itemsCategories -> %O', itemsCategories);
+                        }
+
+                        const itemData = itemsCategories.filters;
+                        if (isPimalionCloudServiceLog) {
+                           // console.log('- srv --  PimalionCloudService.getCloudCategoriesList() itemData -> %O', itemData);
+                        }
+                        var i: number = 0;
+                        var num: number = 0;
+                        const categories = itemData.map(value => {
+                            i = i + 1;
+                            num = num + value.filterCount;
+                            // return new CategoryItem(i + '', value.filterValue, value.filterValue, value.filterCount);
+                            // mak ???
+                            return new CategoryItem(value.filterKey, value.filterValue, value.filterValue, value.filterCount);
+
+                        })
+    */
+                        const facets = response.body.facets;
+
+                        const { categories, num } = this.getCategoriesList( facets );
+
+                        if (isPimalionCloudServiceLog) {
+                            console.log('- srv --  PimalionCloudService.getCloudCategoriesList() categories -> %O  num -> %o', categories, num);
+                        }
+
+                        categoriesService.next(categories);
+
+                        return categories;
+                    }),
+                    catchError((err: any): any => {
+                        console.log('- srv --  Error PimalionCloudService.getCloudCategoriesList() -> %O', err);
+                        return of([]);
+                    })
+                )
+        }
+
+
+  // 01 Post Homepage Get all categories json
+  getCloudCategoriesList_json(categoriesService: CategoriesService): Observable<Category[]> {
 
     // const url = `${environment.pimalionCloudUrl}/api/shop/categories`;
     // mak ???
     const url = 'assets/api/categories/categories_fr.json';
 
-    if (this.isViewConsole) {
-        console.log('--srv-- PimalionCloudService.getCloudCategoriesList() -> %o ', url);
+    if (isPimalionCloudServiceLog) {
+        console.log('- srv -- PimalionCloudService.getCloudCategoriesList() -> %o ', url);
     }
 
       const httpOptions_cat = {
@@ -329,8 +436,8 @@ export class PimalionCloudService {
     .pipe(
 
                 tap((items: any) => {
-                    if (this.isViewConsole) {
-                        console.log('--srv-- PimalionCloudService.getCloudCategoriesList() items -> %O', items);
+                    if (isPimalionCloudServiceLog) {
+                        console.log('- srv -- PimalionCloudService.getCloudCategoriesList() items -> %O', items);
                     }
                 }),
                 map(itemData => {
@@ -344,8 +451,8 @@ export class PimalionCloudService {
 
                     })
 
-                    if (this.isViewConsole) {
-                        console.log('--srv-- PimalionCloudService.getCloudCategoriesList() categories -> %O', categories);
+                    if (isPimalionCloudServiceLog) {
+                        console.log('- srv -- PimalionCloudService.getCloudCategoriesList() categories -> %O', categories);
                     }
 
                     categoriesService.next(categories);
@@ -353,32 +460,131 @@ export class PimalionCloudService {
                     return categories;
                 }),
                 tap((items: any) => {
-                    if (this.isViewConsole) {
-                        console.log('--srv-- PimalionCloudService.getCloudCategoriesList() items(Categories) -> %O', items);
+                    if (isPimalionCloudServiceLog) {
+                        console.log('- srv -- PimalionCloudService.getCloudCategoriesList() items(Categories) -> %O', items);
                     }
                 }),
 
                 catchError((err: any): any => {
-                        console.log('--srv-- Error PimalionCloudService.getCloudCategoriesList() -> %O', err);
+                        console.log('- srv -- Error PimalionCloudService.getCloudCategoriesList() -> %O', err);
                     return of([]);
                 })
             )
     }
 
-  // 02 Post Brands A list of brands
+    getBrandsList(facets: any): any {
+
+        const itemsMarques = facets.find((item) => item.facetName === "Marques");
+
+        if (isPimalionCloudServiceLog) {
+            // console.log('- fn -- getBrandsList() itemsMarques -> %O', itemsMarques);
+        }
+
+        const itemData = itemsMarques.filters;
+        if (isPimalionCloudServiceLog) {
+            // console.log('- fn -- getBrandsList() itemData -> %O', itemData);
+        }
+        var i: number = 0;
+        var num: number = 0;
+
+        const brands = itemData.map(value => {
+            i = i + 1;
+            num = num + value.filterCount;
+            return new BrandItem(value.filterKey, value.filterValue, value.filterValue, value.filterCount);
+        });
+
+        if (isPimalionCloudServiceLog) {
+            // console.log('- fn -- getBrandsList() brands -> %O  num -> %o', brands, num);
+        };
+
+        return { brands, num };
+    }
+
+      // 02 Post Brands A list of brands
   getCloudBrandsList(brandsService: BrandsService): Observable<Brand[]> {
+
+    const url = `${environment.pimalionCloudUrl}/api/shop/search`;
+
+    const   body = {
+        page: 0,
+        pageSize: 3,
+    };
+
+    if (isPimalionCloudServiceLog) {
+        console.log('- srv --  PimalionCloudService.getCloudBrandsList()  url -> %o  body -> %o', url, body);
+    }
+
+    // return this.http.get<BrandPimalion[]>( url,  httpOptions)
+    const mainHeaders = [];
+
+    return this.http.post<any>( url, body, {
+            headers: new HttpHeaders()
+              .set('Content-Type', 'application/json')
+              .set('Accept', 'application/json')
+              , responseType: 'json'
+              , observe: 'response'
+        })
+        .pipe(
+            tap((response: any) => {
+                if (isPimalionCloudServiceLog) {
+                    console.log('- srv --  PimalionCloudService.getCloudBrandsList() response -> %O', response);
+                }
+            }),
+            map((response: any) => {
+                // response.body.products
+                // response.body.facets
+/*
+                const itemsMarques = response.body.facets.find((item) => item.facetName === "Marques");
+                if (isPimalionCloudServiceLog) {
+                    console.log('- srv --  PimalionCloudService.getCloudBrandsList() itemsMarques -> %O', itemsMarques);
+                }
+
+                const itemData = itemsMarques.filters;
+                if (isPimalionCloudServiceLog) {
+                    console.log('- srv --  PimalionCloudService.getCloudBrandsList() itemData -> %O', itemData);
+                }
+                var i: number = 0;
+                var num: number = 0;
+
+                const brands = itemData.map(value => {
+                    i = i + 1;
+                    num = num + value.filterCount;
+                    return new BrandItem(value.filterKey, value.filterValue, value.filterValue, value.filterCount);
+                });
+*/
+                const facets = response.body.facets;
+
+                const { brands, num } = this.getBrandsList(facets);
+
+                if (isPimalionCloudServiceLog) {
+                    console.log('- srv --  PimalionCloudService.getCloudBrandsList() brands -> %O  num -> %o', brands, num);
+                }
+
+                brandsService.next(brands);
+
+                return brands;
+            }),
+            catchError((err: any): any => {
+                console.log('- srv --  Error PimalionCloudService.getCloudBrandsList() -> %O', err);
+                return of([]);
+            })
+        );
+  }
+
+    // 02 Post Brands A list of brands http get https://demo.sourcing.pm/backend/api/shop/brands
+  getCloudBrandsList_get(brandsService: BrandsService): Observable<Brand[]> {
 
     const url = `${environment.pimalionCloudUrl}/api/shop/brands`;
 
-    if (this.isViewConsole) {
-        console.log('--srv-- PimalionCloudService.getCloudBrandsList() url -> %o', url);
+    if (isPimalionCloudServiceLog) {
+        console.log('- srv -- PimalionCloudService.getCloudBrandsList() url -> %o', url);
     }
 
     return this.http.get<BrandPimalion[]>( url,  httpOptions)
         .pipe(
             tap((items: any) => {
-                if (this.isViewConsole) {
-                    console.log('--srv-- PimalionCloudService.getCloudBrandsList() items -> %O', items);
+                if (isPimalionCloudServiceLog) {
+                    console.log('- srv -- PimalionCloudService.getCloudBrandsList() items -> %O', items);
                 }
             }),
             map(itemData => {
@@ -389,29 +595,23 @@ export class PimalionCloudService {
                     return new BrandItem(i + '', value.filterValue, value.filterValue, value.filterCount);
                 });
 
-                if (this.isViewConsole) {
-                    console.log('--srv-- PimalionCloudService.getCloudBrandsList() brands -> %O', brands);
+                if (isPimalionCloudServiceLog) {
+                    console.log('- srv -- PimalionCloudService.getCloudBrandsList() brands -> %O', brands);
                 }
 
                 brandsService.next(brands);
 
                 return brands;
             }),
-            tap((items: any) => {
-                if (this.isViewConsole) {
-                    console.log('--srv-- PimalionCloudService.getCloudBrandsList() items(Brands) -> %O', items);
-                }
-            }),
-
             catchError((err: any): any => {
-                console.log('--srv-- Error PimalionCloudService.getCloudBrandsList() -> %O', err);
+                console.log('- srv -- Error PimalionCloudService.getCloudBrandsList() -> %O', err);
                 return of([]);
             })
         );
   }
 
   // 03 Post /api/shop/search Product list. All products
-  getProductsList(body: any): Observable<any> {
+  getProductsList(body: any, brandsService: BrandsService): Observable<any> {
 
     const url = `${environment.pimalionCloudUrl}/api/shop/search`;
 
@@ -427,7 +627,7 @@ export class PimalionCloudService {
                         productStates: []
                     };
                     */
-                   console.log('--srv-- Error PimalionCloudService.getProductsList() body -> NULL');
+                   console.log('- srv -- Error PimalionCloudService.getProductsList() body -> NULL');
                    return of([]);
                 }
 // ???
@@ -444,8 +644,8 @@ export class PimalionCloudService {
                     };
          body = bodyQuery;
 */
-    if (this.isViewConsole) {
-        console.log('--srv-- PimalionCloudService.getProductsList() url -> %o  body -> %o', url, body);
+    if (isPimalionCloudServiceLog) {
+        console.log('- srv -- PimalionCloudService.getProductsList() url -> %o  body -> %o', url, body);
     }
 
     const mainHeaders = [];
@@ -459,14 +659,14 @@ export class PimalionCloudService {
         })
     .pipe(
          tap(data => {
-            if (this.isViewConsole) {
-                console.log('--srv-- PimalionCloudService.getProductsList() tap response -> %O', data);
+            if (isPimalionCloudServiceLog) {
+                console.log('- srv -- PimalionCloudService.getProductsList() tap response -> %O', data);
             }
          }),
          map((response: any) => {
 
-                if (this.isViewConsole) {
-                  //  console.log('--srv-- PimalionCloudService.getProductsList() map response -> %O', response);
+                if (isPimalionCloudServiceLog) {
+                    console.log('- srv -- PimalionCloudService.getProductsList() map response -> %O', response);
                 }
 
                  const body: any = {
@@ -476,14 +676,24 @@ export class PimalionCloudService {
                     pages: Number(response.headers.get('X-Total-Pages'))//  as number,   // 10  // 6632  //
                   };
 
-
-                  if (this.isViewConsole) {
-                    console.log('--srv-- PimalionCloudService.getProductsList() body -> %O', body);
+                  if (isPimalionCloudServiceLog) {
+                    console.log('- srv -- PimalionCloudService.getProductsList() body -> %O', body);
                   }
+
+                  const facets = response.body.facets;
+
+                  const { brands, num } = this.getBrandsList(facets);
+
+                  if (isPimalionCloudServiceLog) {
+                      console.log('- srv --  PimalionCloudService.getProductsList() brands -> %O  num -> %o', brands, num);
+                  }
+                  // mak
+                  brandsService.next(brands);
+
                  return body;
              }),
             catchError((err: any): any => {
-                console.log('--srv-- Error PimalionCloudService.getProductsList() -> %O', err);
+                console.log('- srv -- Error PimalionCloudService.getProductsList() -> %O', err);
                 return of([]);
             })
         );
@@ -498,16 +708,16 @@ export class PimalionCloudService {
 
     const url = `${environment.pimalionCloudUrl}/api/shop/product?id=${productKey}`;
 
-    if (this.isViewConsole) {
-        console.log('--srv-- PimalionCloudService.getProductDetailPage() url -> %o', url);
+    if (isPimalionCloudServiceLog) {
+        console.log('- srv -- PimalionCloudService.getProductDetailPage() url -> %o', url);
     }
     // productKey = 'Ipw9LHUBUvwcyS3bkdSh';
 
     return this.http.get<any>( url, httpOptions)
     .pipe(
              tap((item: any) => {
-                if (this.isViewConsole) {
-                    console.log('--srv-- PimalionCloudService.getProductDetailPage() items -> %O', item);
+                if (isPimalionCloudServiceLog) {
+                    console.log('- srv -- PimalionCloudService.getProductDetailPage() items -> %O', item);
                 }
              }),
             map(itemData => {
@@ -515,12 +725,12 @@ export class PimalionCloudService {
                 return  new ProductItem(itemData);
             }),
             tap((item: any) => {
-                if (this.isViewConsole) {
-                    console.log('--srv-- PimalionCloudService.getProductDetailPage() item(Product) -> %O', item);
+                if (isPimalionCloudServiceLog) {
+                    console.log('- srv -- PimalionCloudService.getProductDetailPage() item(Product) -> %O', item);
                 }
             }),
             catchError((err: any): any => {
-                console.log('--srv-- Error PimalionCloudService.getProductDetailPage() -> %O', err);
+                console.log('- srv -- Error PimalionCloudService.getProductDetailPage() -> %O', err);
                 return of(`<html><head>Product Detail Page</head> <body>Page not found </body></html>`);
             })
         );
@@ -534,16 +744,16 @@ export class PimalionCloudService {
 
     const url = `${environment.pimalionCloudUrl}/api/shop/product?id=${productKey}&action=Générer%20un%20titre`;
 
-    if (this.isViewConsole) {
-        console.log('--srv-- PimalionCloudService.getProductDetailPage_01() url -> %o', url);
+    if (isPimalionCloudServiceLog) {
+        console.log('- srv -- PimalionCloudService.getProductDetailPage_01() url -> %o', url);
     }
     // productKey = 'Ipw9LHUBUvwcyS3bkdSh';
 
     return this.http.get<any>( url, httpOptions)
     .pipe(
              tap((item: any) => {
-                if (this.isViewConsole) {
-                    console.log('--srv-- PimalionCloudService.getProductDetailPage_01() item -> %O', item);
+                if (isPimalionCloudServiceLog) {
+                    console.log('- srv -- PimalionCloudService.getProductDetailPage_01() item -> %O', item);
                 }
              }),
              /*
@@ -552,12 +762,12 @@ export class PimalionCloudService {
                 return  new ProductItem(itemData);
             }), */
             tap((item: any) => {
-                if (this.isViewConsole) {
-                    console.log('--srv-- PimalionCloudService.getProductDetailPage() item(Product) -> %O', item);
+                if (isPimalionCloudServiceLog) {
+                    console.log('- srv -- PimalionCloudService.getProductDetailPage() item(Product) -> %O', item);
                 }
             }),
             catchError((err: any): any => {
-                console.log('--srv-- Error PimalionCloudService.getProductDetailPage() -> %O', err);
+                console.log('- srv -- Error PimalionCloudService.getProductDetailPage() -> %O', err);
                 return of(`<html><head>Product Detail Page</head> <body>Page not found </body></html>`);
             })
         );
@@ -568,12 +778,12 @@ export class PimalionCloudService {
 
     const url = `${environment.pimalionCloudUrl}/api/shop/search`;
 
-    if (this.isViewConsole) {
-        console.log('--srv-- PimalionCloudService.getProductsList() url -> %o', url);
+    if (isPimalionCloudServiceLog) {
+        console.log('- srv -- PimalionCloudService.getProductsList() url -> %o', url);
     }
     if (!body) {
 
-                   console.log('--srv-- Error PimalionCloudService.getProductsList() body -> NULL');
+                   console.log('- srv -- Error PimalionCloudService.getProductsList() body -> NULL');
                    return of([]);
                 }
 
@@ -589,20 +799,20 @@ export class PimalionCloudService {
     .pipe(
              map((response: any) => {
 
-                if (this.isViewConsole) {
-                    console.log('--srv-- PimalionCloudService.getProductsList() response -> %O', response);
+                if (isPimalionCloudServiceLog) {
+                    console.log('- srv -- PimalionCloudService.getProductsList() response -> %O', response);
                 }
                  // const keys = response.headers.keys();
 
                  // tslint:disable-next-line:no-shadowed-variable
 
-                  if (this.isViewConsole) {
-                    console.log('--srv-- PimalionCloudService.getProductsList() response.body.tableValues -> %O', response.body.tableValues);
+                  if (isPimalionCloudServiceLog) {
+                    console.log('- srv -- PimalionCloudService.getProductsList() response.body.tableValues -> %O', response.body.tableValues);
                   }
                  return response.body.tableValues;
              }),
             catchError((err: any): any => {
-                console.log('--srv-- Error PimalionCloudService.getProductsList() -> %O', err);
+                console.log('- srv -- Error PimalionCloudService.getProductsList() -> %O', err);
                 return of([]);
             })
         );

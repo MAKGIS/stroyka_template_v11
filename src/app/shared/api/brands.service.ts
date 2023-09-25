@@ -9,7 +9,7 @@ export interface IBrandsServiceInterface {
     next(brands: Brand[]): void;
   }
 
-
+  const isBrandsServiceLog = true;
 
 @Injectable({
     providedIn: 'root'
@@ -42,7 +42,7 @@ export class BrandsService implements IBrandsServiceInterface {
   }
   public next(brands: Brand[]) {
     if (brands) {
-        if (this.isViewConsole) {
+        if (isBrandsServiceLog) {
             console.log('--srv-- BrandsService.next() brands -> %O', brands);
         }
       this.BrandsChangedSub$.next(brands);

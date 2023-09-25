@@ -8,6 +8,7 @@ let lastCategoryId = 0;
 
 let shopCategoriesDefPimalion: CategoryDef[] =
 [
+    /*
     {
         name: 'Sanitaire',
         slug: 'Sanitaire',
@@ -28,6 +29,7 @@ let shopCategoriesDefPimalion: CategoryDef[] =
         slug: 'Chauffage',
         items: 44,
     }
+    */
 ];
 
 let shopCategoriesDef: CategoryDef[] =
@@ -359,7 +361,7 @@ export function setShopCategoriesDef(categoriesDefNew: CategoryDef[]  ) {
     shopCategoriesDef = categoriesDefNew;
 }
 */
-function walkTree(categoriesType: 'shop'|'blog', categoriesDef: CategoryDef[], parents: Category[] = []): [Category[], Category[]] {
+export function walkTree(categoriesType: 'shop'|'blog', categoriesDef: CategoryDef[], parents: Category[] = []): [Category[], Category[]] {
     let list: Category[] = [];
     const tree: Category[] = categoriesDef.map(categoryDef => {
         const category: Category = {

@@ -2,6 +2,7 @@
 
 # work dir
 /.arx
+/_docs
 
 # compiled output
 /dist

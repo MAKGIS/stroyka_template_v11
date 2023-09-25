@@ -44,3 +44,14 @@ http://localhost:4200/shop/products/qOFgJWgBenVimcVmYC33
 
 
 --------------------------
+
+
+https://sass-lang.com/documentation/breaking-changes/slash-div/
+
+
+Automatic MigrationAutomatic Migration permalink
+You can use the Sass migrator to automatically update your stylesheets to use math.div() and list.slash().
+
+$ npm install -g sass-migrator
+$ sass-migrator division **/*.scss
+

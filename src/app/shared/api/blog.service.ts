@@ -11,12 +11,12 @@ const delayTest = 0;
 
 const mode: string = 'json'; // 'demo.sourcing.pm';  // 'fake-server', 'json',  'demo.sourcing.pm'
 
+const isBlogServiceLog = true;
 
 @Injectable({
     providedIn: 'root'
 })
 export class BlogService {
-    isViewConsole = true;
 
     constructor(
         private http: HttpClient,
@@ -60,7 +60,7 @@ export class BlogService {
                     .pipe(
                         tap( n=>
                             {
-                                if (this.isViewConsole) {console.log('--srv-- BlogService getCategories delayTest -> %o', delayTest)}
+                                if (isBlogServiceLog) {console.log('--srv-- BlogService getCategories delayTest -> %o', delayTest)}
                         }),
                         delay(delayTest)
                         );
@@ -71,7 +71,7 @@ export class BlogService {
                         .pipe(
                             tap( n=>
                                 {
-                                    if (this.isViewConsole) {console.log('--srv-- BlogService getCategories delayTest -> %o', delayTest)}
+                                    if (isBlogServiceLog) {console.log('--srv-- BlogService getCategories delayTest -> %o', delayTest)}
                             }),
                             delay(delayTest)
                             );

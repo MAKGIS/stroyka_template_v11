@@ -18,12 +18,14 @@ export class ProductTabsComponent {
     @Input() withSidebar = false;
     @Input() tab: 'description'|'specification'|'reviews'|'documents'|'price' = 'description';
     @Input() product: Product;
-    
+
 
     specification: ProductFeaturesSection[] = specification;
     reviews: Review[] = reviews;
     generateTitleText = "Générer les contenus";
     generateAttributesText = "Generer les contenus";
+
+    isLoadDescriptionII_1 = false;
 
     constructor(private pimalionCloudService: PimalionCloudService) { }
 
@@ -36,23 +38,29 @@ export class ProductTabsComponent {
             this.pimalionCloudService.getProductDetailPage_01(this.product.id)
               .subscribe({
                 next:(data: any) => {this.product = new ProductItem(data);this.generateTitleText = "Generer les contenus"} //this.product.name = data.title
-            });    
+            });
     }
 
     getTitre() {
+        this.isLoadDescriptionII_1 = true;
         this.generateTitleText = "Génération en cours...";
+
         this.pimalionCloudService.getProductDetailPage_01(this.product.id)
           .subscribe({
-            next:(data: any) => {this.product = new ProductItem(data);this.generateTitleText = "Generer les contenus"} //this.product.name = data.title
-        }); 
+            next:(data: any) => {
+                this.product = new ProductItem(data);
+                this.generateTitleText = "Generer les contenus";
+                this.isLoadDescriptionII_1 = false;
+            } //this.product.name = data.title
+        });
     }
-
+/*
     getDescription() {
         this.product.description = "Génération de texte en cours...";
         this.pimalionCloudService.getProductDetailPage_01(this.product.id)
           .subscribe({
             next:(data: any) => this.product.description = data.description
-        }); 
+        });
     }
-
+*/
 }
