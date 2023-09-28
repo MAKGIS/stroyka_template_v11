@@ -52,7 +52,7 @@ export class PageHomeTwoComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
-        this.bestsellers$ = this.shop.getBestsellers(7);
+        this.bestsellers$ = this.shop.getBestsellers(7);  // Bestsellers - 7
         this.brands$ = this.shop.getPopularBrands();
 
 /*
@@ -88,7 +88,7 @@ export class PageHomeTwoComponent implements OnInit, OnDestroy {
 
         // this.popularCategories$ = this.shop.getCategoriesBySlug(this.categoriesService, getCategoriesSlug(), 1);
 
-
+        // Top Rated Products, Special Offers, Bestsellers - 3
         this.columnTopRated$ = this.shop.getTopRated(3);
         this.columnSpecialOffers$ = this.shop.getSpecialOffers(3);
         this.columnBestsellers$ = this.shop.getBestsellers(3);

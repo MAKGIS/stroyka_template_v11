@@ -663,7 +663,7 @@ export class ShopService {
 
                 const options:ListOptions = {
                    page: 0,
-                   limit: 3,
+                   limit: limit,
                    sort: 'default'
                 };
                 return this.getTypeProducts(null, options, 12);
@@ -718,7 +718,7 @@ export class ShopService {
 
                 const options:ListOptions = {
                    page: 0,
-                   limit: 3,
+                   limit: limit,
                    sort: 'default'
                 };
                 return this.getTypeProducts(null, options, 12);
@@ -772,7 +772,7 @@ export class ShopService {
 
                 const options:ListOptions = {
                    page: 0,
-                   limit: 3,
+                   limit: limit,
                    sort: 'default'
                 };
                 return this.getTypeProducts(null, options, 12);
@@ -830,7 +830,7 @@ export class ShopService {
 
                 const options:ListOptions = {
                    page: 0,
-                   limit: 3,
+                   limit: limit,
                    sort: 'default'
                 };
                 return this.getTypeProducts(categorySlug, options, 12);
@@ -888,7 +888,7 @@ export class ShopService {
 
                 const options:ListOptions = {
                    page: 0,
-                   limit: 3,
+                   limit: limit,
                    sort: 'default'
                 };
                 return this.getTypeProducts(categorySlug, options, 12);
@@ -914,6 +914,7 @@ export class ShopService {
         // return this.http.get<Product[]>('https://example.com/api/shop/products/related.json', {params});
 
         // This is for demonstration purposes only. Remove it and use the code above.
+        const limit = 8;  // ???
 
         switch (mode) {
 
@@ -938,7 +939,7 @@ export class ShopService {
 
                 const options:ListOptions = {
                    page: 0,
-                   limit: 3,
+                   limit: limit, // ???
                    sort: 'default'
                 };
                 return this.getTypeProducts(null, options, 12);
