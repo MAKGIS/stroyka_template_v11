@@ -2,6 +2,7 @@ import { BrandDef } from '../interfaces/brand-def';
 import { Brand } from '../../app/shared/interfaces/brand';
 import { Observable, of } from 'rxjs';
 import { Category } from 'src/app/shared/interfaces/category';
+import { environment } from 'src/environments/environment';
 
 let lastBrandId = 0;
 
@@ -60,7 +61,7 @@ function setShopBrandDef(brandsDefNew: BrandDef[]  ) {
 }
 */
 // 'fake-server'; 'json'; 'demo.sourcing.pm';
-const modeSource: string =   'demo.sourcing.pm';
+const modeSource: string =  environment.modeApp; // 'demo.sourcing.pm';
 
 export function getModeSource(): string {
 

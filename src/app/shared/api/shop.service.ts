@@ -69,7 +69,7 @@ const delayTest = 0;
 const isShopServiceLog = true;
 
 // 'demo.sourcing.pm'; // 'demo.sourcing.pm';  'fake-server', 'json'
-const mode: string = getModeSource();
+// const mode: string = getModeSource();
 
 // Set the http options
 const httpOptions = {
@@ -101,7 +101,7 @@ export class ShopService {
 
         // This is for demonstration purposes only. Remove it and use the code above.
 
-        switch (mode) {
+        switch (getModeSource()) {
 
             case 'fake-server':
 
@@ -143,7 +143,7 @@ export class ShopService {
 
         // This is for demonstration purposes only. Remove it and use the code above.
 
-        switch (mode) {
+        switch (getModeSource()) {
 
             case 'fake-server':
 
@@ -195,7 +195,7 @@ export class ShopService {
 
         if (isShopServiceLog)  {console.log('- srv -- ShopService.getCategory() slug -> %o', slug)}
 
-        switch (mode) {
+        switch (getModeSource()) {
 
             case 'fake-server':
 
@@ -265,7 +265,7 @@ export class ShopService {
 
         if (isShopServiceLog)  {console.log('- srv -- ShopService.getCategories() parent -> %o  depth -> %o', parent, depth)}
 
-        switch (mode) {
+        switch (getModeSource()) {
 
             case 'fake-server':
 
@@ -319,7 +319,7 @@ export class ShopService {
 
         // This is for demonstration purposes only. Remove it and use the code above.
 
-        switch (mode) {
+        switch (getModeSource()) {
 
             case 'fake-server':
 
@@ -398,7 +398,7 @@ export class ShopService {
             console.log('- srv -- ShopService.getProductsList()  options -> %o', options);
         }
 
-            switch (mode) {
+            switch (getModeSource()) {
 
                 case 'fake-server':
 
@@ -536,7 +536,7 @@ export class ShopService {
 
         // This is for demonstration purposes only. Remove it and use the code above.
 
-        switch (mode) {
+        switch (getModeSource()) {
 
             case 'fake-server':
 
@@ -585,7 +585,7 @@ export class ShopService {
 
         // This is for demonstration purposes only. Remove it and use the code above.
 
-        switch (mode) {
+        switch (getModeSource()) {
 
             case 'fake-server':
 
@@ -640,7 +640,7 @@ export class ShopService {
 
         // This is for demonstration purposes only. Remove it and use the code above.
 
-        switch (mode) {
+        switch (getModeSource()) {
 
             case 'fake-server':
 
@@ -694,7 +694,7 @@ export class ShopService {
 
         // This is for demonstration purposes only. Remove it and use the code above.
 
-        switch (mode) {
+        switch (getModeSource()) {
 
             case 'fake-server':
 
@@ -749,7 +749,7 @@ export class ShopService {
 
         // This is for demonstration purposes only. Remove it and use the code above.
 
-        switch (mode) {
+        switch (getModeSource()) {
 
             case 'fake-server':
 
@@ -807,7 +807,7 @@ export class ShopService {
 
         // This is for demonstration purposes only. Remove it and use the code above.
 
-        switch (mode) {
+        switch (getModeSource()) {
 
             case 'fake-server':
 
@@ -865,7 +865,7 @@ export class ShopService {
         // This is for demonstration purposes only. Remove it and use the code above.
 
 
-        switch (mode) {
+        switch (getModeSource()) {
 
             case 'fake-server':
 
@@ -916,7 +916,7 @@ export class ShopService {
         // This is for demonstration purposes only. Remove it and use the code above.
         const limit = 8;  // ???
 
-        switch (mode) {
+        switch (getModeSource()) {
 
             case 'fake-server':
 
@@ -975,7 +975,7 @@ export class ShopService {
         if (isShopServiceLog)  {console.log('- srv -- ShopService.getSuggestions() filterOption ->%o', filterOption)}
 
 
-        switch (mode) {
+        switch (getModeSource()) {
 
             case 'fake-server':
 

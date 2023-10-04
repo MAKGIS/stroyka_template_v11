@@ -1,7 +1,12 @@
 import { Observable, throwError, timer } from 'rxjs';
 import { ProductsList } from '../app/shared/interfaces/list';
 import { Product } from '../app/shared/interfaces/product';
-import { CategoryFilterItem, ColorFilterItem, Filter, FilterItem } from '../app/shared/interfaces/filter';
+import {
+    CategoryFilterItem,
+    ColorFilterItem,
+    Filter,
+    FilterItem
+} from '../app/shared/interfaces/filter';
 import { HttpErrorResponse } from '@angular/common/http';
 import { attributesDef, products as productsTable } from './database/products';
 import { Category } from '../app/shared/interfaces/category';
@@ -40,7 +45,7 @@ export function getProductsList(categorySlug: string|null, options: ListOptions)
     let items = productsTable.slice();
 
     if (isGetProductsListLog) {
-        console.log('getProductsList()  (1) items -> %o', items);
+        console.log('- fn -- getProductsList()  (1) items -> %o', items);
     };
 
     // Make filters.
@@ -75,7 +80,7 @@ export function getProductsList(categorySlug: string|null, options: ListOptions)
     }
 
     if (isGetProductsListLog) {
-        console.log('getProductsList()  (2) filters -> %o', filters);
+        console.log('- fn -- getProductsList()  (2) filters -> %o', filters);
     };
 
 
@@ -104,7 +109,7 @@ export function getProductsList(categorySlug: string|null, options: ListOptions)
     });
 
     if (isGetProductsListLog) {
-        console.log('getProductsList() (3) filters -> %o', filters);
+        console.log('- fn -- getProductsList() (3) filters -> %o', filters);
     }
 
     // Apply filters to items list.
@@ -126,7 +131,7 @@ export function getProductsList(categorySlug: string|null, options: ListOptions)
     });
 
     if (isGetProductsListLog) {
-        console.log('getProductsList() (4) items -> %o', items);
+        console.log('- fn -- getProductsList() (4) items -> %o', items);
     }
 
     // Preparing data for a response.
@@ -154,7 +159,7 @@ export function getProductsList(categorySlug: string|null, options: ListOptions)
     };
 
     if (isGetProductsListLog) {
-        console.log('getProductsList() (5) response -> %o', response);
+        console.log('- fn -- getProductsList() (5) response -> %o', response);
     }
 
     return timer(350).pipe(map(() => JSON.parse(JSON.stringify(response))));

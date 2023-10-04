@@ -19,7 +19,7 @@ import { PagePimalionBrandsComponent } from 'src/app/pimalion/pages/page-brands/
 
 import { getModeSource, getProductStandard, getRootCategorySlug } from 'src/fake-server/database/brands';
 
-const mode: string = 'demo.sourcing.pm'; // getModeSource();
+// const mode: string = getModeSource(); //  'demo.sourcing.pm'; // getModeSource();
 
 const rootCategorySlug: string  = getRootCategorySlug(); //'Sanitaire';  // 'power-tools'
 
@@ -363,7 +363,7 @@ const routes: Routes =  [
 
 // routes = routes_http;
 /*
-switch (mode) {
+switch (getModeSource()) {
 
     case 'demo.sourcing.pm':
 

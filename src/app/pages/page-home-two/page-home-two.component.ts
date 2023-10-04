@@ -11,7 +11,7 @@ import { BlockHeaderGroup } from '../../shared/interfaces/block-header-group';
 import { getCategoriesName, getCategoriesSlug, getModeSource } from 'src/fake-server/database/brands';
 import { CategoriesService } from 'src/app/shared/api/categories.service';
 
-const mode: string = getModeSource();
+// const mode: string = getModeSource();
 
 interface ProductsCarouselGroup extends BlockHeaderGroup {
     products$: Observable<Product[]>;

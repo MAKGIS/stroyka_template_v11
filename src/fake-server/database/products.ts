@@ -9,10 +9,10 @@ import { Observable, of, throwError, timer } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { getModeSource } from 'src/fake-server/database/brands';
-import { PimalionCloudService } from 'src/app/shared/api/pimalion-cloud.service';
+// import { getModeSource } from 'src/fake-server/database/brands';
+// import { PimalionCloudService } from 'src/app/shared/api/pimalion-cloud.service';
 
-const mode: string = getModeSource();
+// const mode: string = getModeSource();
 
 let lastProductId = 0;
 

@@ -7,9 +7,11 @@ import { delay, tap } from 'rxjs/operators';
 
 import { getBlogCategoriesTree } from '../../../fake-server';
 
+import { getModeSource } from 'src/fake-server/database/brands';
+
 const delayTest = 0;
 
-const mode: string = 'json'; // 'demo.sourcing.pm';  // 'fake-server', 'json',  'demo.sourcing.pm'
+// const mode: string = getModeSource(); // 'json'; // 'demo.sourcing.pm';  // 'fake-server', 'json',  'demo.sourcing.pm'
 
 const isBlogServiceLog = true;
 
@@ -48,7 +50,7 @@ export class BlogService {
         // This is for demonstration purposes only. Remove it and use the code above.
         // return getBlogCategoriesTree(parent ? parent.slug : null, depth);
 
-        switch (mode) {
+        switch (getModeSource()) {
 
             case 'fake-server':
 
